@@ -505,7 +505,7 @@ public class InmuebleController {
 	
 	//--DELETE--
 	@DeleteMapping("/{id}")
-	public boolean deleteInmueble(@RequestBody int id) {
+	public boolean deleteInmueble(@PathVariable("id") int id) {
 		
 		return inmuebleService.deleteInmueble(id);
 	}
