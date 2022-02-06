@@ -92,6 +92,8 @@
   
    - [Paso 2) Desarrollo del Microservicio InmuebleService](#paso-2-otras-configuraciones-del-proyecto)
 
+#### Sección 2) Microservicio PropietarioInmuebleService
+
 
 </br>
 
@@ -179,49 +181,57 @@ public enum EstadoInmuebleEnum {
 
  
  ```java
- package com.inmueble.service.entity;
+package com.inmueble.service.repository;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.inmueble.service.entity.Inmueble;
 import com.inmueble.service.enums.EstadoInmuebleEnum;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+@Repository
+public interface I_InmuebleRepository extends JpaRepository<Inmueble, Long>{
 
-@Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Inmueble {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	//============================ MÉTODOS DE BÚSQUEDA ============================== 
 	
-	private int idPropietarioInmueble;
+	public abstract Inmueble findById(int id);
 	
-	private String descripcion;
+	public abstract List<Inmueble> findByIdPropietario(int id);
 	
-	private EstadoInmuebleEnum  estadoInmuebleEnum;
+	public abstract List<Inmueble> findByDescripcion(String descripcion);
 	
-	private double precioInmuebleUsd;
+	public abstract List<Inmueble> findByEstado(EstadoInmuebleEnum  estadoInmuebleEnum);
 	
-	private String direccion;
+	public abstract List<Inmueble> findByPrecio(double precioInmueble);
 	
-	private String ubicacion;
+	public abstract List<Inmueble> findByDireccion(String direccion);
 	
-	private String sitioWeb;
+	public abstract List<Inmueble> findByUbicacion(String ubicacion);
+	
+	public abstract List<Inmueble> findBySitioWeb(String sitioWeb);
+
+	
+	//============================ MÉTODOS CRUD ==============================
+	
+	public abstract void addInmueble(Inmueble inmueble);
+
+	public abstract void updateInmueble(Inmueble inmueble);
+	
+	public abstract void deleteInmueble(Inmueble inmueble);
+	
+	public abstract Page<Inmueble> getAll(Pageable pageable);
+	
 	
 	
 	
 
 }
 
- 
   
  ```
 
@@ -231,27 +241,297 @@ public class Inmueble {
 
 * Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `repository`
 * Dentro del mismo la Interfaz `I_InmuebleRepository`
-* Agregamos la annotation `@Repository` de la clase para JPA y heredamos de la interfaz `JpaRepository<InmuebleEntity, Long>` toda la funcionalidad para la creación de los métodos Jpa 
-* Desarrollamos todos los métodos abstractos tentativos de uso 
+* Agregamos la annotation `@Repository` de la clase para JPA y usamos la interfaz  `JpaRepository<InmuebleEntity, Long>` para toda la funcionalidad para la creación de los métodos Jpa 
+* Creamos y Definimos todos los métodos abstractos haciendo referencia a los campos de la entidad tentativos de uso. 
+* Creamos todos los métodos CRUD (add, save, update y getAll) que tendrán la condición lógica de devolvernos un boleano según el resultado de la operación. El método `getAll` será para Paginados..
  
  ```java
 package com.inmueble.service.repository;
 
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.inmueble.service.entity.Inmueble;
+import com.inmueble.service.enums.EstadoInmuebleEnum;
 
 @Repository
 public interface I_InmuebleRepository extends JpaRepository<Inmueble, Long>{
 
+	
+	//============================ Métodos de Búsqueda ============================== 
+	
 	public abstract Inmueble findById(int id);
 	
-	public abstract Inmueble findByIdPropietarioInmueble(int id);
+	public abstract List<Inmueble> findByIdPropietario(int id);
+	
+	public abstract List<Inmueble> findByDescripcion(String descripcion);
+	
+	public abstract List<Inmueble> findByEstado(EstadoInmuebleEnum  estadoInmuebleEnum);
+	
+	public abstract List<Inmueble> findByPrecio(double precioInmueble);
+	
+	public abstract List<Inmueble> findByDireccion(String direccion);
+	
+	public abstract List<Inmueble> findByUbicacion(String ubicacion);
+	
+	public abstract List<Inmueble> findBySitioWeb(String sitioWeb);
+
+	
+	//============================ Métodos CRUD ==============================
+	
+	public abstract boolean addInmueble(Inmueble inmueble);
+
+	public abstract boolean updateInmueble(Inmueble inmueble);
+	
+	public abstract boolean deleteInmueble(Inmueble inmueble);
+		
+	public abstract Page<Inmueble> getAll(Pageable pageable);
+	
+	
+	
+	
+
 }
 
-  
+
  ```
+
+</br>
+
+### 1.4) Creación y Configuración del Servicio  `InmuebleService`
+ 
+ 
+* Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `service`
+* Dentro del mismo la Clase Service `InmuebleService`
+* Agregamos la annotation `@Service` de la clase haciendo referencia para Spring y `@Autowired` para implementar Inyección de Dependencias de la interfaz creada.
+* Usamos log4j para los logs de error en los métodos CRUD para la persistencia. 
+* Desarrollamos el cuerpo de cada método de la interfaz
+* Cada Método CRUD tiene su comprobación de Persistencia y devolverán un booleano según el resultado de la operación, los mismos pueden ser modificados para adicionar mayor seguridad.
+ 
+ ```java
+package com.inmueble.service.service;
+
+import java.util.List;
+
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.inmueble.service.entity.Inmueble;
+import com.inmueble.service.enums.EstadoInmuebleEnum;
+import com.inmueble.service.repository.I_InmuebleRepository;
+
+@Service
+public class InmuebleService {
+	
+	@Autowired
+	private I_InmuebleRepository iInmuebleRepository;
+	
+	
+	// ============= LOGS ========================	
+	private static final Logger logger = org.apache.logging.log4j.LogManager.getLogger(InmuebleService.class);
+
+	
+	// ============ MÉTODOS CRUD ==================
+	
+		// ----INSERT----
+	public boolean addInmueble(Inmueble inmueble) {
+		try {
+			if(inmueble == null) {
+				logger.error("ERROR addInmueble : EL INMUEBLE " + inmueble+" ES NULO!!");
+				return false;
+			}else {
+				iInmuebleRepository.save(inmueble);
+				return true;
+			}
+			
+			
+		} catch (Exception e) {
+			logger.error("ERROR addInmueble : EL INMUEBLE " + inmueble+ " NO SE HA INSERTADO EN LA DB!!");
+			return true;
+		}
+	}
+	
+	
+	// ----UPDATE----
+	public boolean updateInmueble(Inmueble inmueble) {
+		try {
+			if(inmueble == null) {
+				logger.error("ERROR updateInmueble : EL INMUEBLE " + inmueble + " ES NULO!!");
+				return false;
+			}else {
+				iInmuebleRepository.save(inmueble);
+				return true;
+			}
+			
+		} catch (Exception e) {
+			logger.error("ERROR updateInmueble : EL INMUEBLE " + inmueble + " NO SE HA ACTUALIZADO EN LA DB!!");
+			return false;
+		}
+	}
+	
+	// ----DELETE----
+	public boolean deleteInmueble(int id) {
+		try {
+			if(id == 0) {
+				logger.error("ERROR deleteInmueble : EL ID DEL INMUEBLE ES CERO!!");
+				return false;
+			}else {
+				iInmuebleRepository.delete(iInmuebleRepository.findById(id));
+				return true;
+			}
+			
+		} catch (Exception e) {
+			logger.error("ERROR deleteInmueble : EL INMUEBLE CON EL ID " + id + " NO SE HA ELIMINADO DE LA DB!!");
+			return false;
+		}
+	}
+	
+	// ----SELECT----
+	public List<Inmueble> getAllInmueble(Pageable pageable){
+		
+		return iInmuebleRepository.getAll(pageable).getContent();
+	}
+	
+	// ============ MÉTODOS DE BÚSQUEDA ==================
+	
+	//----ID-----
+	public Inmueble findById(int id) {
+		return iInmuebleRepository.findById(id);
+	}
+	
+
+	//---- ID PROPIETARIO INMUEBLE-----
+	public List<Inmueble> findByIdPropietario(int id) {
+		return iInmuebleRepository.findByIdPropietario(id);
+	}
+	
+	
+	//---- DESCRIPCION INMUEBLE-----
+	public List<Inmueble> findByDescripcion(String descripcion) {
+		return iInmuebleRepository.findByDescripcion(descripcion);
+	}
+	
+	//---- ESTADO INMUEBLE-----
+	public List<Inmueble> findByEstado(EstadoInmuebleEnum estadoInmuebleEnum) {
+		return iInmuebleRepository.findByEstado(estadoInmuebleEnum);
+	}
+	
+	
+	//---- PRECIO INMUEBLE-----
+	public List<Inmueble> findByPrecio(double precio) {
+		return iInmuebleRepository.findByPrecio(precio);
+	}
+	
+	//---- DIRECCION INMUEBLE-----
+	public List<Inmueble> findByDireccion(String direccion) {
+		return iInmuebleRepository.findByDireccion(direccion);
+	}
+	
+	//---- UBICACION INMUEBLE-----
+	public List<Inmueble> findByUbicacion(String ubicacion) {
+		return iInmuebleRepository.findByUbicacion(ubicacion);
+	}
+	
+	//---- SITIO WEB INMUEBLE-----
+	public List<Inmueble> findBySitioWeb(String sitioWeb) {
+		return iInmuebleRepository.findBySitioWeb(sitioWeb);
+	}	
+}
+
+ ```
+ 
+ 
+ 
+</br>
+
+### 1.5) Creación y Configuración del Controlador  `InmuebleController`
+ 
+ 
+* Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `controller`
+* Dentro del mismo la Clase Controller `InmuebleController`
+* Agregamos la annotation `@RestController` de la clase haciendo referencia al controlador y la annotation `@RequestMapping` haciendo referencia a la ruta principal de acceso para Spring.
+* Implementamos `@Autowired` para Inyección de Dependencias del service creado.
+* Utilizamos `@PostMapping` y `@GetMapping` para el uso de los métodos del protocolo HTTP 
+* También hacemos uso de las annotations `@RequestBody` para recuperar el cuerpo de la solicitud HTTP y el `@PathVariable` para el manejo de las variables declaradas
+* Usamos log4j para los logs de error en los métodos CRUD para la persistencia. 
+* Desarrollamos el cuerpo de cada método de la interfaz
+* Cada Método CRUD de Tipo HTTP (POST, DELETE, PUT, GET) tiene su comprobación de Persistencia y los métodos devolverán un booleano según el resultado de la operación, menos el get que trae el Inmueble. Los mismos pueden ser modificados para adicionar mayor seguridad.
+ 
+ ```java
+ package com.inmueble.service.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.inmueble.service.entity.Inmueble;
+import com.inmueble.service.service.InmuebleService;
+
+@RestController
+@RequestMapping("/inmuebles")
+public class InmuebleController {
+
+	@Autowired
+	private InmuebleService inmuebleService;
+
+	// ======== MÉTODOS HTTP ============
+	// --POST--
+	@PostMapping("/")
+	public boolean addInmueble(@RequestBody Inmueble inmueble) {
+
+		return inmuebleService.addInmueble(inmueble);
+
+	}
+
+	// --PUT--
+	@PutMapping("/")
+	public boolean updateInmueble(@RequestBody Inmueble inmueble) {
+
+		return inmuebleService.updateInmueble(inmueble);
+
+	}
+	
+	//--DELETE--
+	@DeleteMapping("/{id}")
+	public boolean deleteInmueble(@RequestBody int id) {
+		
+		return inmuebleService.deleteInmueble(id);
+	}
+	
+
+	//--GET--
+	@GetMapping("/{id}")
+	public Inmueble findById(@PathVariable("id") int id) {
+
+		return inmuebleService.findById(id);
+
+	}
+
+}
+
+
+ ```
+ 
+  
+ </br>
+
+ 
+ 
+ 
+ 
+ 
  
  </br>
 
