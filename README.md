@@ -88,9 +88,16 @@
 
 #### Sección 1) Microservicio InmuebleService
    
-   - [Paso 1) Creación y Configuraciones del Microservicio InmuebleService](#)
+   - [Paso 1) Creación y Configuraciones del Microservicio InmuebleService](#paso-1-creación-y-configuraciones-del-microservicio-inmuebleservice)
   
-   - [Paso 2) Desarrollo del Microservicio InmuebleService](#paso-2-otras-configuraciones-del-proyecto)
+   - [Paso 2) Desarrollo del Microservicio InmuebleService](#paso-2-desarrollo-del-microservicio-inmuebleservice)
+
+   
+   - [Paso 3) Configuraciones de la Base de Datos](#paso-3-configuraciones-de-la-base-de-datos)
+
+
+   - [Paso 4) Configuraciones del application.properties](#paso-4-configuraciones-del-application.properties)
+
 
 #### Sección 2) Microservicio PropietarioInmuebleService
 
@@ -147,7 +154,7 @@
 
 </br>
 
-### 1.1) Creación y Configuracion del Enum `EstadoInmuebleEnum`
+### 2.1) Creación y Configuracion del Enum `EstadoInmuebleEnum`
 * Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `enums`
 * Vamos a crear una clase enumerado para el campo `estado_inmueble_enum` de la base de datos `db_inmuebles_microservicios`
 * Dentro del paquete `enum` creamos la clase 
@@ -170,7 +177,7 @@ public enum EstadoInmuebleEnum {
 
 </br>
 
-### 1.2) Creación y Configuracion de la Entidad `Inmueble`
+### 2.2) Creación y Configuracion de la Entidad `Inmueble`
 
 * Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `entity`
 * Dentro del mismo la clase `Inmueble`
@@ -237,7 +244,7 @@ public interface I_InmuebleRepository extends JpaRepository<Inmueble, Long>{
 
 </br>
 
-### 1.3) Creación y Configuracion de la Interfaz `I_InmuebleRepository`
+### 2.3) Creación y Configuracion de la Interfaz `I_InmuebleRepository`
 
 * Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `repository`
 * Dentro del mismo la Interfaz `I_InmuebleRepository`
@@ -302,7 +309,7 @@ public interface I_InmuebleRepository extends JpaRepository<Inmueble, Long>{
 
 </br>
 
-### 1.4) Creación y Configuración del Servicio  `InmuebleService`
+### 2.4) Creación y Configuración del Servicio  `InmuebleService`
  
  
 * Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `service`
@@ -450,7 +457,7 @@ public class InmuebleService {
  
 </br>
 
-### 1.5) Creación y Configuración del Controlador  `InmuebleController`
+### 2.5) Creación y Configuración del Controlador  `InmuebleController`
  
  
 * Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `controller`
@@ -523,10 +530,55 @@ public class InmuebleController {
 
 
  ```
- 
-  
- </br>
 
+</br>
+
+
+### Paso 3) Configuraciones de la db `db_inmobiliaria_microservicios_postgres`
+#### (El Microservicio persistirá los datos en esta db, no detallaré como levantar la db, ejecutar los servicios, etc. Todos estos pasos se encuentran en el repositorio de la misma..https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres)
+
+</br>
+
+* Como se mencionó, todos los pasos para trabajar con esta db se encuentra en el respectivo repositorio, la información relevante será el nombre y la contraseña de la db..
+```xml
+Database: db_inmobiliaria_microservicios
+
+Contraseña:postgres
+```
+
+</br>
+
+
+### Paso 4) Configuraciones del `application.properties`
+  
+</br>
+
+* Revisar Repositorio de Api Rest para información detallada acerca del archivo de propiedades
+* La única diferencia con la API REST mencionada es que utilizo como sgdb mysql y no postgres, entonces se cambia el dialect para hibernate y el resto
+* Realizamos las configuraciones pertinentes para trabajar con la base de datos indicada y las configuraciones que la misma y spring requiera
+ ```xml
+
+server.port = 5432
+server.error.whitelabel.enabled=true
+
+spring.datasource.url = jdbc:postgresql://localhost:3306/db_inmobiliaria_microservicios?serverTimezone=UTC
+spring.datasource.username = postgres
+spring.datasource.password = postgres
+
+
+spring.jpa.show-sql = true
+spring.jpa.hibernate.ddl-auto = update
+spring.jpa.hibernate.naming.strategy = org.hibernate.cfg.ImprovedNamingStrategy
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
+
+
+
+spring.data.rest.page-param-name=page
+spring.data.rest.sort-param-name=sort
+spring.data.rest.limit-param-name=limit
+spring.data.rest.default-page-size = 1
+spring.data.rest.max-page-size = 10
+```
  
  
  
