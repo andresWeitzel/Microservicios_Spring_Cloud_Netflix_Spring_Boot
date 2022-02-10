@@ -156,19 +156,19 @@
 
 ### 2.1) Creación y Configuracion del Enum `EstadoInmuebleEnum`
 * Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `enums`
-* Vamos a crear una clase enumerado para el campo `estado_inmueble_enum` de la base de datos `db_inmuebles_microservicios`
-* Dentro del paquete `enum` creamos la clase 
-* Agregamos la annotation @Entity para JPA
-* Agregamos los tipos de enumerados disponibles para utilizazr de la base de datos..
+* Vamos a crear una clase enumerado para el campo `estado_inmueble_enum` de la entidad `Inmueble` que crearemos a continuación
+* Dentro del paquete `enum` creamos la clase `EstadoInmuebleEnum`
+* Para esta clase no Agregamos la annotation @Entity de JPA ya que no vamos a crear una tabla en la base de datos, sino usar los posibles valores de los enumerados
+* Agregamos los tipos de enumerados disponibles para utilizar de la base de datos..
  ```java
  
+
  package com.inmueble.service.enums;
+ 
 
-import javax.persistence.Entity;
 
-@Entity
 public enum EstadoInmuebleEnum {
-	VENDIDO, DISPONIBLE, NO_DISPONIBLE, FALTA_INSPECCION;
+	vendido, disponible, no_disponible, falta_inspeccion;
 
 }
 
@@ -183,63 +183,57 @@ public enum EstadoInmuebleEnum {
 * Dentro del mismo la clase `Inmueble`
 * Agregamos la annotation `@Entity` de la clase para JPA 
 * Desarrollamos todos los campos privados modelando la tabla inmuebles de la db `db_inmuebles_microservicios`
-* Agregamo también `@Id` y `@GeneratedValue(strategy = GenerationType.AUTO) ` para el autoincrement del id de la db, todas anotaciones para JPA
+* Agregamos también `@Id` y `@GeneratedValue(strategy = GenerationType.AUTO) ` para el autoincrement del id de la db, seguidamente `@Enumerated(EnumType.STRING)` para el enumerado. No agregamos el resto de las anotaciones ya que vamos a implementar lombok
 * Luego Agregamos las anotaciones para lombok `@Data` , `@AllArgsConstructor` y `@NoArgsConstructor` , la primera para la generacion de los getters y setters y el resto de metodos, la segunda para los constructores sobrecargados de la Entidad y la tercera para constructor vacio 
 
  
  ```java
-package com.inmueble.service.repository;
+package com.inmueble.service.entity;
 
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-import com.inmueble.service.entity.Inmueble;
 import com.inmueble.service.enums.EstadoInmuebleEnum;
 
-@Repository
-public interface I_InmuebleRepository extends JpaRepository<Inmueble, Long>{
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Inmueble {
 	
-	//============================ MÉTODOS DE BÚSQUEDA ============================== 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
 	
-	public abstract Inmueble findById(int id);
+	private int idPropietarioInmueble;
 	
-	public abstract List<Inmueble> findByIdPropietario(int id);
+	private String descripcion;
 	
-	public abstract List<Inmueble> findByDescripcion(String descripcion);
+	@Enumerated(EnumType.STRING)
+	private EstadoInmuebleEnum  estadoInmuebleEnum;
 	
-	public abstract List<Inmueble> findByEstado(EstadoInmuebleEnum  estadoInmuebleEnum);
+	private double precioInmuebleUsd;
 	
-	public abstract List<Inmueble> findByPrecio(double precioInmueble);
+	private String direccion;
 	
-	public abstract List<Inmueble> findByDireccion(String direccion);
+	private String ubicacion;
 	
-	public abstract List<Inmueble> findByUbicacion(String ubicacion);
-	
-	public abstract List<Inmueble> findBySitioWeb(String sitioWeb);
-
-	
-	//============================ MÉTODOS CRUD ==============================
-	
-	public abstract void addInmueble(Inmueble inmueble);
-
-	public abstract void updateInmueble(Inmueble inmueble);
-	
-	public abstract void deleteInmueble(Inmueble inmueble);
-	
-	public abstract Page<Inmueble> getAll(Pageable pageable);
-	
+	private String sitioWeb;
 	
 	
 	
 
 }
 
-  
  ```
 
 </br>
@@ -248,9 +242,9 @@ public interface I_InmuebleRepository extends JpaRepository<Inmueble, Long>{
 
 * Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `repository`
 * Dentro del mismo la Interfaz `I_InmuebleRepository`
-* Agregamos la annotation `@Repository` de la clase para JPA y usamos la interfaz  `JpaRepository<InmuebleEntity, Long>` para toda la funcionalidad para la creación de los métodos Jpa 
+* Agregamos la annotation `@Repository` de la clase para JPA y usamos la interfaz  `JpaRepository<InmuebleEntity, Long>` junto con la Interfaz de Paginación `PagingAndSortingRepository<Inmueble, Long>` para toda la funcionalidad para la creación de los métodos Jpa 
 * Creamos y Definimos todos los métodos abstractos haciendo referencia a los campos de la entidad tentativos de uso. 
-* Creamos todos los métodos CRUD (add, save, update y getAll) que tendrán la condición lógica de devolvernos un boleano según el resultado de la operación. El método `getAll` será para Paginados..
+* No creamos los métodos CRUD (add, save, update) en la interfaz, ya que declaramos todos los métodos abstractos sin devolución de valores. El método `findAll` será para Paginados..
  
  ```java
 package com.inmueble.service.repository;
@@ -260,26 +254,27 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import com.inmueble.service.entity.Inmueble;
 import com.inmueble.service.enums.EstadoInmuebleEnum;
 
 @Repository
-public interface I_InmuebleRepository extends JpaRepository<Inmueble, Long>{
+public interface I_InmuebleRepository extends JpaRepository<Inmueble, Long> , PagingAndSortingRepository<Inmueble, Long>{
 
 	
-	//============================ Métodos de Búsqueda ============================== 
+	//============================ MÉTODOS DE BÚSQUEDA ============================== 
 	
 	public abstract Inmueble findById(int id);
 	
-	public abstract List<Inmueble> findByIdPropietario(int id);
+	public abstract List<Inmueble> findByIdPropietarioInmueble(int id);
 	
 	public abstract List<Inmueble> findByDescripcion(String descripcion);
 	
-	public abstract List<Inmueble> findByEstado(EstadoInmuebleEnum  estadoInmuebleEnum);
+	public abstract List<Inmueble> findByEstadoInmuebleEnum(EstadoInmuebleEnum  estadoInmuebleEnum);
 	
-	public abstract List<Inmueble> findByPrecio(double precioInmueble);
+	public abstract List<Inmueble> findByPrecioInmuebleUsd(double precioInmueble);
 	
 	public abstract List<Inmueble> findByDireccion(String direccion);
 	
@@ -287,16 +282,7 @@ public interface I_InmuebleRepository extends JpaRepository<Inmueble, Long>{
 	
 	public abstract List<Inmueble> findBySitioWeb(String sitioWeb);
 
-	
-	//============================ Métodos CRUD ==============================
-	
-	public abstract boolean addInmueble(Inmueble inmueble);
-
-	public abstract boolean updateInmueble(Inmueble inmueble);
-	
-	public abstract boolean deleteInmueble(Inmueble inmueble);
-		
-	public abstract Page<Inmueble> getAll(Pageable pageable);
+	public abstract Page<Inmueble> findAll(Pageable pageable);
 	
 	
 	
@@ -346,7 +332,7 @@ public class InmuebleService {
 	
 	// ============ MÉTODOS CRUD ==================
 	
-		// ----INSERT----
+	// ----INSERT----
 	public boolean addInmueble(Inmueble inmueble) {
 		try {
 			if(inmueble == null) {
@@ -402,7 +388,7 @@ public class InmuebleService {
 	// ----SELECT----
 	public List<Inmueble> getAllInmueble(Pageable pageable){
 		
-		return iInmuebleRepository.getAll(pageable).getContent();
+		return iInmuebleRepository.findAll(pageable).getContent();
 	}
 	
 	// ============ MÉTODOS DE BÚSQUEDA ==================
@@ -415,7 +401,7 @@ public class InmuebleService {
 
 	//---- ID PROPIETARIO INMUEBLE-----
 	public List<Inmueble> findByIdPropietario(int id) {
-		return iInmuebleRepository.findByIdPropietario(id);
+		return iInmuebleRepository.findByIdPropietarioInmueble(id);
 	}
 	
 	
@@ -426,13 +412,14 @@ public class InmuebleService {
 	
 	//---- ESTADO INMUEBLE-----
 	public List<Inmueble> findByEstado(EstadoInmuebleEnum estadoInmuebleEnum) {
-		return iInmuebleRepository.findByEstado(estadoInmuebleEnum);
+		return iInmuebleRepository.findByEstadoInmuebleEnum(estadoInmuebleEnum);
 	}
+	
 	
 	
 	//---- PRECIO INMUEBLE-----
 	public List<Inmueble> findByPrecio(double precio) {
-		return iInmuebleRepository.findByPrecio(precio);
+		return iInmuebleRepository.findByPrecioInmuebleUsd(precio);
 	}
 	
 	//---- DIRECCION INMUEBLE-----
@@ -448,8 +435,11 @@ public class InmuebleService {
 	//---- SITIO WEB INMUEBLE-----
 	public List<Inmueble> findBySitioWeb(String sitioWeb) {
 		return iInmuebleRepository.findBySitioWeb(sitioWeb);
-	}	
+	}
+		
+
 }
+
 
  ```
  
@@ -529,6 +519,7 @@ public class InmuebleController {
 }
 
 
+
  ```
 
 </br>
@@ -561,7 +552,7 @@ Contraseña:postgres
 server.port = 5432
 server.error.whitelabel.enabled=true
 
-spring.datasource.url = jdbc:postgresql://localhost:3306/db_inmobiliaria_microservicios?serverTimezone=UTC
+spring.datasource.url = jdbc:postgresql://localhost:5432/db_inmobiliaria_microservicios?serverTimezone=UTC
 spring.datasource.username = postgres
 spring.datasource.password = postgres
 
@@ -578,6 +569,9 @@ spring.data.rest.sort-param-name=sort
 spring.data.rest.limit-param-name=limit
 spring.data.rest.default-page-size = 1
 spring.data.rest.max-page-size = 10
+
+
+spring.main.web-application-type=none
 ```
  
  
