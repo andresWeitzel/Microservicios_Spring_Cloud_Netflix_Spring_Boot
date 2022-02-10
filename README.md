@@ -168,11 +168,10 @@
 
 
 public enum EstadoInmuebleEnum {
-	vendido, disponible, no_disponible, falta_inspeccion;
+	VENDIDO, DISPONIBLE, NO_DISPONIBLE, FALTA_INSPECCION;
 
 }
 
- 
  ```
 
 </br>
@@ -545,11 +544,12 @@ Contraseña:postgres
 </br>
 
 * Revisar Repositorio de Api Rest para información detallada acerca del archivo de propiedades
-* La única diferencia con la API REST mencionada es que utilizo como sgdb mysql y no postgres, entonces se cambia el dialect para hibernate y el resto
+* La única diferencia con la API REST mencionada es que utilizo como sgdb mysql y no postgres, entonces se cambia el dialect para hibernate, puerto, etc.
 * Realizamos las configuraciones pertinentes para trabajar con la base de datos indicada y las configuraciones que la misma y spring requiera
  ```xml
 
-server.port = 5432
+
+server.port = 8092
 server.error.whitelabel.enabled=true
 
 spring.datasource.url = jdbc:postgresql://localhost:5432/db_inmobiliaria_microservicios?serverTimezone=UTC
@@ -571,7 +571,6 @@ spring.data.rest.default-page-size = 1
 spring.data.rest.max-page-size = 10
 
 
-spring.main.web-application-type=none
 ```
  
  
