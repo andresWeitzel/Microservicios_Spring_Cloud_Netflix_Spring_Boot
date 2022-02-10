@@ -517,6 +517,14 @@ public class InmuebleController {
 		return inmuebleService.findById(id);
 
 	}
+	
+	
+	//--GET--
+	@GetMapping("/listado")
+	public List<Inmueble> getAll(Pageable pageable){
+		return inmuebleService.getAllInmueble(pageable);
+	}
+
 
 }
 
@@ -582,6 +590,8 @@ spring.data.rest.max-page-size = 10
 ### Paso 4) Prueba del Microservicio `InmuebleService`
 #### (Vamos a testear los métodos desarrollados con Postman, es importante que se hayan ejecutado los pasos anteriores de forma correcta y se tenga corriendo la db con sus registros y tablas correctamente)
 
+ </br>
+
 * Testeamos el método POST de inserción de registros mediante la siguiente uri `http://localhost:8092/inmuebles/` y agregando en el Body en formato Json el Registro de Inserción..
  ```json
  {
@@ -598,8 +608,10 @@ spring.data.rest.max-page-size = 10
  ```
  * Obtenemos un Status 200 OK  además del true devuelto por el método desarrollado.
  * La función se ejecuta correctamente.
- * 
  
+  </br>
+  
+  * Testeamos el Método GET junto con la paginación creada para visualizar los productos de la db con la siguiente uri `http://localhost:8092/inmuebles/listado?page=0&size=0`
  
  
  </br>
