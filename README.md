@@ -88,15 +88,18 @@
 
 #### Sección 1) Microservicio InmuebleService
    
-   - [Paso 1) Creación y Configuraciones del Microservicio InmuebleService](#paso-1-creación-y-configuraciones-del-microservicio-inmuebleservice)
+   - [Paso 1) Creación y Configuraciones del Microservicio ](#paso-1-creación-y-configuraciones-del-microservicio-inmuebleservice)
   
-   - [Paso 2) Desarrollo del Microservicio InmuebleService](#paso-2-desarrollo-del-microservicio-inmuebleservice)
+   - [Paso 2) Desarrollo del Microservicio ](#paso-2-desarrollo-del-microservicio-inmuebleservice)
 
    
    - [Paso 3) Configuraciones de la Base de Datos](#paso-3-configuraciones-de-la-base-de-datos)
 
 
    - [Paso 4) Configuraciones del application.properties](#paso-4-configuraciones-del-application.properties)
+
+     - [Paso 5) Prueba del Microservicio](#paso-5-prueba-del-microservicio-inmuebleservice)
+
 
 
 #### Sección 2) Microservicio PropietarioInmuebleService
@@ -572,9 +575,30 @@ spring.data.rest.max-page-size = 10
 
 
 ```
+
+ </br>
  
  
- 
+### Paso 4) Prueba del Microservicio `InmuebleService`
+#### (Vamos a testear los métodos desarrollados con Postman, es importante que se hayan ejecutado los pasos anteriores de forma correcta y se tenga corriendo la db con sus registros y tablas correctamente)
+
+* Testeamos el método POST de inserción de registros mediante la siguiente uri `http://localhost:8092/inmuebles/` y agregando en el Body en formato Json el Registro de Inserción..
+ ```json
+ {
+    "idPropietarioInmueble" : 1,
+    "descripcion" : "Departamento de 1 Ambiente",
+    "tipo" : "Depto",
+    "estadoInmuebleEnum" : "DISPONIBLE",
+    "precioInmuebleUsd" : 90000,
+    "direccion" : "San Amadeo del Valle 908",
+    "ubicacion" : "Villa Crespo",
+    "sitioWeb" : "-" 
+
+}
+ ```
+ * Obtenemos un Status 200 OK  además del true devuelto por el método desarrollado.
+ * La función se ejecuta correctamente.
+ * 
  
  
  
