@@ -99,8 +99,9 @@
 
    - [Paso 4) Configuraciones del application.properties](#paso-4-configuraciones-del-application.properties)
 
-     - [Paso 5) Prueba del Microservicio](#paso-5-prueba-del-microservicio-inmuebleservice)
+     - [Paso 5) Manejo de Postgres desde CMD](#paso-5-manejo-de-postgres-desde-cmd)
 
+     - [Paso 6) Prueba del Microservicio](#paso-6-prueba-del-microservicio-inmuebleservice)
 
 
 #### Sección 2) Microservicio PropietarioInmuebleService
@@ -564,10 +565,49 @@ Database: db_inmobiliaria_microservicios
 Contraseña:postgres
 ```
 
+
 </br>
 
+### Paso 4) Configuraciones del `application.properties`
+  
+</br>
 
-#### 3.1) Manejo de Postgres desde CMD
+* Revisar Repositorio de Api Rest para información detallada acerca del archivo de propiedades
+* La única diferencia con la API REST mencionada es que utilizo como sgdb mysql y no postgres, entonces se cambia el dialect para hibernate, puerto, etc.
+* Realizamos las configuraciones pertinentes para trabajar con la base de datos indicada y las configuraciones que la misma y spring requiera
+ ```xml
+
+
+server.port = 8092
+server.error.whitelabel.enabled=true
+
+spring.datasource.url = jdbc:postgresql://localhost:5432/db_inmobiliaria_microservicios?serverTimezone=UTC
+spring.datasource.username = postgres
+spring.datasource.password = postgres
+
+
+spring.jpa.show-sql = true
+spring.jpa.hibernate.ddl-auto = update
+spring.jpa.hibernate.naming.strategy = org.hibernate.cfg.ImprovedNamingStrategy
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
+
+
+
+spring.data.rest.page-param-name=page
+spring.data.rest.sort-param-name=sort
+spring.data.rest.limit-param-name=limit
+spring.data.rest.default-page-size = 1
+spring.data.rest.max-page-size = 10
+
+
+```
+
+ </br>
+ 
+
+
+### Paso 5) Manejo de Postgres desde `CMD`
+#### (Esta es una forma rápida y eficaz de comprobar que tenemos tablas, registros, columnas, etc insertadas en nuestra base de datos, previamente y durante la etapa de testing del microservicio recomiendo implementar este método)
 
 </br>
 
@@ -622,47 +662,10 @@ pg_ctl: el servidor está en ejecución (PID: 6408)
 C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQL\13\data"
 
 ```
-
-</br>
-
-### Paso 4) Configuraciones del `application.properties`
-  
-</br>
-
-* Revisar Repositorio de Api Rest para información detallada acerca del archivo de propiedades
-* La única diferencia con la API REST mencionada es que utilizo como sgdb mysql y no postgres, entonces se cambia el dialect para hibernate, puerto, etc.
-* Realizamos las configuraciones pertinentes para trabajar con la base de datos indicada y las configuraciones que la misma y spring requiera
- ```xml
-
-
-server.port = 8092
-server.error.whitelabel.enabled=true
-
-spring.datasource.url = jdbc:postgresql://localhost:5432/db_inmobiliaria_microservicios?serverTimezone=UTC
-spring.datasource.username = postgres
-spring.datasource.password = postgres
-
-
-spring.jpa.show-sql = true
-spring.jpa.hibernate.ddl-auto = update
-spring.jpa.hibernate.naming.strategy = org.hibernate.cfg.ImprovedNamingStrategy
-spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
-
-
-
-spring.data.rest.page-param-name=page
-spring.data.rest.sort-param-name=sort
-spring.data.rest.limit-param-name=limit
-spring.data.rest.default-page-size = 1
-spring.data.rest.max-page-size = 10
-
-
-```
-
  </br>
+
  
- 
-### Paso 4) Prueba del Microservicio `InmuebleService`
+### Paso 6) Prueba del Microservicio `InmuebleService` con `Postman` 
 #### (Vamos a testear los métodos desarrollados con Postman, es importante que se hayan ejecutado los pasos anteriores de forma correcta y se tenga corriendo la db con sus registros y tablas correctamente)
 
  </br>
@@ -689,7 +692,33 @@ spring.data.rest.max-page-size = 10
   * Testeamos el Método GET junto con la paginación creada para visualizar los productos de la db con la siguiente uri `http://localhost:8092/inmuebles/listado?page=0&size=0`
  
  
- </br>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</br>
 
 ## Sección 9) Uso y Manejo de Git.
 
