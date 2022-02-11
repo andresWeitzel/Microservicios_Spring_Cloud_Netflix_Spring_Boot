@@ -148,6 +148,16 @@
 
 </br>
 
+#### 1.1) Configuración de `Lombok`
+* Seguidamente de tener el jars a través de la dependencia en nuestro proyecto, vamos a instalar lombok para poder utilizarlo, no basta con la descarga, hay que realizar la configuración y descarga del mismo en nuestro ordenador.
+* Buscamos el jar en Maven Dependencies `lombok-1.18....` Click derecho y properties
+* Pestaña Java Source Attachment y buscamos el Path donde se descargo el jar de lombok.
+* Nos dirigimos a dicha carpeta, en mi caso `C:\Users\andre\.m2\repository\org\projectlombok\lombok\1.18.22` y ejecutamos el jar de lombok `lombok-1.18.22.jar`
+* VAMOS A REALIZAR LA INSTALACIÓN DONDE SE INSTALO NUESTRO IDE, EN MI CASO SPRING TOOL SUITE ``
+* Instalamos, siguiente siguiente...
+
+###
+
 
 ### Paso 2) Desarrollo del Microservicio `InmuebleService`
 #### (Solamente se explicará e incluirá código relevante para microservicios, toda explicación y pasos desde cero para una API REST se incluye en otro proyecto..https://github.com/andresWeitzel/Api_Rest_Spring_Productos)
@@ -251,6 +261,7 @@ public class Inmueble {
  ```java
 package com.inmueble.service.repository;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -263,7 +274,7 @@ import com.inmueble.service.entity.Inmueble;
 import com.inmueble.service.enums.EstadoInmuebleEnum;
 
 @Repository
-public interface I_InmuebleRepository extends JpaRepository<Inmueble, Long> , PagingAndSortingRepository<Inmueble, Long>{
+public interface I_InmuebleRepository extends JpaRepository<Inmueble, Serializable>, PagingAndSortingRepository<Inmueble, Serializable> {
 
 	
 	//============================ MÉTODOS DE BÚSQUEDA ============================== 
@@ -348,7 +359,7 @@ public class InmuebleService {
 			
 		} catch (Exception e) {
 			logger.error("ERROR addInmueble : EL INMUEBLE " + inmueble+ " NO SE HA INSERTADO EN LA DB!!");
-			return true;
+			return false;
 		}
 	}
 	
@@ -439,7 +450,10 @@ public class InmuebleService {
 		return iInmuebleRepository.findBySitioWeb(sitioWeb);
 	}
 		
-
+		
+	
+	
+	
 }
 
 
