@@ -30,6 +30,7 @@
 | DBeaver | 21.1 | Gestor de Base de Datos |
 | Mysql | 10.1.38 | Sistema de Gestión de Bases de Datos |
 | PostgreSQL | 13.4 | Sistema de Gestión de Bases de Datos |
+| CMD | 10 | Símbolo del Sistema para linea de comandos | 
 | GNU bash / Terminal | 4.4.23  | Bash / Terminal para el manejo e implementación de Git integrado al IDE Eclipse |
 | Git | 2.29.1  | Control de Versiones |
 
@@ -88,15 +89,19 @@
 
 #### Sección 1) Microservicio InmuebleService
    
-   - [Paso 1) Creación y Configuraciones del Microservicio InmuebleService](#paso-1-creación-y-configuraciones-del-microservicio-inmuebleservice)
+   - [Paso 1) Creación y Configuraciones del Microservicio ](#paso-1-creación-y-configuraciones-del-microservicio-inmuebleservice)
   
-   - [Paso 2) Desarrollo del Microservicio InmuebleService](#paso-2-desarrollo-del-microservicio-inmuebleservice)
+   - [Paso 2) Desarrollo del Microservicio ](#paso-2-desarrollo-del-microservicio-inmuebleservice)
 
    
    - [Paso 3) Configuraciones de la Base de Datos](#paso-3-configuraciones-de-la-base-de-datos)
 
 
    - [Paso 4) Configuraciones del application.properties](#paso-4-configuraciones-del-application.properties)
+
+     - [Paso 5) Manejo de Postgres desde CMD](#paso-5-manejo-de-postgres-desde-cmd)
+
+     - [Paso 6) Prueba del Microservicio](#paso-6-prueba-del-microservicio-inmuebleservice)
 
 
 #### Sección 2) Microservicio PropietarioInmuebleService
@@ -145,6 +150,18 @@
 
 </br>
 
+#### 1.1) Configuración e Instalación de `Lombok`
+* Seguidamente de tener el jars a través de la dependencia en nuestro proyecto, vamos a instalar lombok para poder utilizarlo, no basta con la descarga, hay que realizar la configuración y descarga del mismo en nuestro ordenador.
+* Buscamos el jar en Maven Dependencies `lombok-1.18....` Click derecho y properties
+* Pestaña Java Source Attachment y buscamos el Path donde se descargo el jar de lombok.
+* Nos dirigimos a dicha carpeta, en mi caso `C:\Users\andre\.m2\repository\org\projectlombok\lombok\1.18.22` y ejecutamos el jar de lombok `lombok-1.18.22.jar`
+* VAMOS A REALIZAR LA INSTALACIÓN EN LA CARPETA DE CONFIGURACIÓN DE NUESTRO IDE SELECCIONANDO SELECCIONANDO SPECIFY LOCATION, EN MI CASO SPRING TOOL SUITE `C:\Program Files (x86)\sts-4.13.1.RELEASE`
+* Instalamos, siguiente siguiente...
+* Cerramos y Abrimos el IDE para que los cambios se ejecuten correctamente
+
+
+</br>
+
 
 ### Paso 2) Desarrollo del Microservicio `InmuebleService`
 #### (Solamente se explicará e incluirá código relevante para microservicios, toda explicación y pasos desde cero para una API REST se incluye en otro proyecto..https://github.com/andresWeitzel/Api_Rest_Spring_Productos)
@@ -156,23 +173,22 @@
 
 ### 2.1) Creación y Configuracion del Enum `EstadoInmuebleEnum`
 * Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `enums`
-* Vamos a crear una clase enumerado para el campo `estado_inmueble_enum` de la base de datos `db_inmuebles_microservicios`
-* Dentro del paquete `enum` creamos la clase 
-* Agregamos la annotation @Entity para JPA
-* Agregamos los tipos de enumerados disponibles para utilizazr de la base de datos..
+* Vamos a crear una clase enumerado para el campo `estado_inmueble_enum` de la entidad `Inmueble` que crearemos a continuación
+* Dentro del paquete `enum` creamos la clase `EstadoInmuebleEnum`
+* Para esta clase no Agregamos la annotation @Entity de JPA ya que no vamos a crear una tabla en la base de datos, sino usar los posibles valores de los enumerados
+* Agregamos los tipos de enumerados disponibles para utilizar de la base de datos..
  ```java
  
+
  package com.inmueble.service.enums;
+ 
 
-import javax.persistence.Entity;
 
-@Entity
 public enum EstadoInmuebleEnum {
 	VENDIDO, DISPONIBLE, NO_DISPONIBLE, FALTA_INSPECCION;
 
 }
 
- 
  ```
 
 </br>
@@ -183,63 +199,57 @@ public enum EstadoInmuebleEnum {
 * Dentro del mismo la clase `Inmueble`
 * Agregamos la annotation `@Entity` de la clase para JPA 
 * Desarrollamos todos los campos privados modelando la tabla inmuebles de la db `db_inmuebles_microservicios`
-* Agregamo también `@Id` y `@GeneratedValue(strategy = GenerationType.AUTO) ` para el autoincrement del id de la db, todas anotaciones para JPA
+* Agregamos también `@Id` y `@GeneratedValue(strategy = GenerationType.AUTO) ` para el autoincrement del id de la db, seguidamente `@Enumerated(EnumType.STRING)` para el enumerado. No agregamos el resto de las anotaciones ya que vamos a implementar lombok
 * Luego Agregamos las anotaciones para lombok `@Data` , `@AllArgsConstructor` y `@NoArgsConstructor` , la primera para la generacion de los getters y setters y el resto de metodos, la segunda para los constructores sobrecargados de la Entidad y la tercera para constructor vacio 
 
  
  ```java
-package com.inmueble.service.repository;
+package com.inmueble.service.entity;
 
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-import com.inmueble.service.entity.Inmueble;
 import com.inmueble.service.enums.EstadoInmuebleEnum;
 
-@Repository
-public interface I_InmuebleRepository extends JpaRepository<Inmueble, Long>{
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Inmueble {
 	
-	//============================ MÉTODOS DE BÚSQUEDA ============================== 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
 	
-	public abstract Inmueble findById(int id);
+	private int idPropietarioInmueble;
 	
-	public abstract List<Inmueble> findByIdPropietario(int id);
+	private String descripcion;
 	
-	public abstract List<Inmueble> findByDescripcion(String descripcion);
+	@Enumerated(EnumType.STRING)
+	private EstadoInmuebleEnum  estadoInmuebleEnum;
 	
-	public abstract List<Inmueble> findByEstado(EstadoInmuebleEnum  estadoInmuebleEnum);
+	private double precioInmuebleUsd;
 	
-	public abstract List<Inmueble> findByPrecio(double precioInmueble);
+	private String direccion;
 	
-	public abstract List<Inmueble> findByDireccion(String direccion);
+	private String ubicacion;
 	
-	public abstract List<Inmueble> findByUbicacion(String ubicacion);
-	
-	public abstract List<Inmueble> findBySitioWeb(String sitioWeb);
-
-	
-	//============================ MÉTODOS CRUD ==============================
-	
-	public abstract void addInmueble(Inmueble inmueble);
-
-	public abstract void updateInmueble(Inmueble inmueble);
-	
-	public abstract void deleteInmueble(Inmueble inmueble);
-	
-	public abstract Page<Inmueble> getAll(Pageable pageable);
-	
+	private String sitioWeb;
 	
 	
 	
 
 }
 
-  
  ```
 
 </br>
@@ -248,38 +258,40 @@ public interface I_InmuebleRepository extends JpaRepository<Inmueble, Long>{
 
 * Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `repository`
 * Dentro del mismo la Interfaz `I_InmuebleRepository`
-* Agregamos la annotation `@Repository` de la clase para JPA y usamos la interfaz  `JpaRepository<InmuebleEntity, Long>` para toda la funcionalidad para la creación de los métodos Jpa 
+* Agregamos la annotation `@Repository` de la clase para JPA y usamos la interfaz  `JpaRepository<InmuebleEntity, Serializable>` junto con la Interfaz de Paginación `PagingAndSortingRepository<Inmueble, Long>` para toda la funcionalidad para la creación de los métodos Jpa.
 * Creamos y Definimos todos los métodos abstractos haciendo referencia a los campos de la entidad tentativos de uso. 
-* Creamos todos los métodos CRUD (add, save, update y getAll) que tendrán la condición lógica de devolvernos un boleano según el resultado de la operación. El método `getAll` será para Paginados..
+* No creamos los métodos CRUD (add, save, update) en la interfaz, ya que declaramos todos los métodos abstractos sin devolución de valores. El método `findAll` será para Paginados..
  
  ```java
 package com.inmueble.service.repository;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import com.inmueble.service.entity.Inmueble;
 import com.inmueble.service.enums.EstadoInmuebleEnum;
 
 @Repository
-public interface I_InmuebleRepository extends JpaRepository<Inmueble, Long>{
+public interface I_InmuebleRepository extends JpaRepository<Inmueble, Serializable>, PagingAndSortingRepository<Inmueble, Serializable> {
 
 	
-	//============================ Métodos de Búsqueda ============================== 
+	//============================ MÉTODOS DE BÚSQUEDA ============================== 
 	
 	public abstract Inmueble findById(int id);
 	
-	public abstract List<Inmueble> findByIdPropietario(int id);
+	public abstract List<Inmueble> findByIdPropietarioInmueble(int id);
 	
 	public abstract List<Inmueble> findByDescripcion(String descripcion);
 	
-	public abstract List<Inmueble> findByEstado(EstadoInmuebleEnum  estadoInmuebleEnum);
+	public abstract List<Inmueble> findByEstadoInmuebleEnum(EstadoInmuebleEnum  estadoInmuebleEnum);
 	
-	public abstract List<Inmueble> findByPrecio(double precioInmueble);
+	public abstract List<Inmueble> findByPrecioInmuebleUsd(double precioInmueble);
 	
 	public abstract List<Inmueble> findByDireccion(String direccion);
 	
@@ -287,16 +299,7 @@ public interface I_InmuebleRepository extends JpaRepository<Inmueble, Long>{
 	
 	public abstract List<Inmueble> findBySitioWeb(String sitioWeb);
 
-	
-	//============================ Métodos CRUD ==============================
-	
-	public abstract boolean addInmueble(Inmueble inmueble);
-
-	public abstract boolean updateInmueble(Inmueble inmueble);
-	
-	public abstract boolean deleteInmueble(Inmueble inmueble);
-		
-	public abstract Page<Inmueble> getAll(Pageable pageable);
+	public abstract Page<Inmueble> findAll(Pageable pageable);
 	
 	
 	
@@ -346,7 +349,7 @@ public class InmuebleService {
 	
 	// ============ MÉTODOS CRUD ==================
 	
-		// ----INSERT----
+	// ----INSERT----
 	public boolean addInmueble(Inmueble inmueble) {
 		try {
 			if(inmueble == null) {
@@ -360,7 +363,7 @@ public class InmuebleService {
 			
 		} catch (Exception e) {
 			logger.error("ERROR addInmueble : EL INMUEBLE " + inmueble+ " NO SE HA INSERTADO EN LA DB!!");
-			return true;
+			return false;
 		}
 	}
 	
@@ -402,7 +405,7 @@ public class InmuebleService {
 	// ----SELECT----
 	public List<Inmueble> getAllInmueble(Pageable pageable){
 		
-		return iInmuebleRepository.getAll(pageable).getContent();
+		return iInmuebleRepository.findAll(pageable).getContent();
 	}
 	
 	// ============ MÉTODOS DE BÚSQUEDA ==================
@@ -415,7 +418,7 @@ public class InmuebleService {
 
 	//---- ID PROPIETARIO INMUEBLE-----
 	public List<Inmueble> findByIdPropietario(int id) {
-		return iInmuebleRepository.findByIdPropietario(id);
+		return iInmuebleRepository.findByIdPropietarioInmueble(id);
 	}
 	
 	
@@ -426,13 +429,14 @@ public class InmuebleService {
 	
 	//---- ESTADO INMUEBLE-----
 	public List<Inmueble> findByEstado(EstadoInmuebleEnum estadoInmuebleEnum) {
-		return iInmuebleRepository.findByEstado(estadoInmuebleEnum);
+		return iInmuebleRepository.findByEstadoInmuebleEnum(estadoInmuebleEnum);
 	}
+	
 	
 	
 	//---- PRECIO INMUEBLE-----
 	public List<Inmueble> findByPrecio(double precio) {
-		return iInmuebleRepository.findByPrecio(precio);
+		return iInmuebleRepository.findByPrecioInmuebleUsd(precio);
 	}
 	
 	//---- DIRECCION INMUEBLE-----
@@ -448,8 +452,14 @@ public class InmuebleService {
 	//---- SITIO WEB INMUEBLE-----
 	public List<Inmueble> findBySitioWeb(String sitioWeb) {
 		return iInmuebleRepository.findBySitioWeb(sitioWeb);
-	}	
+	}
+		
+		
+	
+	
+	
 }
+
 
  ```
  
@@ -525,8 +535,17 @@ public class InmuebleController {
 		return inmuebleService.findById(id);
 
 	}
+	
+	
+	//--GET--
+	@GetMapping("/listado")
+	public List<Inmueble> getAll(Pageable pageable){
+		return inmuebleService.getAllInmueble(pageable);
+	}
+
 
 }
+
 
 
  ```
@@ -546,22 +565,23 @@ Database: db_inmobiliaria_microservicios
 Contraseña:postgres
 ```
 
-</br>
 
+</br>
 
 ### Paso 4) Configuraciones del `application.properties`
   
 </br>
 
 * Revisar Repositorio de Api Rest para información detallada acerca del archivo de propiedades
-* La única diferencia con la API REST mencionada es que utilizo como sgdb mysql y no postgres, entonces se cambia el dialect para hibernate y el resto
+* La única diferencia con la API REST mencionada es que utilizo como sgdb mysql y no postgres, entonces se cambia el dialect para hibernate, puerto, etc.
 * Realizamos las configuraciones pertinentes para trabajar con la base de datos indicada y las configuraciones que la misma y spring requiera
  ```xml
 
-server.port = 5432
+
+server.port = 8092
 server.error.whitelabel.enabled=true
 
-spring.datasource.url = jdbc:postgresql://localhost:3306/db_inmobiliaria_microservicios?serverTimezone=UTC
+spring.datasource.url = jdbc:postgresql://localhost:5432/db_inmobiliaria_microservicios?serverTimezone=UTC
 spring.datasource.username = postgres
 spring.datasource.password = postgres
 
@@ -578,14 +598,127 @@ spring.data.rest.sort-param-name=sort
 spring.data.rest.limit-param-name=limit
 spring.data.rest.default-page-size = 1
 spring.data.rest.max-page-size = 10
+
+
 ```
- 
- 
- 
- 
- 
- 
+
  </br>
+ 
+
+
+### Paso 5) Manejo de Postgres desde `CMD`
+#### (Esta es una forma rápida y eficaz de comprobar que tenemos tablas, registros, columnas, etc insertadas en nuestra base de datos, previamente y durante la etapa de testing del microservicio recomiendo implementar este método)
+
+</br>
+
+#### Implementación 
+* Abrimos una cmd como admin
+* Ejecutar los siguientes comandos desde el cmd
+
+#### Iniciar el Servicio de PostgreSQL
+*  `psql -U postgres` 
+*  Contraseña para el superusuario `postgres`
+*  O bien sabiendo el directorio de datos de Postgres..
+*  `pg_ctl -D "C:/Program Files/PostgreSQL/13/data" start` 
+
+#### Mostrar Directorio de Datos
+* `show data_directory;`
+* El Directorio que usaré será `C:/Program Files/PostgreSQL/13/data`
+* Vamos a implementar esta ruta para comprobar el estado del servicio de postgres
+
+#### Parar el Servicio de PostgreSQL
+*  `exit`
+*  O bien sabiendo el directorio de datos de Postgres..
+*  `pg_ctl -D "C:/Program Files/PostgreSQL/13/data" stop`
+*  Ojo con `Ctrl+c`, si se usa se para el proceso de forma repentina y puede quedar como un proceso zombi (sin terminar correctamente). No lo Recomiendo
+
+#### Restablecer el Servicio de PostgreSQL
+*  `pg_ctl -D "C:/Program Files/PostgreSQL/13/data" restart`
+
+
+#### Listar las Bases de Datos del Sistema
+* Listamos las dbs con el comando `\l`
+
+
+#### Cambiar de Bases de Datos 
+* Con el comando `\c 'nombreDBSinComillas'`
+
+
+#### Listado de Tablas
+* Con el comando `\dt`
+* ATENTI, deberás estar en la db que querés visualizar estas tablas, cambiar de db y ejecutar nuevamente este comando
+
+#### Descripción de la Tabla
+* Con el comando `\d 'nombreTablaSinComillas'`
+
+#### Comprobar el estado del Servicio de Postgres
+* Cuando ingresamos con el usuario postgres se debió haber levantado automaticamente el servicio, vamos a abrir otra CMD y comprobar dicho estado
+*  `pg_ctl -D "C:/Program Files/PostgreSQL/13/data" status`
+*  Debería obtener en la consola que el servicio esta activo, como lo siguiente o algo parecido
+* Resultado..
+```shell
+
+pg_ctl: el servidor está en ejecución (PID: 6408)
+C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQL\13\data"
+
+```
+ </br>
+
+ 
+### Paso 6) Prueba del Microservicio `InmuebleService` con `Postman` 
+#### (Vamos a testear los métodos desarrollados con Postman, es importante que se hayan ejecutado los pasos anteriores de forma correcta y se tenga corriendo la db con sus registros y tablas correctamente)
+
+ </br>
+
+* Testeamos el método POST de inserción de registros mediante la siguiente uri `http://localhost:8092/inmuebles/` y agregando en el Body en formato Json el Registro de Inserción..
+ ```json
+ {
+    "idPropietarioInmueble" : 1,
+    "descripcion" : "Departamento de 1 Ambiente",
+    "tipo" : "Depto",
+    "estadoInmuebleEnum" : "DISPONIBLE",
+    "precioInmuebleUsd" : 90000,
+    "direccion" : "San Amadeo del Valle 908",
+    "ubicacion" : "Villa Crespo",
+    "sitioWeb" : "-" 
+
+}
+ ```
+ * Obtenemos un Status 200 OK  además del true devuelto por el método desarrollado.
+ * La función se ejecuta correctamente.
+ 
+  </br>
+  
+  * Testeamos el Método GET junto con la paginación creada para visualizar los productos de la db con la siguiente uri `http://localhost:8092/inmuebles/listado?page=0&size=0`
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</br>
 
 ## Sección 9) Uso y Manejo de Git.
 
