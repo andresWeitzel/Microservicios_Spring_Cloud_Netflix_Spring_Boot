@@ -38,7 +38,7 @@ public class InmuebleService {
 			
 		} catch (Exception e) {
 			logger.error("ERROR addInmueble : EL INMUEBLE " + inmueble+ " NO SE HA INSERTADO EN LA DB!!");
-			return true;
+			return false;
 		}
 	}
 	
@@ -80,7 +80,7 @@ public class InmuebleService {
 	// ----SELECT----
 	public List<Inmueble> getAllInmueble(Pageable pageable){
 		
-		return iInmuebleRepository.getAll(pageable).getContent();
+		return iInmuebleRepository.findAll(pageable).getContent();
 	}
 	
 	// ============ MÉTODOS DE BÚSQUEDA ==================
@@ -93,7 +93,7 @@ public class InmuebleService {
 
 	//---- ID PROPIETARIO INMUEBLE-----
 	public List<Inmueble> findByIdPropietario(int id) {
-		return iInmuebleRepository.findByIdPropietario(id);
+		return iInmuebleRepository.findByIdPropietarioInmueble(id);
 	}
 	
 	
@@ -104,13 +104,14 @@ public class InmuebleService {
 	
 	//---- ESTADO INMUEBLE-----
 	public List<Inmueble> findByEstado(EstadoInmuebleEnum estadoInmuebleEnum) {
-		return iInmuebleRepository.findByEstado(estadoInmuebleEnum);
+		return iInmuebleRepository.findByEstadoInmuebleEnum(estadoInmuebleEnum);
 	}
+	
 	
 	
 	//---- PRECIO INMUEBLE-----
 	public List<Inmueble> findByPrecio(double precio) {
-		return iInmuebleRepository.findByPrecio(precio);
+		return iInmuebleRepository.findByPrecioInmuebleUsd(precio);
 	}
 	
 	//---- DIRECCION INMUEBLE-----
