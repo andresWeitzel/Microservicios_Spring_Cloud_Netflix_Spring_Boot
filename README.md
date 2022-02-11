@@ -30,6 +30,7 @@
 | DBeaver | 21.1 | Gestor de Base de Datos |
 | Mysql | 10.1.38 | Sistema de Gestión de Bases de Datos |
 | PostgreSQL | 13.4 | Sistema de Gestión de Bases de Datos |
+| CMD | 10 | Símbolo del Sistema para linea de comandos | 
 | GNU bash / Terminal | 4.4.23  | Bash / Terminal para el manejo e implementación de Git integrado al IDE Eclipse |
 | Git | 2.29.1  | Control de Versiones |
 
@@ -148,15 +149,17 @@
 
 </br>
 
-#### 1.1) Configuración de `Lombok`
+#### 1.1) Configuración e Instalación de `Lombok`
 * Seguidamente de tener el jars a través de la dependencia en nuestro proyecto, vamos a instalar lombok para poder utilizarlo, no basta con la descarga, hay que realizar la configuración y descarga del mismo en nuestro ordenador.
 * Buscamos el jar en Maven Dependencies `lombok-1.18....` Click derecho y properties
 * Pestaña Java Source Attachment y buscamos el Path donde se descargo el jar de lombok.
 * Nos dirigimos a dicha carpeta, en mi caso `C:\Users\andre\.m2\repository\org\projectlombok\lombok\1.18.22` y ejecutamos el jar de lombok `lombok-1.18.22.jar`
-* VAMOS A REALIZAR LA INSTALACIÓN DONDE SE INSTALO NUESTRO IDE, EN MI CASO SPRING TOOL SUITE ``
+* VAMOS A REALIZAR LA INSTALACIÓN EN LA CARPETA DE CONFIGURACIÓN DE NUESTRO IDE SELECCIONANDO SELECCIONANDO SPECIFY LOCATION, EN MI CASO SPRING TOOL SUITE `C:\Program Files (x86)\sts-4.13.1.RELEASE`
 * Instalamos, siguiente siguiente...
+* Cerramos y Abrimos el IDE para que los cambios se ejecuten correctamente
 
-###
+
+</br>
 
 
 ### Paso 2) Desarrollo del Microservicio `InmuebleService`
@@ -563,6 +566,64 @@ Contraseña:postgres
 
 </br>
 
+
+#### 3.1) Manejo de Postgres desde CMD
+
+</br>
+
+#### Implementación 
+* Abrimos una cmd como admin
+* Ejecutar los siguientes comandos desde el cmd
+
+#### Iniciar el Servicio de PostgreSQL
+*  `psql -U postgres` 
+*  Contraseña para el superusuario `postgres`
+*  O bien sabiendo el directorio de datos de Postgres..
+*  `pg_ctl -D "C:/Program Files/PostgreSQL/13/data" start` 
+
+#### Mostrar Directorio de Datos
+* `show data_directory;`
+* El Directorio que usaré será `C:/Program Files/PostgreSQL/13/data`
+* Vamos a implementar esta ruta para comprobar el estado del servicio de postgres
+
+#### Parar el Servicio de PostgreSQL
+*  `exit`
+*  O bien sabiendo el directorio de datos de Postgres..
+*  `pg_ctl -D "C:/Program Files/PostgreSQL/13/data" stop`
+*  Ojo con `Ctrl+c`, si se usa se para el proceso de forma repentina y puede quedar como un proceso zombi (sin terminar correctamente). No lo Recomiendo
+
+#### Restablecer el Servicio de PostgreSQL
+*  `pg_ctl -D "C:/Program Files/PostgreSQL/13/data" restart`
+
+
+#### Listar las Bases de Datos del Sistema
+* Listamos las dbs con el comando `\l`
+
+
+#### Cambiar de Bases de Datos 
+* Con el comando `\c 'nombreDBSinComillas'`
+
+
+#### Listado de Tablas
+* Con el comando `\dt`
+* ATENTI, deberás estar en la db que querés visualizar estas tablas, cambiar de db y ejecutar nuevamente este comando
+
+#### Descripción de la Tabla
+* Con el comando `\d 'nombreTablaSinComillas'`
+
+#### Comprobar el estado del Servicio de Postgres
+* Cuando ingresamos con el usuario postgres se debió haber levantado automaticamente el servicio, vamos a abrir otra CMD y comprobar dicho estado
+*  `pg_ctl -D "C:/Program Files/PostgreSQL/13/data" status`
+*  Debería obtener en la consola que el servicio esta activo, como lo siguiente o algo parecido
+* Resultado..
+```shell
+
+pg_ctl: el servidor está en ejecución (PID: 6408)
+C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQL\13\data"
+
+```
+
+</br>
 
 ### Paso 4) Configuraciones del `application.properties`
   
