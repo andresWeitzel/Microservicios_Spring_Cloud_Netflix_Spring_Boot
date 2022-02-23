@@ -99,9 +99,9 @@
 
    - [Paso 4) Configuraciones del application.properties](#paso-4-configuraciones-del-application.properties)
 
-     - [Paso 5) Manejo de Postgres desde CMD](#paso-5-manejo-de-postgres-desde-cmd)
+   - [Paso 5) Manejo de Postgres desde CMD](#paso-5-manejo-de-postgres-desde-cmd)
 
-     - [Paso 6) Prueba del Microservicio](#paso-6-prueba-del-microservicio-inmuebleservice)
+   - [Paso 6) Prueba del Microservicio](#paso-6-prueba-del-microservicio-inmuebleservice)
 
 
 #### Sección 2) Microservicio PropietarioInmuebleService
