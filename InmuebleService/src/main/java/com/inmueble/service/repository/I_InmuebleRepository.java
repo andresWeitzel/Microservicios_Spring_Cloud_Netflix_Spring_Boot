@@ -24,6 +24,8 @@ public interface I_InmuebleRepository extends JpaRepository<Inmueble, Serializab
 	
 	public abstract List<Inmueble> findByDescripcion(String descripcion);
 	
+	public abstract List<Inmueble> findByTipo(String tipo);
+	
 	public abstract List<Inmueble> findByEstadoInmuebleEnum(EstadoInmuebleEnum  estadoInmuebleEnum);
 	
 	public abstract List<Inmueble> findByPrecioInmuebleUsd(double precioInmueble);

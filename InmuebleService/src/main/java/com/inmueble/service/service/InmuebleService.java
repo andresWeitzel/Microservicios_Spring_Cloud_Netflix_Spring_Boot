@@ -102,6 +102,12 @@ public class InmuebleService {
 		return iInmuebleRepository.findByDescripcion(descripcion);
 	}
 	
+	//----- TIPO DE INMUEBLE --------
+	public List<Inmueble> findByTipo(String tipo) {
+		return iInmuebleRepository.findByTipo(tipo);
+	}
+	
+	
 	//---- ESTADO INMUEBLE-----
 	public List<Inmueble> findByEstado(EstadoInmuebleEnum estadoInmuebleEnum) {
 		return iInmuebleRepository.findByEstadoInmuebleEnum(estadoInmuebleEnum);
