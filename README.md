@@ -2,7 +2,7 @@
 
 * Este proyecto surgió a fin de poner en práctica la interrelación y funcionamiento de varios microservicios en Base de datos diferentes, dos microservicios se comunicarán con una misma base de datos de tipo Postgres de Inmobiliaria (https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres), qué es una réplica de la original que he creado y programado (https://github.com/andresWeitzel/db_Inmobiliaria_PostgreSQL) y un Microservicio se comunicará con una base de datos de tipo Mysql para la facturación de Ventas de dicha inmobiliaria ()
 
-* Tutorial : https://www.youtube.com/watch?v=BnknNTN8icw&t=5s
+* Tutorial Recomendado: https://www.youtube.com/watch?v=BnknNTN8icw&t=5s
 
 * El Proyecto consta de 4 microservicios, 3 de tipo REST y 1 de tipo servicio de Eureka
 
