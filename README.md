@@ -2,7 +2,7 @@
 
 * Este proyecto surgió a fin de poner en práctica la interrelación y funcionamiento de varios microservicios en Base de datos diferentes, dos microservicios se comunicarán con una misma base de datos de tipo Postgres de Inmobiliaria (https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres), qué es una réplica de la original que he creado y programado (https://github.com/andresWeitzel/db_Inmobiliaria_PostgreSQL) y un Microservicio se comunicará con una base de datos de tipo Mysql para la facturación de Ventas de dicha inmobiliaria ()
 
-* Tutorial : https://www.youtube.com/watch?v=BnknNTN8icw&t=5s
+* Tutorial Recomendado: https://www.youtube.com/watch?v=BnknNTN8icw&t=5s
 
 * El Proyecto consta de 4 microservicios, 3 de tipo REST y 1 de tipo servicio de Eureka
 
@@ -99,9 +99,9 @@
 
    - [Paso 4) Configuraciones del application.properties](#paso-4-configuraciones-del-application.properties)
 
-     - [Paso 5) Manejo de Postgres desde CMD](#paso-5-manejo-de-postgres-desde-cmd)
+   - [Paso 5) Manejo de Postgres desde CMD](#paso-5-manejo-de-postgres-desde-cmd)
 
-     - [Paso 6) Prueba del Microservicio](#paso-6-prueba-del-microservicio-inmuebleservice)
+   - [Paso 6) Prueba del Microservicio](#paso-6-prueba-del-microservicio-inmuebleservice)
 
 
 #### Sección 2) Microservicio PropietarioInmuebleService
@@ -197,9 +197,9 @@ public enum EstadoInmuebleEnum {
 
 * Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `entity`
 * Dentro del mismo la clase `Inmueble`
-* Agregamos la annotation `@Entity` de la clase para JPA 
+* Agregamos las annotations correspondientes de la clase para JPA 
 * Desarrollamos todos los campos privados modelando la tabla inmuebles de la db `db_inmuebles_microservicios`
-* Agregamos también `@Id` y `@GeneratedValue(strategy = GenerationType.AUTO) ` para el autoincrement del id de la db, seguidamente `@Enumerated(EnumType.STRING)` para el enumerado. No agregamos el resto de las anotaciones ya que vamos a implementar lombok
+* Agregamos también las annotations necesarias para los campos, seguidamente `@Enumerated(EnumType.STRING)` para el enumerado. No agregamos el resto de las anotaciones ya que vamos a implementar lombok
 * Luego Agregamos las anotaciones para lombok `@Data` , `@AllArgsConstructor` y `@NoArgsConstructor` , la primera para la generacion de los getters y setters y el resto de metodos, la segunda para los constructores sobrecargados de la Entidad y la tercera para constructor vacio 
 
  
@@ -213,6 +213,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.inmueble.service.enums.EstadoInmuebleEnum;
 
@@ -220,35 +221,49 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Table(name="inmuebles")
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Inmueble {
 	
-	@Id
+	
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	@Column(name="id")
 	private int id;
 	
+	@Column(name="id_propietario_inmueble")
 	private int idPropietarioInmueble;
 	
+	@Column(name="descripcion")
 	private String descripcion;
 	
+	@Column(name="tipo")
+	private String tipo;
+	
 	@Enumerated(EnumType.STRING)
+	@Column(name="estado_inmueble")
 	private EstadoInmuebleEnum  estadoInmuebleEnum;
 	
+	@Column(name="precio_inmueble_usd") 
 	private double precioInmuebleUsd;
 	
+	@Column(name="direccion")
 	private String direccion;
 	
+	@Column(name="ubicacion")
 	private String ubicacion;
 	
+	@Column(name="sitio_web")
 	private String sitioWeb;
 	
 	
 	
 
 }
+
 
  ```
 
@@ -288,6 +303,8 @@ public interface I_InmuebleRepository extends JpaRepository<Inmueble, Serializab
 	public abstract List<Inmueble> findByIdPropietarioInmueble(int id);
 	
 	public abstract List<Inmueble> findByDescripcion(String descripcion);
+	
+	public abstract List<Inmueble> findByTipo(String tipo);
 	
 	public abstract List<Inmueble> findByEstadoInmuebleEnum(EstadoInmuebleEnum  estadoInmuebleEnum);
 	
@@ -427,6 +444,11 @@ public class InmuebleService {
 		return iInmuebleRepository.findByDescripcion(descripcion);
 	}
 	
+		//----- TIPO DE INMUEBLE --------
+	public List<Inmueble> findByTipo(String tipo) {
+		return iInmuebleRepository.findByTipo(tipo);
+	}
+	
 	//---- ESTADO INMUEBLE-----
 	public List<Inmueble> findByEstado(EstadoInmuebleEnum estadoInmuebleEnum) {
 		return iInmuebleRepository.findByEstadoInmuebleEnum(estadoInmuebleEnum);
@@ -564,7 +586,8 @@ Database: db_inmobiliaria_microservicios
 
 Contraseña:postgres
 ```
-
+* Para trabajar con enumerados desde postgres y desde java es necesario que haya una conversión de tipos para su correcta sincronización y persistencia, además de haber agregado las anotations correspondientes para los enumerados desde java, se implementa un casteo desde el DDL de la db, especificamente `CREATE CAST (varchar AS estado_inmueble_enum) WITH INOUT AS IMPLICIT;
+`
 
 </br>
 
@@ -662,6 +685,11 @@ pg_ctl: el servidor está en ejecución (PID: 6408)
 C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQL\13\data"
 
 ```
+
+#### Comandos SQL con Postgres
+* Todos los comandos que se puedan implementar con Postgres desde algún editor son completamente validos desde el cmd, si queremos listar todos los inmuebles `select * from inmuebles`, si queremos borrar una tabla `drop table inmuebles`, etc
+
+
  </br>
 
  
@@ -690,12 +718,125 @@ C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQ
   </br>
   
   * Testeamos el Método GET junto con la paginación creada para visualizar los productos de la db con la siguiente uri `http://localhost:8092/inmuebles/listado?page=0&size=0`
- 
- 
- 
+ * Se puede obtener mayor información en el Proyecto que se anexa sobre API Rest acerca del uso de los paginados 
+ * Obtenemos un Status 200 OK junto con el listado total de inmuebles(previamente se han realizados pruebas, por eso que los id's y valores no son lógicos)
+  ```json
+[
+    {
+        "id": 1,
+        "idPropietarioInmueble": 1,
+        "descripcion": "PH de 4 Ambientes, 3 dormis, 2 baños, Amplio Espacio,jardin y balcon, Sin Expensas, Lujoso",
+        "tipo": "PH/Casa",
+        "estadoInmuebleEnum": "DISPONIBLE",
+        "precioInmuebleUsd": 177.0,
+        "direccion": "San Cristobla 456",
+        "ubicacion": "Palermo",
+        "sitioWeb": "www.avisosAlInstante.com.ar"
+    },
+    {
+        "id": 2,
+        "idPropietarioInmueble": 2,
+        "descripcion": "Casa 3 Ambientes, 4 Dormitorios, 1 baño y Cochera",
+        "tipo": "Casa",
+        "estadoInmuebleEnum": "VENDIDO",
+        "precioInmuebleUsd": 168.0,
+        "direccion": "Aristobulo del Valle 608 ",
+        "ubicacion": "Belgrano",
+        "sitioWeb": "www.avisosAlInstante.com.ar"
+    },
+    {
+        "id": 3,
+        "idPropietarioInmueble": 3,
+        "descripcion": "Departamento de 2 Ambientes",
+        "tipo": "Departamento",
+        "estadoInmuebleEnum": "VENDIDO",
+        "precioInmuebleUsd": 110.0,
+        "direccion": "Av. Corrientes 112",
+        "ubicacion": "Caballito",
+        "sitioWeb": "www.avisosAlInstante.com.ar"
+    },
+    {
+        "id": 13,
+        "idPropietarioInmueble": 1,
+        "descripcion": "Departamento de 1 Ambiente",
+        "tipo": "Depto",
+        "estadoInmuebleEnum": "DISPONIBLE",
+        "precioInmuebleUsd": 90000.0,
+        "direccion": "San Amadeo del Valle 908",
+        "ubicacion": "Villa Crespo",
+        "sitioWeb": "-"
+    }
+]
+ ```
+  
+  </br>
+  
+  * Ahora Testeamos el método PUT, vamos a modificar el Inmueble con el id 13 a través de la siguiente uri `http://localhost:8092/inmuebles/`, pasandole en el body el registro completo junto a su modificación (estadoInmuebleEnum) ..
+  ```json
+ {
+    "id" : 13,
+    "idPropietarioInmueble" : 1,
+    "descripcion" : "Departamento de 1 Ambiente",
+    "tipo" : "Depto",
+    "estadoInmuebleEnum" : "NO_DISPONIBLE",
+    "precioInmuebleUsd" : 90000,
+    "direccion" : "San Amadeo del Valle 908",
+    "ubicacion" : "Villa Crespo",
+    "sitioWeb" : "-" 
 
+}
+  
+  ```
+  * Obtenemos un Status 200 OK y un true, si visualizamos la lista con el GET podremos ver allí la modificación realizada
+  
+  </br>
+  
+  * Testeamos el Método DELETE, eliminaremos el ultimo registro modificado(id 13), a través de la siguiente uri `http://localhost:8092/inmuebles/13`
+  * Obtenemos un Status 200 OK junto con el true .
+  
+  </br>
+  
+  * Traemos la Lista de Inmuebles con el GET para comprobar tacitamente lo realizado `http://localhost:8092/inmuebles/listado?page=0&size=0`..
+  
+  ```json
+[
+    {
+        "id": 1,
+        "idPropietarioInmueble": 1,
+        "descripcion": "PH de 4 Ambientes, 3 dormis, 2 baños, Amplio Espacio,jardin y balcon, Sin Expensas, Lujoso",
+        "tipo": "PH/Casa",
+        "estadoInmuebleEnum": "DISPONIBLE",
+        "precioInmuebleUsd": 177.0,
+        "direccion": "San Cristobla 456",
+        "ubicacion": "Palermo",
+        "sitioWeb": "www.avisosAlInstante.com.ar"
+    },
+    {
+        "id": 2,
+        "idPropietarioInmueble": 2,
+        "descripcion": "Casa 3 Ambientes, 4 Dormitorios, 1 baño y Cochera",
+        "tipo": "Casa",
+        "estadoInmuebleEnum": "VENDIDO",
+        "precioInmuebleUsd": 168.0,
+        "direccion": "Aristobulo del Valle 608 ",
+        "ubicacion": "Belgrano",
+        "sitioWeb": "www.avisosAlInstante.com.ar"
+    },
+    {
+        "id": 3,
+        "idPropietarioInmueble": 3,
+        "descripcion": "Departamento de 2 Ambientes",
+        "tipo": "Departamento",
+        "estadoInmuebleEnum": "VENDIDO",
+        "precioInmuebleUsd": 110.0,
+        "direccion": "Av. Corrientes 112",
+        "ubicacion": "Caballito",
+        "sitioWeb": "www.avisosAlInstante.com.ar"
+    }
+]
+  ```
 
-
+* Nuestra API REST cumple con lo desarrollado
 
 
 
