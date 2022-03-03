@@ -1,8 +1,9 @@
 # Microservicios_Spring_Cloud_Netflix_Spring_Boot
 
+* Implementación de Spring Boot, Spring Cloud, Spring Data JPA, Lombok, Maven, Postman, Microservicios, Postgres, Mysql y otras Tecnologías
 * Este proyecto surgió a fin de poner en práctica la interrelación y funcionamiento de varios microservicios en Base de datos diferentes, dos microservicios se comunicarán con una misma base de datos de tipo Postgres de Inmobiliaria (https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres), qué es una réplica de la original que he creado y programado (https://github.com/andresWeitzel/db_Inmobiliaria_PostgreSQL) y un Microservicio se comunicará con una base de datos de tipo Mysql para la facturación de Ventas de dicha inmobiliaria ()
 
-* Tutorial Recomendado: https://www.youtube.com/watch?v=BnknNTN8icw&t=5s
+* Tutorial Guía Recomendado: https://www.youtube.com/watch?v=BnknNTN8icw&t=5s
 
 * El Proyecto consta de 4 microservicios, 3 de tipo REST y 1 de tipo servicio de Eureka
 
@@ -22,7 +23,7 @@
 | Java |   12.0.2 | JDK |
 | Spring Tool Suite 4 | 4.9.0  | IDE |
 | Spring Boot |   2.5.4  | Framework |
-| Spring Boot Data JPA  | 2.6.3 | Mapeo de objetos y persistenciua en la db |
+| Spring Boot Data JPA  | 2.6.3 | Mapeo de objetos y persistencia en la db |
 | Lombok | 1.18.22 | Automatización de Código | 
 | Maven |  4.0.0 | Gestor de Proyectos |
 | PostMan | 9.4.1 | Test de Apis |
@@ -30,7 +31,7 @@
 | DBeaver | 21.1 | Gestor de Base de Datos |
 | Mysql | 10.1.38 | Sistema de Gestión de Bases de Datos |
 | PostgreSQL | 13.4 | Sistema de Gestión de Bases de Datos |
-| CMD | 10 | Símbolo del Sistema para linea de comandos | 
+| CMD | 10 | Símbolo del Sistema para línea de Comandos | 
 | GNU bash / Terminal | 4.4.23  | Bash / Terminal para el manejo e implementación de Git integrado al IDE Eclipse |
 | Git | 2.29.1  | Control de Versiones |
 
@@ -46,7 +47,7 @@
 | XAMPP | https://www.apachefriends.org/download.html | https://community.apachefriends.org/f/ |
 | DBeaver | 	https://dbeaver.io/download/ | 	https://github.com/dbeaver/dbeaver/wiki |
 | PostgreSQL | https://www.postgresql.org/download/ | https://www.postgresql.org/docs/current/tutorial.html | 
-| Maven Repository | - | https://mvnrepository.com/ | 
+| Maven Repository | https://mvnrepository.com/ | https://mvnrepository.com/ | 
 | PostMan | https://www.postman.com/downloads/ | https://www.postman.com/product/what-is-postman/ |
 | Git  | https://git-scm.com/downloads |  https://git-scm.com/docs |
 
@@ -68,9 +69,10 @@
 | ------------- | ------------- | ------------- |
 | mysql-connector | 8.0.21 |  Conexión al SGDB Mysql |
 | postgresql-connector | 42.3.1 | Conexión al SGDB PostgreSQL | 
-| spring-boot-starter-data-jpa | 2.6.3 | Api de JpaRepository para el manejo de métodos | 
-| spring-boot-starter-web | 2.6.3 | Se agrega toda la configuración web automáticamente de Maven a Spring | 
-| lombok | 1.18.22 |  Dependencia la automatización de Código |
+| spring-boot-starter-data-jpa | 2.6.4 | Api de JpaRepository para el manejo de métodos | 
+| spring-boot-starter-web | 2.6.4 | Se agrega toda la configuración web automáticamente de Maven a Spring | 
+| spring-boot-devtools | 2.6.4 | Herramienta para la recompilación en tiempo de ejecución  | 
+| lombok | 1.18.22 |  Dependencia para la automatización de Código |
 
 
 </br>
