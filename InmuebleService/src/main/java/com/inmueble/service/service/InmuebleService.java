@@ -92,7 +92,7 @@ public class InmuebleService {
 	
 
 	//---- ID PROPIETARIO INMUEBLE-----
-	public List<Inmueble> findByIdPropietario(int id) {
+	public List<Inmueble> findByIdPropietarioInmueble(int id) {
 		return iInmuebleRepository.findByIdPropietarioInmueble(id);
 	}
 	
@@ -109,14 +109,14 @@ public class InmuebleService {
 	
 	
 	//---- ESTADO INMUEBLE-----
-	public List<Inmueble> findByEstado(EstadoInmuebleEnum estadoInmuebleEnum) {
+	public List<Inmueble> findByEstadoInmuebleEnum(EstadoInmuebleEnum estadoInmuebleEnum) {
 		return iInmuebleRepository.findByEstadoInmuebleEnum(estadoInmuebleEnum);
 	}
 	
 	
 	
 	//---- PRECIO INMUEBLE-----
-	public List<Inmueble> findByPrecio(double precio) {
+	public List<Inmueble> findByPrecioInmueble(double precio) {
 		return iInmuebleRepository.findByPrecioInmuebleUsd(precio);
 	}
 	

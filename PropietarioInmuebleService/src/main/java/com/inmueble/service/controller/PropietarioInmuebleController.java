@@ -49,6 +49,19 @@ public class PropietarioInmuebleController {
 		return propietarioInmuebleService.deletePropietarioInmueble(id);
 	}
 
+
+
+	// --GET--
+	@GetMapping("/listado")
+	public List<PropietarioInmueble> getAll(Pageable pageable) {
+		return propietarioInmuebleService.getAllPropietarioInmueble(pageable);
+	}
+	
+	
+	
+	// ======== MÉTODOS DE BUSQUEDA ============
+	
+	
 	// --GET--
 	@GetMapping("/id/{id}")
 	public PropietarioInmueble findById(@PathVariable("id") int id) {
@@ -56,12 +69,7 @@ public class PropietarioInmuebleController {
 		return propietarioInmuebleService.findById(id);
 
 	}
-
-	// --GET--
-	@GetMapping("/listado")
-	public List<PropietarioInmueble> getAll(Pageable pageable) {
-		return propietarioInmuebleService.getAllPropietarioInmueble(pageable);
-	}
+	
 
 	// --GET--
 	@GetMapping("/nombre/{nombre}")
