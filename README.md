@@ -1,18 +1,23 @@
 # Microservicios_Spring_Cloud_Netflix_Spring_Boot
 
 * Implementación de Spring Boot, Spring Cloud, Spring Data JPA, Lombok, Maven, Postman, Microservicios, Postgres, Mysql y otras Tecnologías
-* Este proyecto surgió a fin de poner en práctica la interrelación y funcionamiento de varios microservicios en Base de datos diferentes, dos microservicios se comunicarán con una misma base de datos de tipo Postgres de Inmobiliaria (https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres), qué es una réplica de la original que he creado y programado (https://github.com/andresWeitzel/db_Inmobiliaria_PostgreSQL) y un Microservicio se comunicará con una base de datos de tipo Mysql para la facturación de Ventas de dicha inmobiliaria ()
+* Este proyecto surgió a fin de poner en práctica la interrelación y funcionamiento de varios microservicios con diferentes SGDB como lo son Mysql y Postgres.
+* Los Microservicios PropietarioInmuebleService e InmuebleService implementarán una misma base de datos de tipo Postgres de Inmobiliaria (https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres), qué es una réplica de la original desarrollada de otro proyecto personal  (https://github.com/andresWeitzel/db_Inmobiliaria_PostgreSQL)
+* El Microservicio FacturaService se comunicará con una base de datos de tipo Mysql para la facturación de Ventas de dicha inmobiliaria (https://github.com/andresWeitzel/db_facturas_microservicios_mysql) 
+* El microservicio ClienteService usará la base de datos de tipo Mysql para la data de los clientes ()
+* El microservicio de Gestión EurekaService no implementará ninguna base de datos ya que  será el responsable de toda la gestión de los otros microservicios
+* Tutorial que recomiendo para la estructuración y creación de Microservicios: https://www.youtube.com/watch?v=BnknNTN8icw&t=5s
 
-* Tutorial Guía Recomendado: https://www.youtube.com/watch?v=BnknNTN8icw&t=5s
 
-* El Proyecto consta de 4 microservicios, 3 de tipo REST y 1 de tipo servicio de Eureka
+* El Proyecto consta de 5 microservicios, 4 de tipo REST y 1 de tipo Eureka Service
 
 ```
-* Desarrollo de 4 Microservicios
+* Desarrollo de 5 Microservicios
 |  |  |  |-----> Microservice EurekaService 
-|  |  |--------> Microservice Rest InmuebleService -------------> db_inmobiliaria (Postgres)
-|  |-----------> Microservice Rest PropietarioInmuebleService--> db_inmobiliaria (Postgres)
-|--------------> Microservice Rest FacturaService --------------> db_facturacion (Mysql)
+|  |  |--------> Microservice Rest InmuebleService ----------------> db_inmobiliaria_microservicios  --> (Postgres) --> (compartida) 
+|  |-----------> Microservice Rest PropietarioInmuebleService------> db_inmobiliaria_microservicios  --> (Postgres) --> (compartida) 
+|--------------> Microservice Rest FacturaService -----------------> db_facturas_microservicios   --> (Mysql)    --> (única) 
+|--------------> Microservice Rest ClienteService------------------> db_clientes_microservicios      --> (Mysql)    --> (única) 
 ```
 
 
@@ -47,6 +52,7 @@
 | XAMPP | https://www.apachefriends.org/download.html | https://community.apachefriends.org/f/ |
 | DBeaver | 	https://dbeaver.io/download/ | 	https://github.com/dbeaver/dbeaver/wiki |
 | PostgreSQL | https://www.postgresql.org/download/ | https://www.postgresql.org/docs/current/tutorial.html | 
+| Mysql  | https://www.mysql.com/it/ | https://www.mysql.com/it/ |
 | Maven Repository | https://mvnrepository.com/ | https://mvnrepository.com/ | 
 | PostMan | https://www.postman.com/downloads/ | https://www.postman.com/product/what-is-postman/ |
 | Git  | https://git-scm.com/downloads |  https://git-scm.com/docs |
@@ -89,15 +95,13 @@
 
 ## Indice
 
-#### Sección 1) Microservicio InmuebleService
+#### Sección 1) Microservicio InmuebleService ( Modelo de Desarrollo )
    
    - [Paso 1) Creación y Configuraciones del Microservicio ](#paso-1-creación-y-configuraciones-del-microservicio-inmuebleservice)
   
    - [Paso 2) Desarrollo del Microservicio ](#paso-2-desarrollo-del-microservicio-inmuebleservice)
-
    
    - [Paso 3) Configuraciones de la Base de Datos](#paso-3-configuraciones-de-la-base-de-datos)
-
 
    - [Paso 4) Configuraciones del application.properties](#paso-4-configuraciones-del-application.properties)
 
@@ -107,6 +111,21 @@
 
 
 #### Sección 2) Microservicio PropietarioInmuebleService
+	
+   - [Paso 7) Desarrollo del Microservicio](#paso-7-desarrollo-del-microservicio-propietarioinmuebleservice)
+
+
+#### Sección 3) Microservicio ClienteService
+	
+   - [Paso 7) Desarrollo del Microservicio](#paso-8-desarrollo-del-microservicio-clienteservice)
+
+
+
+</br>
+
+</br>
+
+
 
 
 </br>
@@ -436,7 +455,7 @@ public class InmuebleService {
 	
 
 	//---- ID PROPIETARIO INMUEBLE-----
-	public List<Inmueble> findByIdPropietario(int id) {
+	public List<Inmueble> findByIdPropietarioInmueble(int id) {
 		return iInmuebleRepository.findByIdPropietarioInmueble(id);
 	}
 	
@@ -446,20 +465,21 @@ public class InmuebleService {
 		return iInmuebleRepository.findByDescripcion(descripcion);
 	}
 	
-		//----- TIPO DE INMUEBLE --------
+	//----- TIPO DE INMUEBLE --------
 	public List<Inmueble> findByTipo(String tipo) {
 		return iInmuebleRepository.findByTipo(tipo);
 	}
 	
+	
 	//---- ESTADO INMUEBLE-----
-	public List<Inmueble> findByEstado(EstadoInmuebleEnum estadoInmuebleEnum) {
+	public List<Inmueble> findByEstadoInmuebleEnum(EstadoInmuebleEnum estadoInmuebleEnum) {
 		return iInmuebleRepository.findByEstadoInmuebleEnum(estadoInmuebleEnum);
 	}
 	
 	
 	
 	//---- PRECIO INMUEBLE-----
-	public List<Inmueble> findByPrecio(double precio) {
+	public List<Inmueble> findByPrecioInmueble(double precio) {
 		return iInmuebleRepository.findByPrecioInmuebleUsd(precio);
 	}
 	
@@ -484,7 +504,6 @@ public class InmuebleService {
 	
 }
 
-
  ```
  
  
@@ -507,7 +526,10 @@ public class InmuebleService {
  ```java
  package com.inmueble.service.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -518,6 +540,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inmueble.service.entity.Inmueble;
+import com.inmueble.service.enums.EstadoInmuebleEnum;
 import com.inmueble.service.service.InmuebleService;
 
 @RestController
@@ -543,30 +566,95 @@ public class InmuebleController {
 		return inmuebleService.updateInmueble(inmueble);
 
 	}
-	
-	//--DELETE--
+
+	// --DELETE--
 	@DeleteMapping("/{id}")
 	public boolean deleteInmueble(@PathVariable("id") int id) {
-		
+
 		return inmuebleService.deleteInmueble(id);
 	}
-	
 
-	//--GET--
-	@GetMapping("/{id}")
+	// --GET--
+	@GetMapping("/listado")
+	public List<Inmueble> getAll(Pageable pageable) {
+		return inmuebleService.getAllInmueble(pageable);
+	}
+
+	// ======== MÉTODOS DE BUSQUEDA ============
+
+	// --GET--
+	@GetMapping("/id/{id}")
 	public Inmueble findById(@PathVariable("id") int id) {
 
 		return inmuebleService.findById(id);
 
 	}
-	
-	
-	//--GET--
-	@GetMapping("/listado")
-	public List<Inmueble> getAll(Pageable pageable){
-		return inmuebleService.getAllInmueble(pageable);
+
+	// --GET--
+	@GetMapping("/id-propietario-inmueble/{id}")
+	public List<Inmueble> findByIdPropietarioInmueble(@PathVariable("id") int id) {
+
+		return inmuebleService.findByIdPropietarioInmueble(id);
+
 	}
 
+	// --GET--
+	@GetMapping("/descripcion/{descipcion}")
+	public List<Inmueble> findByDescripcion(@PathVariable("descripcion") String descripcion) {
+
+		return inmuebleService.findByDescripcion(descripcion);
+
+	}
+
+	// --GET--
+	@GetMapping("/tipo/{tipo}")
+	public List<Inmueble> findByTipo(@PathVariable("tipo") String tipo) {
+
+		return inmuebleService.findByTipo(tipo);
+
+	}
+
+	// --GET--
+	@GetMapping("/estado-inmueble/{estado-inmueble}")
+	public List<Inmueble> findByEstadoInmuebleEnum(
+			@PathVariable("estado-inmueble") EstadoInmuebleEnum estadoInmuebleEnum) {
+
+		return inmuebleService.findByEstadoInmuebleEnum(estadoInmuebleEnum);
+
+	}
+
+	// --GET--
+	@GetMapping("/precio-inmueble/{precio-inmueble}")
+	public List<Inmueble> findByPrecioInmueble(@PathVariable("precio-inmueble") double precioInmueble) {
+
+		return inmuebleService.findByPrecioInmueble(precioInmueble);
+
+	}
+
+	// --GET--
+	@GetMapping("/direccion/{direccion}")
+	public List<Inmueble> findByDireccion(@PathVariable("direccion") String direccion) {
+
+		return inmuebleService.findByDireccion(direccion);
+
+	}
+	
+	// --GET--
+	@GetMapping("/ubicacion/{ubicacion}")
+	public List<Inmueble> findByUbicacion(@PathVariable("ubicacion") String ubicacion) {
+
+		return inmuebleService.findByUbicacion(ubicacion);
+
+	}
+	
+	
+	// --GET--
+	@GetMapping("/sitio-web/{sitio-web}")
+	public List<Inmueble> findBySitioWeb(@PathVariable("sitio-web") String sitioWeb) {
+
+		return inmuebleService.findBySitioWeb(sitioWeb);
+
+	}
 
 }
 
@@ -577,7 +665,7 @@ public class InmuebleController {
 </br>
 
 
-### Paso 3) Configuraciones de la db `db_inmobiliaria_microservicios_postgres`
+### Paso 3) Configuraciones de la db `db_inmobiliaria_microservicios`
 #### (El Microservicio persistirá los datos en esta db, no detallaré como levantar la db, ejecutar los servicios, etc. Todos estos pasos se encuentran en el repositorio de la misma..https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres)
 
 </br>
@@ -770,6 +858,13 @@ C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQ
     }
 ]
  ```
+ 
+ 
+  </br>
+  
+  * Se ha testeado de antemano todos los métodos de búsqueda de tipo GET( findByDescripcion, findByTipo, etc) mediante sus URIS correspondientes, si se desea buscar los Inmuebles según su descripcion la URI sería `http://localhost:8092/inmuebles/descripcion/"descripcion completa del inmueble sin comillas"`.
+ * Por cada método de búsqueda se cambiara la URI especifica para tal búsqueda 
+
   
   </br>
   
@@ -843,6 +938,47 @@ C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQ
 
 
 
+</br>
+
+##  Sección 2) Microservicio PropietarioInmuebleService
+
+</br>
+
+
+### Paso 7) Desarrollo del Microservicio `PropietarioInmuebleService`
+#### (Por temas de simplificación y duplicidad de código no se replican los pasos necesarios para el desarrollo de este microservicio. El mismo sigue la misma estructura de creación que el anterior desarrollado)
+
+</br>
+
+* Para poder correr este microservicio, además de haber desarrollado el código necesario para el mismo, es importante cambiar el puerto de uso del server de spring para este microservicio.
+* Código del application.properties..
+ ```xml
+
+server.port = 8093
+server.error.whitelabel.enabled=true
+
+spring.datasource.url = jdbc:postgresql://localhost:5432/db_inmobiliaria_microservicios?serverTimezone=UTC
+spring.datasource.username = postgres
+spring.datasource.password = postgres
+
+
+spring.jpa.show-sql = true
+spring.jpa.hibernate.ddl-auto = update
+spring.jpa.hibernate.naming.strategy = org.hibernate.cfg.ImprovedNamingStrategy
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
+
+
+
+spring.data.rest.page-param-name=page
+spring.data.rest.sort-param-name=sort
+spring.data.rest.limit-param-name=limit
+spring.data.rest.default-page-size = 1
+spring.data.rest.max-page-size = 10
+
+
+
+  ```
+* Al igual que el Microservice anterior se testea correctamente su API
 
 
 
