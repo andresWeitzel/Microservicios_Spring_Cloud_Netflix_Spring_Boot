@@ -505,12 +505,101 @@ public class InmuebleService {
 }
 
  ```
- 
+  
+ </br>
+
+### 2.5) Creación y Configuración del Objeto de Valor  `PropietarioInmuebleVO`
+#### (Los objetos de valor nos van a permiten relacionar los microservicios a través de nuestro servicio REST garantizando nua expresividad máxima de nuetsro código)
+
+</br> 
+
+* Creamos el paquete `valueobjects` dentro de la ruta convencional
+* Creamos la clase `PropietarioInmuebleVO` 
+* ES NECESARIO TENER O CONOCER LOS ATRIBUTOS DE LA ENTIDAD DEL MICROSERVICIO `PropietarioInmuebleService` para copiar los mismos de la clase original entity sin las anotaciones, salvo las de lombok, ya que será una clase pojo.
+* Esta paso de los value object lo agrego acá por temas de organización de código, se puede desarrollar ambos microservicios y luego realizar este paso, temas de comodidad.
+
+
+```java
+package com.inmueble.service.valueobjects;
+
+import java.time.LocalDate;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class PropietarioInmuebleVO {
+
+	private int id;
+
+	private String nombre;
+
+	private String apellido;
+
+	private int edad;
+
+	private LocalDate fechaNacimiento;
+
+	private String tipoDocumento;
+
+	private String nroDocumento;
+
+	private String direccion;
+
+	private String nroTelefonoPrincipal;
+
+	private String nroTelefonoSecundario;
+
+	private String email;
+
+}
+
+```
+
+ </br>
+
+### 2.6) Creación y Configuración del Template  `PropietarioInmuebleResponseTemplate`
+#### (Esta Clase será el template que contenga los objetos Inmueble y PropietarioInmuebleVO)
+
+</br> 
+* Dentro del paquete `valueobjects` creamos la clase template `PropietarioInmuebleResponseTemplate`
+* Aplicamos todas las anotaciones de lombok necesarias
+* AL IGUAL QUE EL PASO ANTERIOR, ES NECESARIO TENER PARTE DEL OTRO MICROSERVICIO DESARROLLADO PARA TRABAJAR EL MISMO
+* Usamos las clases ya mencionadas y aplicamios lombok
+* Código..
+```java
+package com.inmueble.service.valueobjects;
+
+import com.inmueble.service.entity.Inmueble;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class PropietarioInmuebleResponseTemplate {
+	
+	private PropietarioInmuebleVO propietarioInmuebleVO;
+	
+	private Inmueble inmueble;
+	
+
+}
+
+```
  
  
 </br>
 
-### 2.5) Creación y Configuración del Controlador  `InmuebleController`
+### 2.7) Creación y Configuración del Controlador  `InmuebleController`
  
  
 * Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `controller`
@@ -522,6 +611,7 @@ public class InmuebleService {
 * Usamos log4j para los logs de error en los métodos CRUD para la persistencia. 
 * Desarrollamos el cuerpo de cada método de la interfaz
 * Cada Método CRUD de Tipo HTTP (POST, DELETE, PUT, GET) tiene su comprobación de Persistencia y los métodos devolverán un booleano según el resultado de la operación, menos el get que trae el Inmueble. Los mismos pueden ser modificados para adicionar mayor seguridad.
+* También existará el método para obtener el template con el objeto PropietarioInmueble y el objeto Inmueble
  
  ```java
  package com.inmueble.service.controller;
@@ -662,8 +752,8 @@ public class InmuebleController {
 
  ```
 
-</br>
 
+</br>
 
 ### Paso 3) Configuraciones de la db `db_inmobiliaria_microservicios`
 #### (El Microservicio persistirá los datos en esta db, no detallaré como levantar la db, ejecutar los servicios, etc. Todos estos pasos se encuentran en el repositorio de la misma..https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres)
