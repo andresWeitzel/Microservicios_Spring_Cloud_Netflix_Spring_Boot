@@ -41,7 +41,10 @@ public class PropietarioInmuebleController {
 		return propietarioInmuebleService.updatePropietarioInmueble(propietarioInmueble);
 
 	}
-
+	
+	
+	
+	
 	// --DELETE--
 	@DeleteMapping("/{id}")
 	public boolean deletePropietarioInmueble(@PathVariable("id") int id) {
