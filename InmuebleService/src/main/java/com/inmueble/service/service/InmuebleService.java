@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.inmueble.service.entity.Inmueble;
 import com.inmueble.service.enums.EstadoInmuebleEnum;
 import com.inmueble.service.repository.I_InmuebleRepository;
+import com.inmueble.service.valueobjects.PropietarioInmuebleResponseTemplate;
 
 @Service
 public class InmuebleService {
@@ -81,6 +82,16 @@ public class InmuebleService {
 	public List<Inmueble> getAllInmueble(Pageable pageable){
 		
 		return iInmuebleRepository.findAll(pageable).getContent();
+	}
+	
+	// ------TEMPLATE INMUEBLE WITH PROPIETARIO_INMUEBLE---
+	public PropietarioInmuebleResponseTemplate findByPropietarioInmuebleVO(int idPropietarioInmueble) {
+		PropietarioInmuebleResponseTemplate propietarioInmueble = new PropietarioInmuebleResponseTemplate();
+		Inmueble inmueble = iInmuebleRepository.findByIdPropietarioInmuebleVO(idPropietarioInmueble);
+		
+		return propietarioInmueble;
+		
+		
 	}
 	
 	// ============ MÉTODOS DE BÚSQUEDA ==================

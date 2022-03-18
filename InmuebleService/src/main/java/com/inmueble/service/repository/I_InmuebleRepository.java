@@ -21,6 +21,7 @@ public interface I_InmuebleRepository extends JpaRepository<Inmueble, Serializab
 	public abstract Inmueble findById(int id);
 	
 	public abstract List<Inmueble> findByIdPropietarioInmueble(int id);
+
 	
 	public abstract List<Inmueble> findByDescripcion(String descripcion);
 	
@@ -37,6 +38,8 @@ public interface I_InmuebleRepository extends JpaRepository<Inmueble, Serializab
 	public abstract List<Inmueble> findBySitioWeb(String sitioWeb);
 
 	public abstract Page<Inmueble> findAll(Pageable pageable);
+
+	public abstract Inmueble findByIdPropietarioInmuebleVO(int idPropietarioInmueble);
 	
 	
 	
