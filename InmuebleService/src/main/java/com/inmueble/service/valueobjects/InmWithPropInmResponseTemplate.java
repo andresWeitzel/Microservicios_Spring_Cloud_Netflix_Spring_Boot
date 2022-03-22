@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PropietarioInmuebleResponseTemplate {
+public class InmWithPropInmResponseTemplate {
 	
 	private PropietarioInmuebleVO propietarioInmuebleVO;
 	

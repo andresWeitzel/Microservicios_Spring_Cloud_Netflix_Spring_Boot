@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.inmueble.service.entity.Inmueble;
 import com.inmueble.service.enums.EstadoInmuebleEnum;
 import com.inmueble.service.service.InmuebleService;
-import com.inmueble.service.valueobjects.PropietarioInmuebleResponseTemplate;
+import com.inmueble.service.valueobjects.InmWithPropInmResponseTemplate;
 
 @RestController
 @RequestMapping("/inmuebles")
@@ -58,13 +58,15 @@ public class InmuebleController {
 	
 	//--GET--
 	// Template de  Inmueble con Propietario Inmueble
-	@GetMapping("/id-propietario-inmueble-template/{id}")
-	public PropietarioInmuebleResponseTemplate getInmuebleWithPropietarioInmueble(@PathVariable("id") int idPropietarioInmueble) {
+	@GetMapping("/inmueble-con-propietario-inmueble/id/{id}")
+	public InmWithPropInmResponseTemplate getInmWithPropInm(@PathVariable("id") int idInmueble) {
 		
-		return (PropietarioInmuebleResponseTemplate) inmuebleService.findByIdPropietarioInmueble(idPropietarioInmueble);
+		return (InmWithPropInmResponseTemplate) inmuebleService.findByInmWithPropInm(idInmueble);
 	}
 	
 
+	
+	 
 	// ======== MÉTODOS DE BUSQUEDA ============
 
 	// --GET--

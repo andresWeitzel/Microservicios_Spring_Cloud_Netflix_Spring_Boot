@@ -6,17 +6,22 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.inmueble.service.entity.Inmueble;
 import com.inmueble.service.enums.EstadoInmuebleEnum;
 import com.inmueble.service.repository.I_InmuebleRepository;
-import com.inmueble.service.valueobjects.PropietarioInmuebleResponseTemplate;
+import com.inmueble.service.valueobjects.InmWithPropInmResponseTemplate;
+import com.inmueble.service.valueobjects.PropietarioInmuebleVO;
 
 @Service
 public class InmuebleService {
 	
 	@Autowired
 	private I_InmuebleRepository iInmuebleRepository;
+	
+	@Autowired
+	private RestTemplate restTemplate;
 	
 	
 	// ============= LOGS ========================	
@@ -85,11 +90,24 @@ public class InmuebleService {
 	}
 	
 	// ------TEMPLATE INMUEBLE WITH PROPIETARIO_INMUEBLE---
-	public PropietarioInmuebleResponseTemplate findByPropietarioInmuebleVO(int idPropietarioInmueble) {
-		PropietarioInmuebleResponseTemplate propietarioInmueble = new PropietarioInmuebleResponseTemplate();
-		Inmueble inmueble = iInmuebleRepository.findByIdPropietarioInmuebleVO(idPropietarioInmueble);
+	public InmWithPropInmResponseTemplate findByInmWithPropInm(int idInmueble) {
 		
-		return propietarioInmueble;
+		//Template microservices
+		InmWithPropInmResponseTemplate inmWithPropInmTemplate = new InmWithPropInmResponseTemplate();
+		
+		//buscamos el objeto inmueble
+		Inmueble inmueble = iInmuebleRepository.findById(idInmueble);
+		
+		//buscamos el objeto Prop Inm
+		PropietarioInmuebleVO propietarioInmuebleVO = 
+				restTemplate.getForObject("http://localhost:8093/propietarios-inmuebles/id/" 
+						+ inmueble.getIdPropietarioInmueble() , PropietarioInmuebleVO.class); 
+		
+		
+		inmWithPropInmTemplate.setInmueble(inmueble);
+		inmWithPropInmTemplate.setPropietarioInmuebleVO(propietarioInmuebleVO);;
+		
+		return inmWithPropInmTemplate;
 		
 		
 	}

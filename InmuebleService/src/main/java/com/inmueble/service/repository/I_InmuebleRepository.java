@@ -39,7 +39,8 @@ public interface I_InmuebleRepository extends JpaRepository<Inmueble, Serializab
 
 	public abstract Page<Inmueble> findAll(Pageable pageable);
 
-	public abstract Inmueble findByIdPropietarioInmuebleVO(int idPropietarioInmueble);
+	//Para el template
+	//public abstract Inmueble findByIdPropietarioInmuebleVO(int idPropietarioInmueble);
 	
 	
 	
