@@ -100,7 +100,7 @@ public class InmuebleService {
 		
 		//buscamos el objeto Prop Inm
 		PropietarioInmuebleVO propietarioInmuebleVO = 
-				restTemplate.getForObject("http://localhost:8093/propietarios-inmuebles/id/" 
+				restTemplate.getForObject("http://PROPIETARIO-INMUEBLE-SERVICE/propietarios-inmuebles/id/" 
 						+ inmueble.getIdPropietarioInmueble() , PropietarioInmuebleVO.class); 
 		
 		
