@@ -25,7 +25,6 @@ public class InmuebleController {
 	@Autowired
 	private InmuebleService inmuebleService;
 
-	
 	// ======== MÉTODOS HTTP ============
 	// --POST--
 	@PostMapping("/")
@@ -55,18 +54,15 @@ public class InmuebleController {
 	public List<Inmueble> getAll(Pageable pageable) {
 		return inmuebleService.getAllInmueble(pageable);
 	}
-	
-	//--GET--
-	// Template de  Inmueble con Propietario Inmueble
+
+	// --GET--
+	// Template de Inmueble con Propietario Inmueble
 	@GetMapping("/inmueble-con-propietario-inmueble/id/{id}")
-	public InmWithPropInmResponseTemplate getInmWithPropInm(@PathVariable("id") int idInmueble) {
-		
+	public InmWithPropInmResponseTemplate getInmWithPropInmId(@PathVariable("id") int idInmueble) {
+
 		return (InmWithPropInmResponseTemplate) inmuebleService.findByInmWithPropInm(idInmueble);
 	}
-	
 
-	
-	 
 	// ======== MÉTODOS DE BUSQUEDA ============
 
 	// --GET--
@@ -125,7 +121,7 @@ public class InmuebleController {
 		return inmuebleService.findByDireccion(direccion);
 
 	}
-	
+
 	// --GET--
 	@GetMapping("/ubicacion/{ubicacion}")
 	public List<Inmueble> findByUbicacion(@PathVariable("ubicacion") String ubicacion) {
@@ -133,8 +129,7 @@ public class InmuebleController {
 		return inmuebleService.findByUbicacion(ubicacion);
 
 	}
-	
-	
+
 	// --GET--
 	@GetMapping("/sitio-web/{sitio-web}")
 	public List<Inmueble> findBySitioWeb(@PathVariable("sitio-web") String sitioWeb) {

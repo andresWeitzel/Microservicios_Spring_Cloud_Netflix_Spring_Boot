@@ -89,7 +89,9 @@ public class InmuebleService {
 		return iInmuebleRepository.findAll(pageable).getContent();
 	}
 	
-	// ------TEMPLATE INMUEBLE WITH PROPIETARIO_INMUEBLE---
+
+	
+	// ------TEMPLATE INMUEBLE WITH PROPIETARIO_INMUEBLE FIND BY ID---
 	public InmWithPropInmResponseTemplate findByInmWithPropInm(int idInmueble) {
 		
 		//Template microservices
@@ -111,6 +113,8 @@ public class InmuebleService {
 		
 		
 	}
+	
+
 	
 	// ============ MÉTODOS DE BÚSQUEDA ==================
 	
