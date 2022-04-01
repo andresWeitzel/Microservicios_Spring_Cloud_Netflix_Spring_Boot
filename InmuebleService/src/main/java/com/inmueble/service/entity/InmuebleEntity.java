@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Inmueble {
+public class InmuebleEntity {
 	
 	
 	@GeneratedValue(strategy = GenerationType.AUTO)

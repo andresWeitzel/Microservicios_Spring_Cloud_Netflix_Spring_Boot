@@ -1,6 +1,6 @@
-package com.inmueble.service.valueobjects;
+package com.inmueble.service.valueobject;
 
-import com.inmueble.service.entity.Inmueble;
+import com.inmueble.service.entity.InmuebleEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +14,7 @@ public class InmWithPropInmResponseTemplate {
 	
 	private PropietarioInmuebleVO propietarioInmuebleVO;
 	
-	private Inmueble inmueble;
+	private InmuebleEntity inmueble;
 	
 
 }

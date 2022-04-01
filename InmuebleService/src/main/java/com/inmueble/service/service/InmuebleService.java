@@ -8,15 +8,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.inmueble.service.entity.Inmueble;
+import com.inmueble.service.entity.InmuebleEntity;
 import com.inmueble.service.enums.EstadoInmuebleEnum;
 import com.inmueble.service.repository.I_InmuebleRepository;
-import com.inmueble.service.valueobjects.InmWithPropInmResponseTemplate;
-import com.inmueble.service.valueobjects.PropietarioInmuebleVO;
+import com.inmueble.service.valueobject.InmWithPropInmResponseTemplate;
+import com.inmueble.service.valueobject.PropietarioInmuebleVO;
 
 @Service
 public class InmuebleService {
 	
+	
+	//============ Inyec Dep. ============
 	@Autowired
 	private I_InmuebleRepository iInmuebleRepository;
 	
@@ -31,7 +33,7 @@ public class InmuebleService {
 	// ============ MÉTODOS CRUD ==================
 	
 	// ----INSERT----
-	public boolean addInmueble(Inmueble inmueble) {
+	public boolean addInmueble(InmuebleEntity inmueble) {
 		try {
 			if(inmueble == null) {
 				logger.error("ERROR addInmueble : EL INMUEBLE " + inmueble+" ES NULO!!");
@@ -50,7 +52,7 @@ public class InmuebleService {
 	
 	
 	// ----UPDATE----
-	public boolean updateInmueble(Inmueble inmueble) {
+	public boolean updateInmueble(InmuebleEntity inmueble) {
 		try {
 			if(inmueble == null) {
 				logger.error("ERROR updateInmueble : EL INMUEBLE " + inmueble + " ES NULO!!");
@@ -84,7 +86,7 @@ public class InmuebleService {
 	}
 	
 	// ----SELECT----
-	public List<Inmueble> getAllInmueble(Pageable pageable){
+	public List<InmuebleEntity> getAllInmueble(Pageable pageable){
 		
 		return iInmuebleRepository.findAll(pageable).getContent();
 	}
@@ -98,7 +100,7 @@ public class InmuebleService {
 		InmWithPropInmResponseTemplate inmWithPropInmTemplate = new InmWithPropInmResponseTemplate();
 		
 		//buscamos el objeto inmueble
-		Inmueble inmueble = iInmuebleRepository.findById(idInmueble);
+		InmuebleEntity inmueble = iInmuebleRepository.findById(idInmueble);
 		
 		//buscamos el objeto Prop Inm
 		PropietarioInmuebleVO propietarioInmuebleVO = 
@@ -106,6 +108,7 @@ public class InmuebleService {
 						+ inmueble.getIdPropietarioInmueble() , PropietarioInmuebleVO.class); 
 		
 		
+		//Guardamos ambos objetos en el Template
 		inmWithPropInmTemplate.setInmueble(inmueble);
 		inmWithPropInmTemplate.setPropietarioInmuebleVO(propietarioInmuebleVO);;
 		
@@ -119,52 +122,52 @@ public class InmuebleService {
 	// ============ MÉTODOS DE BÚSQUEDA ==================
 	
 	//----ID-----
-	public Inmueble findById(int id) {
+	public InmuebleEntity findById(int id) {
 		return iInmuebleRepository.findById(id);
 	}
 	
 
 	//---- ID PROPIETARIO INMUEBLE-----
-	public List<Inmueble> findByIdPropietarioInmueble(int id) {
+	public List<InmuebleEntity> findByIdPropietarioInmueble(int id) {
 		return iInmuebleRepository.findByIdPropietarioInmueble(id);
 	}
 	
 	
 	//---- DESCRIPCION INMUEBLE-----
-	public List<Inmueble> findByDescripcion(String descripcion) {
+	public List<InmuebleEntity> findByDescripcion(String descripcion) {
 		return iInmuebleRepository.findByDescripcion(descripcion);
 	}
 	
 	//----- TIPO DE INMUEBLE --------
-	public List<Inmueble> findByTipo(String tipo) {
+	public List<InmuebleEntity> findByTipo(String tipo) {
 		return iInmuebleRepository.findByTipo(tipo);
 	}
 	
 	
 	//---- ESTADO INMUEBLE-----
-	public List<Inmueble> findByEstadoInmuebleEnum(EstadoInmuebleEnum estadoInmuebleEnum) {
+	public List<InmuebleEntity> findByEstadoInmuebleEnum(EstadoInmuebleEnum estadoInmuebleEnum) {
 		return iInmuebleRepository.findByEstadoInmuebleEnum(estadoInmuebleEnum);
 	}
 	
 	
 	
 	//---- PRECIO INMUEBLE-----
-	public List<Inmueble> findByPrecioInmueble(double precio) {
+	public List<InmuebleEntity> findByPrecioInmueble(double precio) {
 		return iInmuebleRepository.findByPrecioInmuebleUsd(precio);
 	}
 	
 	//---- DIRECCION INMUEBLE-----
-	public List<Inmueble> findByDireccion(String direccion) {
+	public List<InmuebleEntity> findByDireccion(String direccion) {
 		return iInmuebleRepository.findByDireccion(direccion);
 	}
 	
 	//---- UBICACION INMUEBLE-----
-	public List<Inmueble> findByUbicacion(String ubicacion) {
+	public List<InmuebleEntity> findByUbicacion(String ubicacion) {
 		return iInmuebleRepository.findByUbicacion(ubicacion);
 	}
 	
 	//---- SITIO WEB INMUEBLE-----
-	public List<Inmueble> findBySitioWeb(String sitioWeb) {
+	public List<InmuebleEntity> findBySitioWeb(String sitioWeb) {
 		return iInmuebleRepository.findBySitioWeb(sitioWeb);
 	}
 		

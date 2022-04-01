@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.inmueble.service.entity.PropietarioInmueble;
+import com.inmueble.service.entity.PropietarioInmuebleEntity;
 import com.inmueble.service.repository.I_PropietarioInmuebleRepository;
 
 @Service
 public class PropietarioInmuebleService {
 
+	//============ Inyec Dep. ============
+	
 	@Autowired
 	private I_PropietarioInmuebleRepository iPropietarioInmuebleRepository;
 
@@ -24,7 +26,7 @@ public class PropietarioInmuebleService {
 	// ============ MÉTODOS CRUD ==================
 
 	// ----INSERT----
-	public boolean addPropietarioInmueble(PropietarioInmueble propietarioInmueble) {
+	public boolean addPropietarioInmueble(PropietarioInmuebleEntity propietarioInmueble) {
 		try {
 			if (propietarioInmueble == null) {
 				logger.error("ERROR addPropietarioInmueble : EL PROPIETARIO DEL INMUEBLE " + propietarioInmueble
@@ -43,7 +45,7 @@ public class PropietarioInmuebleService {
 	}
 
 	// ----UPDATE----
-	public boolean updatePropietarioInmueble(PropietarioInmueble propietarioInmueble) {
+	public boolean updatePropietarioInmueble(PropietarioInmuebleEntity propietarioInmueble) {
 		try {
 			if (propietarioInmueble == null) {
 				logger.error("ERROR updatePropietarioInmueble : EL PROPIETARIO DEL INMUEBLE " + propietarioInmueble
@@ -80,7 +82,7 @@ public class PropietarioInmuebleService {
 	}
 
 	// ----SELECT----
-	public List<PropietarioInmueble> getAllPropietarioInmueble(Pageable pageable) {
+	public List<PropietarioInmuebleEntity> getAllPropietarioInmueble(Pageable pageable) {
 
 		return iPropietarioInmuebleRepository.findAll(pageable).getContent();
 	}
@@ -88,57 +90,57 @@ public class PropietarioInmuebleService {
 	// ============ MÉTODOS DE BÚSQUEDA ==================
 
 	// ----ID-----
-	public PropietarioInmueble findById(int id) {
+	public PropietarioInmuebleEntity findById(int id) {
 		return iPropietarioInmuebleRepository.findById(id);
 	}
 
 	// ---- NOMBRE-----
-	public List<PropietarioInmueble> findByNombre(String nombre) {
+	public List<PropietarioInmuebleEntity> findByNombre(String nombre) {
 		return iPropietarioInmuebleRepository.findByNombre(nombre);
 	}
 
 	// ---- APELLIDO-----
-	public List<PropietarioInmueble> findByApellido(String apellido) {
+	public List<PropietarioInmuebleEntity> findByApellido(String apellido) {
 		return iPropietarioInmuebleRepository.findByApellido(apellido);
 	}
 
 	// ---- EDAD -----
-	public List<PropietarioInmueble> findByEdad(int edad) {
+	public List<PropietarioInmuebleEntity> findByEdad(int edad) {
 		return iPropietarioInmuebleRepository.findByEdad(edad);
 	}
 
 	// ---- FECHA_NACIMIENTO -----
-	public List<PropietarioInmueble> findByFechaNacimiento(LocalDate fechaNacimiento) {
+	public List<PropietarioInmuebleEntity> findByFechaNacimiento(LocalDate fechaNacimiento) {
 		return iPropietarioInmuebleRepository.findByFechaNacimiento(fechaNacimiento);
 	}
 
 	// ---- TIPO_DOCUMENTO -----
-	public List<PropietarioInmueble> findByTipoDocumento(String tipoDocumento) {
+	public List<PropietarioInmuebleEntity> findByTipoDocumento(String tipoDocumento) {
 		return iPropietarioInmuebleRepository.findByTipoDocumento(tipoDocumento);
 	}
 
 	// ---- NRO_DOCUMENTO -----
-	public List<PropietarioInmueble> findByNroDocumento(String nroDocumento) {
+	public List<PropietarioInmuebleEntity> findByNroDocumento(String nroDocumento) {
 		return iPropietarioInmuebleRepository.findByNroDocumento(nroDocumento);
 	}
 
 	// ---- DIRECCION -----
-	public List<PropietarioInmueble> findByDireccion(String direccion) {
+	public List<PropietarioInmuebleEntity> findByDireccion(String direccion) {
 		return iPropietarioInmuebleRepository.findByDireccion(direccion);
 	}
 
 	// ---- NRO_TELEFONO_PRINCIPAL -----
-	public List<PropietarioInmueble> findByNroTelefonoPrincipal(String nroTelefonoPrincipal) {
+	public List<PropietarioInmuebleEntity> findByNroTelefonoPrincipal(String nroTelefonoPrincipal) {
 		return iPropietarioInmuebleRepository.findByNroTelefonoPrincipal(nroTelefonoPrincipal);
 	}
 
 	// ---- NRO_TELEFONO_SECUNDARIO -----
-	public List<PropietarioInmueble> findByNroTelefonoSecundario(String nroTelefonoSecundario) {
+	public List<PropietarioInmuebleEntity> findByNroTelefonoSecundario(String nroTelefonoSecundario) {
 		return iPropietarioInmuebleRepository.findByNroTelefonoSecundario(nroTelefonoSecundario);
 	}
 
 	// ---- EMAIL -----
-	public List<PropietarioInmueble> findByEmail(String email) {
+	public List<PropietarioInmuebleEntity> findByEmail(String email) {
 		return iPropietarioInmuebleRepository.findByEmail(email);
 	}
 }

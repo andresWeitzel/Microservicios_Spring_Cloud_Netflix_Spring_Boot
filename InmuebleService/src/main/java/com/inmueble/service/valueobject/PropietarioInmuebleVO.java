@@ -1,4 +1,4 @@
-package com.inmueble.service.valueobjects;
+package com.inmueble.service.valueobject;
 
 import java.time.LocalDate;
 

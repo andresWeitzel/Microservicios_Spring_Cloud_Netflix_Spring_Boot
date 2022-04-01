@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PropietarioInmueble {
+public class PropietarioInmuebleEntity {
 	
 
 	

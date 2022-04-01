@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inmueble.service.entity.Inmueble;
+import com.inmueble.service.entity.InmuebleEntity;
 import com.inmueble.service.enums.EstadoInmuebleEnum;
 import com.inmueble.service.service.InmuebleService;
-import com.inmueble.service.valueobjects.InmWithPropInmResponseTemplate;
+import com.inmueble.service.valueobject.InmWithPropInmResponseTemplate;
 
 @RestController
 @RequestMapping("/inmuebles")
@@ -28,7 +28,7 @@ public class InmuebleController {
 	// ======== MÉTODOS HTTP ============
 	// --POST--
 	@PostMapping("/")
-	public boolean addInmueble(@RequestBody Inmueble inmueble) {
+	public boolean addInmueble(@RequestBody InmuebleEntity inmueble) {
 
 		return inmuebleService.addInmueble(inmueble);
 
@@ -36,7 +36,7 @@ public class InmuebleController {
 
 	// --PUT--
 	@PutMapping("/")
-	public boolean updateInmueble(@RequestBody Inmueble inmueble) {
+	public boolean updateInmueble(@RequestBody InmuebleEntity inmueble) {
 
 		return inmuebleService.updateInmueble(inmueble);
 
@@ -50,8 +50,9 @@ public class InmuebleController {
 	}
 
 	// --GET--
+	
 	@GetMapping("/listado")
-	public List<Inmueble> getAll(Pageable pageable) {
+	public List<InmuebleEntity> getAll(Pageable pageable) {
 		return inmuebleService.getAllInmueble(pageable);
 	}
 
@@ -67,7 +68,7 @@ public class InmuebleController {
 
 	// --GET--
 	@GetMapping("/id/{id}")
-	public Inmueble findById(@PathVariable("id") int id) {
+	public InmuebleEntity findById(@PathVariable("id") int id) {
 
 		return inmuebleService.findById(id);
 
@@ -75,7 +76,7 @@ public class InmuebleController {
 
 	// --GET--
 	@GetMapping("/id-propietario-inmueble/{id}")
-	public List<Inmueble> findByIdPropietarioInmueble(@PathVariable("id") int id) {
+	public List<InmuebleEntity> findByIdPropietarioInmueble(@PathVariable("id") int id) {
 
 		return inmuebleService.findByIdPropietarioInmueble(id);
 
@@ -83,7 +84,7 @@ public class InmuebleController {
 
 	// --GET--
 	@GetMapping("/descripcion/{descipcion}")
-	public List<Inmueble> findByDescripcion(@PathVariable("descripcion") String descripcion) {
+	public List<InmuebleEntity> findByDescripcion(@PathVariable("descripcion") String descripcion) {
 
 		return inmuebleService.findByDescripcion(descripcion);
 
@@ -91,7 +92,7 @@ public class InmuebleController {
 
 	// --GET--
 	@GetMapping("/tipo/{tipo}")
-	public List<Inmueble> findByTipo(@PathVariable("tipo") String tipo) {
+	public List<InmuebleEntity> findByTipo(@PathVariable("tipo") String tipo) {
 
 		return inmuebleService.findByTipo(tipo);
 
@@ -99,7 +100,7 @@ public class InmuebleController {
 
 	// --GET--
 	@GetMapping("/estado-inmueble/{estado-inmueble}")
-	public List<Inmueble> findByEstadoInmuebleEnum(
+	public List<InmuebleEntity> findByEstadoInmuebleEnum(
 			@PathVariable("estado-inmueble") EstadoInmuebleEnum estadoInmuebleEnum) {
 
 		return inmuebleService.findByEstadoInmuebleEnum(estadoInmuebleEnum);
@@ -108,7 +109,7 @@ public class InmuebleController {
 
 	// --GET--
 	@GetMapping("/precio-inmueble/{precio-inmueble}")
-	public List<Inmueble> findByPrecioInmueble(@PathVariable("precio-inmueble") double precioInmueble) {
+	public List<InmuebleEntity> findByPrecioInmueble(@PathVariable("precio-inmueble") double precioInmueble) {
 
 		return inmuebleService.findByPrecioInmueble(precioInmueble);
 
@@ -116,7 +117,7 @@ public class InmuebleController {
 
 	// --GET--
 	@GetMapping("/direccion/{direccion}")
-	public List<Inmueble> findByDireccion(@PathVariable("direccion") String direccion) {
+	public List<InmuebleEntity> findByDireccion(@PathVariable("direccion") String direccion) {
 
 		return inmuebleService.findByDireccion(direccion);
 
@@ -124,7 +125,7 @@ public class InmuebleController {
 
 	// --GET--
 	@GetMapping("/ubicacion/{ubicacion}")
-	public List<Inmueble> findByUbicacion(@PathVariable("ubicacion") String ubicacion) {
+	public List<InmuebleEntity> findByUbicacion(@PathVariable("ubicacion") String ubicacion) {
 
 		return inmuebleService.findByUbicacion(ubicacion);
 
@@ -132,7 +133,7 @@ public class InmuebleController {
 
 	// --GET--
 	@GetMapping("/sitio-web/{sitio-web}")
-	public List<Inmueble> findBySitioWeb(@PathVariable("sitio-web") String sitioWeb) {
+	public List<InmuebleEntity> findBySitioWeb(@PathVariable("sitio-web") String sitioWeb) {
 
 		return inmuebleService.findBySitioWeb(sitioWeb);
 

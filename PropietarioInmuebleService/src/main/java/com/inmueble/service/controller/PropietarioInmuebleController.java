@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inmueble.service.entity.PropietarioInmueble;
+import com.inmueble.service.entity.PropietarioInmuebleEntity;
 import com.inmueble.service.service.PropietarioInmuebleService;
 
 @RestController
@@ -28,7 +28,7 @@ public class PropietarioInmuebleController {
 	// ======== MÉTODOS HTTP ============
 	// --POST--
 	@PostMapping("/")
-	public boolean addPropietarioInmueble(@RequestBody PropietarioInmueble propietarioInmueble) {
+	public boolean addPropietarioInmueble(@RequestBody PropietarioInmuebleEntity propietarioInmueble) {
 
 		return propietarioInmuebleService.addPropietarioInmueble(propietarioInmueble);
 
@@ -36,7 +36,7 @@ public class PropietarioInmuebleController {
 
 	// --PUT--
 	@PutMapping("/")
-	public boolean updatePropietarioInmueble(@RequestBody PropietarioInmueble propietarioInmueble) {
+	public boolean updatePropietarioInmueble(@RequestBody PropietarioInmuebleEntity propietarioInmueble) {
 
 		return propietarioInmuebleService.updatePropietarioInmueble(propietarioInmueble);
 
@@ -56,7 +56,7 @@ public class PropietarioInmuebleController {
 
 	// --GET--
 	@GetMapping("/listado")
-	public List<PropietarioInmueble> getAll(Pageable pageable) {
+	public List<PropietarioInmuebleEntity> getAll(Pageable pageable) {
 		return propietarioInmuebleService.getAllPropietarioInmueble(pageable);
 	}
 	
@@ -67,7 +67,7 @@ public class PropietarioInmuebleController {
 	
 	// --GET--
 	@GetMapping("/id/{id}")
-	public PropietarioInmueble findById(@PathVariable("id") int id) {
+	public PropietarioInmuebleEntity findById(@PathVariable("id") int id) {
 
 		return propietarioInmuebleService.findById(id);
 
@@ -76,7 +76,7 @@ public class PropietarioInmuebleController {
 
 	// --GET--
 	@GetMapping("/nombre/{nombre}")
-	public List<PropietarioInmueble> findByNombre(@PathVariable("nombre") String nombre) {
+	public List<PropietarioInmuebleEntity> findByNombre(@PathVariable("nombre") String nombre) {
 
 		return propietarioInmuebleService.findByNombre(nombre);
 
@@ -84,7 +84,7 @@ public class PropietarioInmuebleController {
 
 	// --GET--
 	@GetMapping("/apellido/{apellido}")
-	public List<PropietarioInmueble> findByApellido(@PathVariable("apellido") String apellido) {
+	public List<PropietarioInmuebleEntity> findByApellido(@PathVariable("apellido") String apellido) {
 
 		return propietarioInmuebleService.findByApellido(apellido);
 
@@ -92,7 +92,7 @@ public class PropietarioInmuebleController {
 
 	// --GET--
 	@GetMapping("/edad/{edad}")
-	public List<PropietarioInmueble> findByEdad(@PathVariable("edad") int edad) {
+	public List<PropietarioInmuebleEntity> findByEdad(@PathVariable("edad") int edad) {
 
 		return propietarioInmuebleService.findByEdad(edad);
 
@@ -100,7 +100,7 @@ public class PropietarioInmuebleController {
 
 	// --GET--
 	@GetMapping("/fecha-nacimiento/{fecha}")
-	public List<PropietarioInmueble> findByFechaNacimiento(
+	public List<PropietarioInmuebleEntity> findByFechaNacimiento(
 			@PathVariable("fecha") @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate fechaNacimiento) {
 
 		return propietarioInmuebleService.findByFechaNacimiento(fechaNacimiento);
@@ -109,7 +109,7 @@ public class PropietarioInmuebleController {
 
 	// --GET--
 	@GetMapping("/tipo-documento/{tipo_documento}")
-	public List<PropietarioInmueble> findByTipoDocumento(@PathVariable("tipo_documento") String tipoDocumento) {
+	public List<PropietarioInmuebleEntity> findByTipoDocumento(@PathVariable("tipo_documento") String tipoDocumento) {
 
 		return propietarioInmuebleService.findByTipoDocumento(tipoDocumento);
 
@@ -117,7 +117,7 @@ public class PropietarioInmuebleController {
 
 	// --GET--
 	@GetMapping("/nro-documento/{nro_documento}")
-	public List<PropietarioInmueble> findByNroDocumento(@PathVariable("nro_documento") String nroDocumento) {
+	public List<PropietarioInmuebleEntity> findByNroDocumento(@PathVariable("nro_documento") String nroDocumento) {
 
 		return propietarioInmuebleService.findByNroDocumento(nroDocumento);
 
@@ -125,7 +125,7 @@ public class PropietarioInmuebleController {
 
 	// --GET--
 	@GetMapping("/direccion/{direccion}")
-	public List<PropietarioInmueble> findByDireccion(@PathVariable("direccion") String direcccion) {
+	public List<PropietarioInmuebleEntity> findByDireccion(@PathVariable("direccion") String direcccion) {
 
 		return propietarioInmuebleService.findByDireccion(direcccion);
 
@@ -133,7 +133,7 @@ public class PropietarioInmuebleController {
 
 	// --GET--
 	@GetMapping("/nro-telefono-principal/{nro-tel-princ}")
-	public List<PropietarioInmueble> findByNroTelefonoPrincipal(@PathVariable("nro-tel-princ") String nroTelefonoPrincipal) {
+	public List<PropietarioInmuebleEntity> findByNroTelefonoPrincipal(@PathVariable("nro-tel-princ") String nroTelefonoPrincipal) {
 
 		return propietarioInmuebleService.findByNroTelefonoPrincipal(nroTelefonoPrincipal);
 
@@ -141,7 +141,7 @@ public class PropietarioInmuebleController {
 
 	// --GET--
 	@GetMapping("/nro-telefono-secundario/{nro-tel-sec}")
-	public List<PropietarioInmueble> findByNroTelefonoSecundario(@PathVariable("nro-tel-sec") String nroTelefonoSecundario) {
+	public List<PropietarioInmuebleEntity> findByNroTelefonoSecundario(@PathVariable("nro-tel-sec") String nroTelefonoSecundario) {
 
 		return propietarioInmuebleService.findByNroTelefonoSecundario(nroTelefonoSecundario);
 
@@ -149,7 +149,7 @@ public class PropietarioInmuebleController {
 	
 	// --GET--
 	@GetMapping("/email/{email}")
-	public List<PropietarioInmueble> findByEmail(@PathVariable("email") String email) {
+	public List<PropietarioInmuebleEntity> findByEmail(@PathVariable("email") String email) {
 
 		return propietarioInmuebleService.findByEmail(email);
 
