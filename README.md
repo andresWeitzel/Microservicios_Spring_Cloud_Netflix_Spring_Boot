@@ -3,21 +3,25 @@
 * Implementación de Spring Boot, Spring Cloud, Spring Data JPA, Lombok, Maven, Postman, Microservicios, Postgres, Mysql y otras Tecnologías
 * Este proyecto surgió a fin de poner en práctica la interrelación y funcionamiento de varios microservicios con diferentes SGDB como lo son Mysql y Postgres.
 * Los Microservicios PropietarioInmuebleService e InmuebleService implementarán una misma base de datos de tipo Postgres de Inmobiliaria (https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres), qué es una réplica de la original desarrollada de otro proyecto personal  (https://github.com/andresWeitzel/db_Inmobiliaria_PostgreSQL)
-* El Microservicio FacturaService se comunicará con una base de datos de tipo Mysql para la facturación de Ventas de dicha inmobiliaria (https://github.com/andresWeitzel/db_facturas_microservicios_mysql) 
-* El microservicio ClienteService usará la base de datos de tipo Mysql para la data de los clientes ()
-* El microservicio de Gestión EurekaService no implementará ninguna base de datos ya que  será el responsable de toda la gestión de los otros microservicios
+* El Microservicio InspeccionInmuebleService se comunicará con una base de datos de tipo Mysql para la validación y Control de los inmuebles de dicha inmobiliaria (https://github.com/andresWeitzel/db_inspecciones_inmuebles_microservicios_mysql) 
+* El Servicio de Gestión de los Microservicios será EurekaService, este no implementará ninguna base de datos ya que  será el responsable de toda la gestión.
 * Tutorial que recomiendo para la estructuración y creación de Microservicios: https://www.youtube.com/watch?v=BnknNTN8icw&t=5s
 
 
-* El Proyecto consta de 5 microservicios, 4 de tipo REST y 1 de tipo Eureka Service
+* El Proyecto consta de 3 microservicios de tipo REST y 3 servicios de gestión, administración y seguridad para los microservicios
 
 ```
-* Desarrollo de 5 Microservicios
-|  |  |  |-----> Microservice EurekaService 
-|  |  |--------> Microservice Rest InmuebleService ----------------> db_inmobiliaria_microservicios  --> (Postgres) --> (compartida) 
-|  |-----------> Microservice Rest PropietarioInmuebleService------> db_inmobiliaria_microservicios  --> (Postgres) --> (compartida) 
-|--------------> Microservice Rest FacturaService -----------------> db_facturas_microservicios   --> (Mysql)    --> (única) 
-|--------------> Microservice Rest ClienteService------------------> db_clientes_microservicios      --> (Mysql)    --> (única) 
+* Microservicios
+|  |  |--------> Microservice Rest InmuebleService ----------------> db_inmobiliaria_microservicios  		--> (Postgres) --> (compartida) 
+|  |-----------> Microservice Rest PropietarioInmuebleService------> db_inmobiliaria_microservicios  		--> (Postgres) --> (compartida) 
+|--------------> Microservice Rest InspeccionInmuebleService-------> db_inspecciones_inmuebles_microservicios   --> (Mysql)    --> (única)  
+```
+
+```
+* Servicios
+|  |  |  |-----> Servicio EurekaService -----------> Servidor de Gestión de Microservicios
+|  |  |--------> Servicio ApiGatewayService -------> Proxy con balanceo de carga para la gestión de peticiones de los Microservicios 
+|  |-----------> Servicio HystrixDashboardService -> Servicio de Gestión de Seguridad y errores junto con un Dashboard con estadisticas de cada Microservicio
 ```
 
 
