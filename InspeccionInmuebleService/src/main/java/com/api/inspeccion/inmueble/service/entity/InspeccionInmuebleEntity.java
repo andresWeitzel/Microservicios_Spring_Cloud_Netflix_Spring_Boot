@@ -30,36 +30,39 @@ public class InspeccionInmuebleEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	@Column(name="id")
-	int id;
+	private int id;
 	
 	@Column(name="id_inmueble")
-	int id_inmueble;
+	private int idInmueble;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name="estado_inspeccion")
-	private EstadoInspeccionEnum  estadoInspeccionEnum;
+	private EstadoInspeccionEnum  estadoInspeccion;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name="tipo_inspeccion")
-	private TipoInspeccionEnum  tipoInspeccionEnum;
+	private TipoInspeccionEnum  tipoInspeccion;
 	
 	@Column(name="descripcion_inspeccion")
-	String descripcion_inspeccion;
+	private String descripcionInspeccion;
 	
 	@Column(name="empresa")
-	String empresa;
+	private String empresa;
 	
 	@Column(name="direccion")
-	String direccion;
+	private String direccion;
+	
+	@Column(name="nro_telefono")
+	private String nroTelefono;
 	
 	@Column(name="costo")
-	double costo;
+	private double costo;
 	
 	@Column(name="fecha")
-	LocalDate fecha;
+	private LocalDate fecha;
 	
 	@Column(name="hora")
-	LocalTime hora;
+	private LocalTime hora;
 	
 	
 

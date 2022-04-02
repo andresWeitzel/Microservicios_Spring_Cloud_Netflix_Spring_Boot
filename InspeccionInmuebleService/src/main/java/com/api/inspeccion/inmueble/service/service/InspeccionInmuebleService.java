@@ -108,7 +108,7 @@ public class InspeccionInmuebleService {
 		//Buscamos el objeto inmueble
 		InmuebleVO inmuebleVO = 
 				restTemplate.getForObject("http://INMUEBLE-SERVICE/inmuebles/id/" 
-						+ inspeccionInmueble.getId_inmueble() , InmuebleVO.class); 
+						+ inspeccionInmueble.getIdInmueble() , InmuebleVO.class); 
 		
 		
 		//Guardamos ambos objetos en el Template

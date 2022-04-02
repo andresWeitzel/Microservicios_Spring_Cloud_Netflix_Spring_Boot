@@ -58,7 +58,7 @@ public class InmuebleController {
 
 	// --GET--
 	// Template de Inmueble con Propietario Inmueble
-	@GetMapping("/inmueble-con-propietario-inmueble/id/{id}")
+	@GetMapping("/inmueble-con-propietario-inmueble/id-prop-inm/{id}")
 	public InmWithPropInmResponseTemplate getInmWithPropInmId(@PathVariable("id") int idInmueble) {
 
 		return (InmWithPropInmResponseTemplate) inmuebleService.findByInmWithPropInm(idInmueble);

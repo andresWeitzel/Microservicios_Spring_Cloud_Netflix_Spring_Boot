@@ -28,9 +28,10 @@ public class PropietarioInmuebleService {
 	// ----INSERT----
 	public boolean addPropietarioInmueble(PropietarioInmuebleEntity propietarioInmueble) {
 		try {
-			if (propietarioInmueble == null) {
+			//Si es Nulo o Vacio
+			if (propietarioInmueble == null || propietarioInmueble.toString().isEmpty()) {
 				logger.error("ERROR addPropietarioInmueble : EL PROPIETARIO DEL INMUEBLE " + propietarioInmueble
-						+ " ES NULO!!");
+						+ " ES NULO O VACIO!!");
 				return false;
 			} else {
 				iPropietarioInmuebleRepository.save(propietarioInmueble);

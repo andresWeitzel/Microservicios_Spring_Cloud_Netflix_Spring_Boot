@@ -35,7 +35,7 @@ public interface I_InspeccionInmuebleRepository extends JpaRepository<Inspeccion
 	
 	public abstract List<InspeccionInmuebleEntity> findByNroTelefono(String nroTelefono);
 	
-	public abstract List<InspeccionInmuebleEntity> findByCosto(Double costo);
+	public abstract List<InspeccionInmuebleEntity> findByCosto(double costo);
 	
 	public abstract List<InspeccionInmuebleEntity> findByFecha(LocalDate fecha);
 	
