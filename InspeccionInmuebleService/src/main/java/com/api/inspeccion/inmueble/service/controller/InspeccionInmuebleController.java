@@ -31,6 +31,7 @@ public class InspeccionInmuebleController {
 
 	// ======== MÉTODOS HTTP ============
 	// --POST--
+	
 	@PostMapping("/")
 	public boolean addInspeccionInmueble(@RequestBody InspeccionInmuebleEntity inspeccionInmueble) {
 

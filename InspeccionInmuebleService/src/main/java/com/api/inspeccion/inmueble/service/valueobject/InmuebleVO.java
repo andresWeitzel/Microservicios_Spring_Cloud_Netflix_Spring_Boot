@@ -1,13 +1,7 @@
 package com.api.inspeccion.inmueble.service.valueobject;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-import com.api.inspeccion.inmueble.service.enums.TipoInspeccionEnum;
+import com.api.inspeccion.inmueble.service.enums.EstadoInmuebleEnum;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,7 +22,7 @@ public class InmuebleVO {
 	private String tipo;
 
 	//Copia del Enumerado del InmuebleService con el Enumerado de nuestro paquete
-	private TipoInspeccionEnum estadoInmuebleEnum;
+	private EstadoInmuebleEnum estadoInmuebleEnum;
 
 	private double precioInmuebleUsd;
 
