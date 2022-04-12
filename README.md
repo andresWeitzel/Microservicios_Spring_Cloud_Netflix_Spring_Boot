@@ -1,11 +1,12 @@
 # Microservicios_Spring_Cloud_Netflix_Spring_Boot
 
-* Implementación de Spring Boot, Spring Cloud, Spring Data JPA, Lombok, Maven, Postman, Microservicios, Postgres, Mysql y otras Tecnologías
+* Implementación de Spring Boot, Spring Cloud, Spring Data JPA, Resilience4J, Lombok, Maven, Postman, Microservicios, Postgres, Mysql y otras Tecnologías
 * Este proyecto surgió a fin de poner en práctica la interrelación y funcionamiento de varios microservicios con diferentes SGDB como lo son Mysql y Postgres.
-* Los Microservicios PropietarioInmuebleService e InmuebleService implementarán una misma base de datos de tipo Postgres de Inmobiliaria (https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres), qué es una réplica de la original desarrollada de otro proyecto personal  (https://github.com/andresWeitzel/db_Inmobiliaria_PostgreSQL)
+* Los Microservicios PropietarioInmuebleService e InmuebleService implementarán una misma base de datos de tipo Postgres para una Inmobiliaria (https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres), qué es una réplica de la original desarrollada de otro proyecto personal  (https://github.com/andresWeitzel/db_Inmobiliaria_PostgreSQL)
 * El Microservicio InspeccionInmuebleService se comunicará con una base de datos de tipo Mysql para la validación y Control de los inmuebles de dicha inmobiliaria (https://github.com/andresWeitzel/db_inspecciones_inmuebles_microservicios_mysql) 
-* El Servicio de Gestión de los Microservicios será EurekaService, este no implementará ninguna base de datos ya que  será el responsable de toda la gestión.
-* Tutorial que recomiendo para la estructuración y creación de Microservicios: https://www.youtube.com/watch?v=BnknNTN8icw&t=5s
+* El Servicio de Gestión de los Microservicios será EurekaService, este no implementará ninguna base de datos ya que será el responsable de toda la gestión y Control del resto de los Microservicios y Servicios.
+* El Servicio Api Gateway será el encargado de la gestión del resto de los 3 microservicios de la aplicación, se entrelaza mediante el Patrón de Diseño Circuit Breaker para el Control de Excepciones, Tolerancias a fallos, etc. Todos los recursos de los microservicios pasan a través del puerto y dirección de este.
+* El Servicio ResilienceFourJ será el encargado de manejar de forma directa el Control de Excepciones, Errores, etc que se puedan presentar, al igual que el ApiGateway maneja el patrón Circuit Breaker, además para cada recurso de cada microservicio se implementar los módulos de dicho patrón.
 
 
 * El Proyecto consta de 3 microservicios de tipo REST y 3 servicios de gestión, administración y seguridad para los microservicios
@@ -21,7 +22,7 @@
 * Servicios
 |  |  |  |-----> Servicio EurekaService -----------> Servidor de Gestión de Microservicios
 |  |  |--------> Servicio ApiGatewayService -------> Proxy con balanceo de carga para la gestión de peticiones de los Microservicios 
-|  |-----------> Servicio HystrixDashboardService -> Servicio de Gestión de Seguridad y errores junto con un Dashboard con estadisticas de cada Microservicio
+|  |-----------> Servicio ResilienceFourJService -> Servicio para el Control de Excepciones y Tolerancia a Fallos
 ```
 
 
@@ -68,8 +69,10 @@
 
 | **Patrón de Diseño** | **Finalidad** |               
 | ------------- | ------------- |
-| DAO | Uso de interfaces entre la aplicación y el almacenamiento de datos. |
+| DAO | Uso de interfaces y repositorios para la persistencia y almacenamiento de datos. |
 | MVC | Separación y Representación de los Datos, Manejo de errores, Escalabilidad, etc  |
+| VO  | Patrón Value Object para el relacionamiento de Objetos a través de Templates de cada Microservicio |
+| Circuit Breaker | Patrón para el Control y Manejo de Excepciones junto con la Tolerancia a Fallos |
 
 </br>
 
@@ -79,21 +82,40 @@
 | ------------- | ------------- | ------------- |
 | mysql-connector | 8.0.21 |  Conexión al SGDB Mysql |
 | postgresql-connector | 42.3.1 | Conexión al SGDB PostgreSQL | 
-| spring-boot-starter-data-jpa | 2.6.4 | Api de JpaRepository para el manejo de métodos | 
-| spring-boot-starter-web | 2.6.4 | Se agrega toda la configuración web automáticamente de Maven a Spring | 
-| spring-boot-devtools | 2.6.4 | Herramienta para la recompilación en tiempo de ejecución  | 
 | lombok | 1.18.22 |  Dependencia para la automatización de Código |
+| spring-boot-starter-test | 2.6.4 | Uso de Testing |
+| spring-boot-starter-data-jpa | 2.6.4 | Api de JpaRepository para el manejo de métodos | 
+| spring-boot-starter-devtools | 2.6.6 | Herramienta para la recompilación en tiempo de ejecución |
+| spring-boot-starter-web | 2.6.4 | Se agrega toda la configuración web automáticamente de Maven a Spring |
+| spring-boot-starter-actuator | 2.6.6 | Monitorización y Administración de la Api Rest |
+| spring-boot-starter-aop | 2.6.6 | Modularidad de la Api Rest |
+| spring-cloud-starter-netflix-eureka-client | 3.1.1 | Conexión de Servicio con el Servidor Eureka |
+| spring-cloud-starter-netflix-eureka-server | 3.1.1 | Dependencias para el Servidor Eureka |
+| spring-cloud-starter-gateway | 3.1.1 | Manejo de Recursos de nuestro Proxy |
+| spring-cloud-starter-bootstrap | 3.1.1 | Preparación del Servidor de Configuración |
+| spring-cloud-starter-config | 3.1.1 | Nos permite exteriorizar y centralizar la configuración de los microservicios en un solo lugar |
+| spring-cloud-starter-circuitbreaker-resilience4j | 2.1.1 | Dependencia para el patrón Circ Break y el uso de Resiliencia | 
+
+| **Administrador de Dependencia Maven**  | **Versión** | **Finalidad** |             
+| ------------- | ------------- | ------------- |
+| spring-cloud-dependencies | 2021.0.0 | Administrador de Dependencias cloud |
+
 
 
 </br>
 
+### Documentación No Oficial Recomendada
 
+* Estructuración y Creación de Microservicios: https://www.youtube.com/watch?v=BnknNTN8icw&t=5s
+* Desarrollo de Resilience4j : https://www.youtube.com/watch?v=Z_viIJSGXJw&list=PLq3uEqRnr_2GlhVSqltfLtpO8GF4VIICY&index=1
+* Setup Dashboard Grafana : https://www.youtube.com/watch?v=4WWW2ZLEg74
+* Setup/Config Dashboard Grafana : https://www.youtube.com/watch?v=zTZe447nDhI
 
 
 <hr>
 
 ## ` Documentación y Guía del Proyecto `
-#### (Esta Documentación que Desarrollé es para la Creación y Configuración de los Microservicios Desarrollados, Manejo y Dependencias de Maven, Spring Data con Eureka, Spring Booot, Hibernate-JPA, Mysql y PostgreSQL, entre otros usos. Recomiendo Leerla y Realizar todo paso a paso como se indica en la misma. No se explica a detalle el desarrollo de cada Servicio REST por tiempo y redundancia de código, para el desarrollo detallado de una API REST leer el siguiente repositorio https://github.com/andresWeitzel/Api_Rest_Spring_Productos).
+#### (Esta Documentación que Desarrollé es para la Creación y Configuración de los Microservicios Desarrollados, Manejo y Dependencias de Maven, Spring Data con Eureka, Spring Boot, Hibernate-JPA, Mysql y PostgreSQL, Loombok, Config de Servidores, entre otros usos. Recomiendo Leerla y Realizar todo paso a paso como se indica en la misma. No se explica a detalle el desarrollo de cada Servicio REST por tiempo y redundancia de código, para el desarrollo detallado de una API REST leer el siguiente repositorio https://github.com/andresWeitzel/Api_Rest_Spring_Productos).
 
 </br>
 
@@ -119,9 +141,9 @@
    - [Paso 7) Desarrollo del Microservicio](#paso-7-desarrollo-del-microservicio-propietarioinmuebleservice)
 
 
-#### Sección 3) Microservicio ClienteService
+#### Sección 3) Microservicio InspeccionInmuebleService
 	
-   - [Paso 7) Desarrollo del Microservicio](#paso-8-desarrollo-del-microservicio-clienteservice)
+   - [Paso 8) Desarrollo del Microservicio](#paso-8-desarrollo-del-microservicio-inspeccioninmuebleservice)
 
 
 
