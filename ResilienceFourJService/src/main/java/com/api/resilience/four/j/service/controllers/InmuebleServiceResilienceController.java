@@ -30,6 +30,22 @@ public class InmuebleServiceResilienceController {
 		return inmServResil.inmuebleServiceGetById(idInmueble);
 	}
 	
+	@GetMapping(value="/id-propietario-inmueble/{idInmueble}")
+	public String inmuebleServiceGetByPropInm(@PathVariable("idInmueble") int idInmueble) {
+		return inmServResil.inmuebleServiceGetByIdPropInm(idInmueble);
+	}
+	
+	@GetMapping(value="/descripcion/{descripcion}")
+	public String inmuebleServiceGetByDescripcion(@PathVariable("descripcion") String descripcion) {
+		return inmServResil.inmuebleServiceGetByDescripcion(descripcion);
+	}
+	
+	@GetMapping(value="/tipo/{tipo}")
+	public String inmuebleServiceGetByTipo(@PathVariable("tipo") String tipo) {
+		return inmServResil.inmuebleServiceGetByTipo(tipo);
+	}
+	
+	
 	
 	
 }

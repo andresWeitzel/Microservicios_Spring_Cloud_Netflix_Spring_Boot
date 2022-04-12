@@ -83,7 +83,7 @@ public class InmuebleController {
 	}
 
 	// --GET--
-	@GetMapping("/descripcion/{descipcion}")
+	@GetMapping("/descripcion/{descripcion}")
 	public List<InmuebleEntity> findByDescripcion(@PathVariable("descripcion") String descripcion) {
 
 		return inmuebleService.findByDescripcion(descripcion);

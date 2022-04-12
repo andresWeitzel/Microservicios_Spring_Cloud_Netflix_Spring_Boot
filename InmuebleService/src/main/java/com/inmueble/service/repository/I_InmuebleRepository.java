@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +23,7 @@ public interface I_InmuebleRepository extends JpaRepository<InmuebleEntity, Seri
 	
 	public abstract List<InmuebleEntity> findByIdPropietarioInmueble(int id);
 
-	
+	@Query("select c from InmuebleEntity c where c.descripcion like %:descripcion%")
 	public abstract List<InmuebleEntity> findByDescripcion(String descripcion);
 	
 	public abstract List<InmuebleEntity> findByTipo(String tipo);
