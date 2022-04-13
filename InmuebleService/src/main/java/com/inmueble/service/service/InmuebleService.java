@@ -69,18 +69,18 @@ public class InmuebleService {
 	}
 	
 	// ----DELETE----
-	public boolean deleteInmueble(int id) {
+	public boolean deleteInmueble(InmuebleEntity inmueble) {
 		try {
-			if(id == 0) {
-				logger.error("ERROR deleteInmueble : EL ID DEL INMUEBLE ES CERO!!");
+			if(inmueble == null) {
+				logger.error("ERROR deleteInmueble : EL INMUEBLE ES NULO!!");
 				return false;
 			}else {
-				iInmuebleRepository.delete(iInmuebleRepository.findById(id));
+				iInmuebleRepository.delete(iInmuebleRepository.findById(inmueble.getId()));
 				return true;
 			}
 			
 		} catch (Exception e) {
-			logger.error("ERROR deleteInmueble : EL INMUEBLE CON EL ID " + id + " NO SE HA ELIMINADO DE LA DB!!");
+			logger.error("ERROR deleteInmueble : EL INMUEBLE " + inmueble + " NO SE HA ELIMINADO DE LA DB!!");
 			return false;
 		}
 	}

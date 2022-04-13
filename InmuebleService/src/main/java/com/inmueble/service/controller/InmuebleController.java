@@ -43,10 +43,10 @@ public class InmuebleController {
 	}
 
 	// --DELETE--
-	@DeleteMapping("/{id}")
-	public boolean deleteInmueble(@PathVariable("id") int id) {
+	@DeleteMapping("/")
+	public boolean deleteInmueble(@RequestBody InmuebleEntity inmueble) {
 
-		return inmuebleService.deleteInmueble(id);
+		return inmuebleService.deleteInmueble(inmueble);
 	}
 
 	// --GET--
