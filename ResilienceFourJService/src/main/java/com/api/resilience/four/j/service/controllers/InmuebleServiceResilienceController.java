@@ -54,19 +54,19 @@ public class InmuebleServiceResilienceController {
 
 	
 
-	@GetMapping(value = "/inmueble-con-propietario-inmueble/id-prop-inm/{idInmueble}")
-	public String inmuebleServiceGetInmWithPropInm(@PathVariable("idInmueble") int idInmueble) {
-		return inmServResil.inmuebleServiceGetInmWithPropInm(idInmueble);
+	@GetMapping(value = "/inmueble-con-propietario-inmueble/{id}")
+	public String inmuebleServiceGetInmWithPropInm(@PathVariable("id") int id) {
+		return inmServResil.inmuebleServiceGetInmWithPropInm(id);
 	}
 
-	@GetMapping(value = "/id/{idInmueble}")
-	public String inmuebleServiceGetById(@PathVariable("idInmueble") int idInmueble) {
-		return inmServResil.inmuebleServiceGetById(idInmueble);
+	@GetMapping(value = "/id/{id}")
+	public String inmuebleServiceGetById(@PathVariable("id") int id) {
+		return inmServResil.inmuebleServiceGetById(id);
 	}
 
-	@GetMapping(value = "/id-propietario-inmueble/{idInmueble}")
-	public String inmuebleServiceGetByPropInm(@PathVariable("idInmueble") int idInmueble) {
-		return inmServResil.inmuebleServiceGetByIdPropInm(idInmueble);
+	@GetMapping(value = "/id-propietario-inmueble/{id}")
+	public String inmuebleServiceGetByPropInm(@PathVariable("id") int id) {
+		return inmServResil.inmuebleServiceGetByIdPropInm(id);
 	}
 
 	@GetMapping(value = "/descripcion/{descripcion}")
@@ -79,10 +79,35 @@ public class InmuebleServiceResilienceController {
 		return inmServResil.inmuebleServiceGetByTipo(tipo);
 	}
 
-	@GetMapping(value = "/estado-inmueble/{estado-inmueble}")
+	@GetMapping(value = "/estado-inmueble/{estado}")
 	public String inmuebleServiceGetByEstadoInmuebleEnum(
-			@PathVariable("estado-inmueble") EstadoInmuebleEnum estadoInmueble) {
-		return inmServResil.inmuebleServiceGetByEstadoInmuebleEnum(estadoInmueble);
+			@PathVariable("estado") EstadoInmuebleEnum estado) {
+		return inmServResil.inmuebleServiceGetByEstadoInmuebleEnum(estado);
+	}
+	
+	@GetMapping(value = "/precio/{precio}")
+	public String inmuebleServiceGetByPrecio(
+			@PathVariable("precio") double precio) {
+		return inmServResil.inmuebleServiceGetByPrecio(precio);
+	}
+	
+	@GetMapping(value = "/direccion/{direccion}")
+	public String inmuebleServiceGetByDireccion(
+			@PathVariable("direccion") String direccion) {
+		return inmServResil.inmuebleServiceGetByDireccion(direccion);
+	}
+
+	
+	@GetMapping(value = "/ubicacion/{ubicacion}")
+	public String inmuebleServiceGetByUbicacion(
+			@PathVariable("ubicacion") String ubicacion) {
+		return inmServResil.inmuebleServiceGetByUbicacion(ubicacion);
+	}
+	
+	@GetMapping(value = "/sitio-web/{sitio-web}")
+	public String inmuebleServiceGetBySitioWeb(
+			@PathVariable("sitio-web") String sitioWeb) {
+		return inmServResil.inmuebleServiceGetBySitioWeb(sitioWeb);
 	}
 
 }

@@ -41,7 +41,7 @@ public class InmuebleServiceResilienceService {
 	//========= MÉTODOS CRUD ============
 	
 	//--ADD INMUEBLE--
-	@PostMapping
+	
 	@CircuitBreaker(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackCircuitBreaker")
 	@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
 	@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
@@ -54,7 +54,7 @@ public class InmuebleServiceResilienceService {
 	}
 	
 	//--UPDATE INMUEBLE--
-		@PutMapping
+		
 		@CircuitBreaker(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackCircuitBreaker")
 		@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
 		@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
@@ -67,16 +67,19 @@ public class InmuebleServiceResilienceService {
 		}
 		
 		//--DELETE INMUEBLE--
-		@DeleteMapping
+		
 		@CircuitBreaker(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackCircuitBreaker")
 		@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
 		@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
 		@Bulkhead(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackBulkHead")
 		public String inmuebleServiceDeleteInmueble(InmuebleEntityServiceDTO inmueble) {
 			
+			
+			//String inmuebleServiceURL = INMUEBLE_SERVICE_URL + inmueble;
+			
 	
 			//Devolvemos el template con el objeto inmueble
-			return restTemplate.postForObject(INMUEBLE_SERVICE_URL, inmueble , String.class);
+			return restTemplate.postForObject(INMUEBLE_SERVICE_URL,inmueble, String.class);
 		}
 	
 	
@@ -84,7 +87,7 @@ public class InmuebleServiceResilienceService {
 	
 	
 	//-- LISTADO COMPLETO Y PAGINADO --
-	@GetMapping
+	
 	@CircuitBreaker(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackCircuitBreaker")
 	@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
 	@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
@@ -100,7 +103,7 @@ public class InmuebleServiceResilienceService {
 	
 	
 	//-- TEMPLATE VO (INMUEBLE CON PROPIETARIO INMUEBLE)--	
-	@GetMapping
+	
 	@CircuitBreaker(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackCircuitBreaker")
 	@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
 	@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
@@ -117,7 +120,7 @@ public class InmuebleServiceResilienceService {
 	
 	
 	//-- INMUEBLE POR ID --
-	@GetMapping
+	
 	@CircuitBreaker(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackCircuitBreaker")
 	@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
 	@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
@@ -134,14 +137,14 @@ public class InmuebleServiceResilienceService {
 	
 	
 	//-- PROPIETARIO-INMUEBLE POR ID --
-		@GetMapping
+		
 		@CircuitBreaker(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackCircuitBreaker")
 		@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
 		@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
 		@Bulkhead(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackBulkHead")
-		public String inmuebleServiceGetByIdPropInm(int idInmueble) {
+		public String inmuebleServiceGetByIdPropInm(int id) {
 			
-			String inmuebleServiceURL = INMUEBLE_SERVICE_URL + "id-propietario-inmueble/"+idInmueble;
+			String inmuebleServiceURL = INMUEBLE_SERVICE_URL + "id-propietario-inmueble/"+id;
 			
 				//Devolvemos el template con el objeto inmueble
 				return restTemplate.getForObject(inmuebleServiceURL, String.class);
@@ -150,7 +153,7 @@ public class InmuebleServiceResilienceService {
 			}
 		
 		//-- INMUEBLES POR DESCRIPCION --
-		@GetMapping
+	
 		@CircuitBreaker(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackCircuitBreaker")
 		@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
 		@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
@@ -167,7 +170,7 @@ public class InmuebleServiceResilienceService {
 		
 		
 		//-- INMUEBLES POR TIPO --
-		@GetMapping
+	
 		@CircuitBreaker(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackCircuitBreaker")
 		@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
 		@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
@@ -183,20 +186,85 @@ public class InmuebleServiceResilienceService {
 			}
 		
 		//-- INMUEBLES POR ESTADO INMUEBLE ENUM --
-		@GetMapping
+	
 		@CircuitBreaker(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackCircuitBreaker")
 		@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
 		@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
 		@Bulkhead(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackBulkHead")
-		public String inmuebleServiceGetByEstadoInmuebleEnum(EstadoInmuebleEnum estadoInmueble) {
+		public String inmuebleServiceGetByEstadoInmuebleEnum(EstadoInmuebleEnum estado) {
 			
-			String inmuebleServiceURL = INMUEBLE_SERVICE_URL + "estado-inmueble/"+estadoInmueble;
+			String inmuebleServiceURL = INMUEBLE_SERVICE_URL + "estado-inmueble/"+estado;
 			
 				//Devolvemos el template con el objeto inmueble
 				return restTemplate.getForObject(inmuebleServiceURL, String.class);
 				
 				
 			}
+		
+		
+		//-- INMUEBLES POR PRECIO --
+		
+		@CircuitBreaker(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackCircuitBreaker")
+		@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
+		@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
+		@Bulkhead(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackBulkHead")
+		public String inmuebleServiceGetByPrecio(double precio) {
+			
+			String inmuebleServiceURL = INMUEBLE_SERVICE_URL + "precio/"+precio;
+			
+				//Devolvemos el template con el objeto inmueble
+				return restTemplate.getForObject(inmuebleServiceURL, String.class);
+				
+				
+			}
+		//-- INMUEBLES POR DIRECCION --
+		
+				@CircuitBreaker(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackCircuitBreaker")
+				@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
+				@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
+				@Bulkhead(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackBulkHead")
+				public String inmuebleServiceGetByDireccion(String direccion) {
+					
+					String inmuebleServiceURL = INMUEBLE_SERVICE_URL + "direccion/"+direccion;
+					
+						//Devolvemos el template con el objeto inmueble
+						return restTemplate.getForObject(inmuebleServiceURL, String.class);
+						
+						
+					}
+				
+				
+				//-- INMUEBLES POR UBICACION --
+				
+				@CircuitBreaker(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackCircuitBreaker")
+				@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
+				@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
+				@Bulkhead(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackBulkHead")
+				public String inmuebleServiceGetByUbicacion(String ubicacion) {
+					
+					String inmuebleServiceURL = INMUEBLE_SERVICE_URL + "ubicacion/"+ubicacion;
+					
+						//Devolvemos el template con el objeto inmueble
+						return restTemplate.getForObject(inmuebleServiceURL, String.class);
+						
+						
+					}
+	
+			//-- INMUEBLES POR SITIO WEB --
+				
+				@CircuitBreaker(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackCircuitBreaker")
+				@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
+				@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
+				@Bulkhead(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackBulkHead")
+				public String inmuebleServiceGetBySitioWeb(String sitioWeb) {
+					
+					String inmuebleServiceURL = INMUEBLE_SERVICE_URL + "sitio-web/"+sitioWeb;
+					
+						//Devolvemos el template con el objeto inmueble
+						return restTemplate.getForObject(inmuebleServiceURL, String.class);
+						
+						
+					}
 	
 	
 	

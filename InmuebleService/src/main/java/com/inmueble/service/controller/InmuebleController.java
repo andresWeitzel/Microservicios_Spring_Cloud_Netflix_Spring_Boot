@@ -43,11 +43,15 @@ public class InmuebleController {
 	}
 
 	// --DELETE--
-	@DeleteMapping("/")
-	public boolean deleteInmueble(@RequestBody InmuebleEntity inmueble) {
+	@DeleteMapping("/{id}")
+	public boolean deleteInmueble(@PathVariable("id") int id) {
 
-		return inmuebleService.deleteInmueble(inmueble);
+		return inmuebleService.deleteInmueble(id);
 	}
+	
+	
+
+
 
 	// --GET--
 	
@@ -99,19 +103,19 @@ public class InmuebleController {
 	}
 
 	// --GET--
-	@GetMapping("/estado-inmueble/{estado-inmueble}")
+	@GetMapping("/estado-inmueble/{estado}")
 	public List<InmuebleEntity> findByEstadoInmuebleEnum(
-			@PathVariable("estado-inmueble") EstadoInmuebleEnum estadoInmuebleEnum) {
+			@PathVariable("estado") EstadoInmuebleEnum estado) {
 
-		return inmuebleService.findByEstadoInmuebleEnum(estadoInmuebleEnum);
+		return inmuebleService.findByEstadoInmuebleEnum(estado);
 
 	}
 
 	// --GET--
-	@GetMapping("/precio-inmueble/{precio-inmueble}")
-	public List<InmuebleEntity> findByPrecioInmueble(@PathVariable("precio-inmueble") double precioInmueble) {
+	@GetMapping("/precio/{precio}")
+	public List<InmuebleEntity> findByPrecioInmueble(@PathVariable("precio") double precio) {
 
-		return inmuebleService.findByPrecioInmueble(precioInmueble);
+		return inmuebleService.findByPrecioInmueble(precio);
 
 	}
 
