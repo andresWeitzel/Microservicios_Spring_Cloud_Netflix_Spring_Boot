@@ -1,12 +1,12 @@
 package com.api.resilience.four.j.service.services;
 
+
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.client.RestTemplate;
 import com.api.resilience.four.j.service.dto.InmuebleEntityServiceDTO;
 import com.api.resilience.four.j.service.enums.EstadoInmuebleEnum;
@@ -48,7 +48,6 @@ public class InmuebleServiceResilienceService {
 	@Bulkhead(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackBulkHead")
 	public String inmuebleServiceAddInmueble(InmuebleEntityServiceDTO inmueble) {
 		
-		
 		//Devolvemos el template con el objeto inmueble
 		return restTemplate.postForObject(INMUEBLE_SERVICE_URL, inmueble , String.class);
 	}
@@ -66,6 +65,7 @@ public class InmuebleServiceResilienceService {
 			return restTemplate.postForObject(INMUEBLE_SERVICE_URL, inmueble , String.class);
 		}
 		
+		/*
 		//--DELETE INMUEBLE--
 		
 		@CircuitBreaker(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackCircuitBreaker")
@@ -80,6 +80,32 @@ public class InmuebleServiceResilienceService {
 	
 			//Devolvemos el template con el objeto inmueble
 			return restTemplate.postForObject(INMUEBLE_SERVICE_URL,inmueble, String.class);
+		}
+		*/
+		
+	//--DELETE INMUEBLE--
+		
+		@CircuitBreaker(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackCircuitBreaker")
+		@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
+		@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
+		@Bulkhead(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackBulkHead")
+		public ResponseEntity<String> inmuebleServiceDeleteInmueble(int id, InmuebleEntityServiceDTO inmueble ) {
+			
+			
+			String inmuebleServiceURL = INMUEBLE_SERVICE_URL + id;
+			
+	
+			//Devolvemos el template con el objeto inmueble
+			ResponseEntity<String> response = restTemplate.exchange(inmuebleServiceURL
+					 ,HttpMethod.DELETE,new HttpEntity<InmuebleEntityServiceDTO>(inmueble), 
+				        String.class, 
+				        inmueble.getId());
+			
+			
+			return response;
+			
+			
+			
 		}
 	
 	

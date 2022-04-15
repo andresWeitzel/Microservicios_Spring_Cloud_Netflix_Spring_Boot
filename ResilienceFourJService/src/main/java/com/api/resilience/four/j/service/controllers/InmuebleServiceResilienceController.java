@@ -1,6 +1,8 @@
 package com.api.resilience.four.j.service.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,11 +38,19 @@ public class InmuebleServiceResilienceController {
 		return inmServResil.inmuebleServiceUpdateInmueble(inmueble);
 
 	}
-
+/*
 	// --DELETE INMUEBLE--
 	@DeleteMapping(value = "/")
 	public String inmuebleServiceDeleteInmueble(@RequestBody InmuebleEntityServiceDTO inmueble) {
 		return inmServResil.inmuebleServiceDeleteInmueble(inmueble);
+
+	}
+	*/
+	// --DELETE INMUEBLE--
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<String> inmuebleServiceDeleteInmueble(@PathVariable("id") int id , @RequestBody InmuebleEntityServiceDTO inmueble) {
+		 inmServResil.inmuebleServiceDeleteInmueble(id , inmueble);
+		return new ResponseEntity<>("Delete forever", HttpStatus.MOVED_PERMANENTLY);
 
 	}
 	

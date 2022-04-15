@@ -29,10 +29,10 @@ public interface I_InmuebleRepository extends JpaRepository<InmuebleEntity, Seri
 	@Query("select c from InmuebleEntity c where c.tipo like %:tipo%")
 	public abstract List<InmuebleEntity> findByTipo(String tipo);
 	
-	@Query("select c from InmuebleEntity c where c.estadoInmueble like %:estadoInmueble%")
+	@Query("select c from InmuebleEntity c where c.estadoInmuebleEnum like %:estadoInmuebleEnum%")
 	public abstract List<InmuebleEntity> findByEstadoInmuebleEnum(EstadoInmuebleEnum  estadoInmuebleEnum);
 	
-	@Query("select c from InmuebleEntity c where c.precioInmueble like %:precioInmueble%")
+	
 	public abstract List<InmuebleEntity> findByPrecioInmuebleUsd(double precioInmueble);
 	
 	@Query("select c from InmuebleEntity c where c.direccion like %:direccion%")
