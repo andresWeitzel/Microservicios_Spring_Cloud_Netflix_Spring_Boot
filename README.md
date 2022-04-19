@@ -1,6 +1,6 @@
 # Microservicios_Spring_Cloud_Netflix_Spring_Boot
 
-* Implementación de Spring Boot, Spring Cloud, Spring Data JPA, Resilience4J, Lombok, Maven, Postman, Microservicios, Postgres, Mysql y otras Tecnologías
+* Implementación de Spring Boot, Spring Cloud, Spring Data JPA, Resilience4J, Grafana, Prometheus, Lombok, Maven, Postman, Microservicios, Postgres, Mysql y otras Tecnologías
 * Este proyecto surgió a fin de poner en práctica la interrelación y funcionamiento de varios microservicios con diferentes SGDB como lo son Mysql y Postgres.
 * Los Microservicios PropietarioInmuebleService e InmuebleService implementarán una misma base de datos de tipo Postgres para una Inmobiliaria (https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres), qué es una réplica de la original desarrollada de otro proyecto personal  (https://github.com/andresWeitzel/db_Inmobiliaria_PostgreSQL)
 * El Microservicio InspeccionInmuebleService se comunicará con una base de datos de tipo Mysql para la validación y Control de los inmuebles de dicha inmobiliaria (https://github.com/andresWeitzel/db_inspecciones_inmuebles_microservicios_mysql) 
