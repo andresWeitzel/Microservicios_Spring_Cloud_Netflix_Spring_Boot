@@ -64,45 +64,30 @@ public class InmuebleServiceResilienceService {
 			//Devolvemos el template con el objeto inmueble
 			return restTemplate.postForObject(INMUEBLE_SERVICE_URL, inmueble , String.class);
 		}
-		
-		/*
-		//--DELETE INMUEBLE--
-		
-		@CircuitBreaker(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackCircuitBreaker")
-		@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
-		@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
-		@Bulkhead(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackBulkHead")
-		public String inmuebleServiceDeleteInmueble(InmuebleEntityServiceDTO inmueble) {
-			
-			
-			//String inmuebleServiceURL = INMUEBLE_SERVICE_URL + inmueble;
-			
-	
-			//Devolvemos el template con el objeto inmueble
-			return restTemplate.postForObject(INMUEBLE_SERVICE_URL,inmueble, String.class);
-		}
-		*/
-		
+
 	//--DELETE INMUEBLE--
 		
 		@CircuitBreaker(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackCircuitBreaker")
 		@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
 		@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
 		@Bulkhead(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackBulkHead")
-		public ResponseEntity<String> inmuebleServiceDeleteInmueble(int id, InmuebleEntityServiceDTO inmueble ) {
+		public String  inmuebleServiceDeleteInmueble(int id ) {
 			
+			//Para este caso se solventa el delete de esta forma ya que esta operacion no nos permite
+			//devolver un resultado por que el metodo es void a comparacion del postForObject, getForObject
 			
-			String inmuebleServiceURL = INMUEBLE_SERVICE_URL + id;
+			String inmuebleServiceURLWithId = INMUEBLE_SERVICE_URL + id;
 			
-	
-			//Devolvemos el template con el objeto inmueble
-			ResponseEntity<String> response = restTemplate.exchange(inmuebleServiceURL
-					 ,HttpMethod.DELETE,new HttpEntity<InmuebleEntityServiceDTO>(inmueble), 
-				        String.class, 
-				        inmueble.getId());
-			
-			
-			return response;
+			try {
+				//Devolvemos el template con el objeto inmueble
+				restTemplate.delete(inmuebleServiceURLWithId);
+				
+				return "true";
+				
+			} catch (Exception e) {
+				
+				return "false";
+			}
 			
 			
 			
@@ -118,7 +103,7 @@ public class InmuebleServiceResilienceService {
 	@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
 	@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
 	@Bulkhead(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackBulkHead")
-	public String inmuebleServiceGetList() {
+	public String inmuebleServiceGetAll() {
 		
 		String inmuebleServiceURL = INMUEBLE_SERVICE_URL + "listado";
 		

@@ -38,26 +38,17 @@ public class InmuebleServiceResilienceController {
 		return inmServResil.inmuebleServiceUpdateInmueble(inmueble);
 
 	}
-/*
-	// --DELETE INMUEBLE--
-	@DeleteMapping(value = "/")
-	public String inmuebleServiceDeleteInmueble(@RequestBody InmuebleEntityServiceDTO inmueble) {
-		return inmServResil.inmuebleServiceDeleteInmueble(inmueble);
 
-	}
-	*/
 	// --DELETE INMUEBLE--
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<String> inmuebleServiceDeleteInmueble(@PathVariable("id") int id , @RequestBody InmuebleEntityServiceDTO inmueble) {
-		 inmServResil.inmuebleServiceDeleteInmueble(id , inmueble);
-		return new ResponseEntity<>("Delete forever", HttpStatus.MOVED_PERMANENTLY);
-
+	public String inmuebleServiceDeleteInmueble(@PathVariable("id") int id ) {
+		return inmServResil.inmuebleServiceDeleteInmueble(id);
 	}
 	
 	//-- GET ALL INMUEBLE--
 	@GetMapping(value = "/listado")
-	public String inmuebleServiceGetList() {
-		return inmServResil.inmuebleServiceGetList();
+	public String inmuebleServiceGetAll() {
+		return inmServResil.inmuebleServiceGetAll();
 	}
 
 	// ======== MÉTODOS DE BUSQUEDA ============
