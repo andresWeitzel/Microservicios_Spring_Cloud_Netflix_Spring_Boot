@@ -3,9 +3,7 @@ package com.api.resilience.four.j.service.services;
 
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import com.api.resilience.four.j.service.dto.InmuebleEntityServiceDTO;
