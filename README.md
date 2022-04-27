@@ -2,6 +2,15 @@
 
 * Implementación de Microservicios con Spring Boot, Spring Cloud, Spring Data JPA, Resilience4J, Grafana, Prometheus, Lombok, Maven, Postman, Api Restful, Postgres, Mysql y otras Tecnologías
 * Este proyecto surgió a fin de poner en práctica la interrelación y funcionamiento de varios Microservicios con diferentes SGDB como lo son Mysql y Postgres.
+
+</br>
+
+#### Arquitectura Desarrollada
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/MicroservicesArquitectura.png)
+
+</br>
+
 * Los Microservicios `PropietarioInmuebleService` e `InmuebleService` implementan una misma base de datos de tipo Postgres para una Inmobiliaria (https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres), qué es una réplica de la original desarrollada de otro proyecto personal  (https://github.com/andresWeitzel/db_Inmobiliaria_PostgreSQL)
 * El Microservicio `InspeccionInmuebleService` se comunicará con una base de datos de tipo Mysql para la validación y Control de los inmuebles de dicha inmobiliaria (https://github.com/andresWeitzel/db_inspecciones_inmuebles_microservicios_mysql) 
 * El Servicio de Gestión Genérico de los Microservicios será `EurekaService`, este no implementará ninguna base de datos ya que será el responsable de toda la gestión y Control del resto de los Microservicios y Servicios.
@@ -30,11 +39,7 @@
 
 </br>
 
-#### Arquitectura Desarrollada
 
-![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/MicroservicesArquitectura.png)
-
-</br>
 
 #### Servicios en Spring Cloud Eureka Server
 
