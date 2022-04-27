@@ -76,6 +76,11 @@
 
 ![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/carga_uso.png)
 
+#### Deploy de Carga de CPU Usada por el Sistema luego del consumo de Recursos a través de Grafana
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/systemCpuUsage.png)
+
+
 </br>
 
 ### Tecnologías Implementadas
