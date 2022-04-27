@@ -23,9 +23,51 @@
 * Servicios
 |  |  |  |-----> Servicio EurekaService -----------> Servidor de Gestión de Microservicios
 |  |  |--------> Servicio ApiGatewayService -------> Proxy con balanceo de carga para la gestión de peticiones de los Microservicios 
-|  |-----------> Servicio ResilienceFourJService -> Servicio para el Control de Excepciones y Tolerancia a Fallos
+|  |-----------> Servicio ResilienceFourJService --> Servicio para el Control de Excepciones y Tolerancia a Fallos. Patrón Circuit Breaker
+| |------------> Servicio Prometheus/Actuator -----> Manejo de los datos de ResilienceFourJ
+|--------------> Servicio Grafana Dashboard -------> Deploy de los datos transferidos por Prometheus
 ```
 
+</br>
+
+#### Arquitectura Desarrollada
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/MicroservicesArquitectura.png)
+
+</br>
+
+#### Servicios en Spring Cloud Eureka Server
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/eurekaServer.png)
+
+
+</br>
+
+#### Deploy de Carga Inicial de Recursos a través de Grafana
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/carga_inicial.png)
+
+#### Métodos GET Testeo Microservices puerto Resilience con Postman
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/microservicesList.png)
+
+#### Estadisticas de uso Http Métodos GET en Grafana
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/getHttpStadistic.png)
+
+#### Métodos POST Testeo Microservices puerto Resilience con Postman
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/postMicroservices.png)
+
+#### Estadisticas de uso Http Métodos POST en Grafana
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/postHttpStadistic.png)
+
+#### Deploy de Carga luego del consumo de Recursos a través de Grafana
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/carga_uso.png)
+
+</br>
 
 ### Tecnologías Implementadas
 
