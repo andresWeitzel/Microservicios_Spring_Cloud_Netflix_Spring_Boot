@@ -129,6 +129,7 @@
 | DAO | Uso de interfaces y repositorios para la persistencia y almacenamiento de datos. |
 | MVC | Separación y Representación de los Datos, Manejo de errores, Escalabilidad, etc  |
 | VO  | Patrón Value Object para el relacionamiento de Objetos a través de Templates de cada Microservicio |
+| DTO  | Patrón para el Uso de Objetos POJO para tranferencia de datos entre los Microservices y Resilience4J |
 | Circuit Breaker | Patrón para el Control y Manejo de Excepciones junto con la Tolerancia a Fallos |
 
 </br>
