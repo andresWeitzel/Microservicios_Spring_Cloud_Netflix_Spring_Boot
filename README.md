@@ -45,6 +45,10 @@
 
 ![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/eurekaServer.png)
 
+#### MicroServices por host y puerto independientes
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/microservicesList.png)
+
 
 </br>
 
@@ -54,7 +58,7 @@
 
 #### Métodos GET Testeo Microservices puerto Resilience con Postman
 
-![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/microservicesList.png)
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/getMicroservices.png)
 
 #### Estadisticas de uso Http Métodos GET en Grafana
 
