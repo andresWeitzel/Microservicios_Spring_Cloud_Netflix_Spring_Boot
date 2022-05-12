@@ -9,7 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.inmueble.service.entity.PropietarioInmuebleEntity;
+import com.inmueble.service.entity.PropietarioInmueble;
 
 
 //Traemos toda la api de jUnit5

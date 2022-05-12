@@ -2,10 +2,14 @@ package com.inmueble.service.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inmueble.service.entity.PropietarioInmuebleEntity;
+import com.inmueble.service.entity.PropietarioInmueble;
 import com.inmueble.service.service.PropietarioInmuebleService;
 
 @RestController
@@ -23,135 +27,197 @@ import com.inmueble.service.service.PropietarioInmuebleService;
 public class PropietarioInmuebleController {
 
 	@Autowired
-	private PropietarioInmuebleService propietarioInmuebleService;
+	private PropietarioInmuebleService propInmService;
 
-	// ======== MÉTODOS HTTP ============
-	// --POST--
+	// ===============================================
+	// ============= MÉTODOS HTTP CRUD ==============
+	// ===============================================
+
+	// ================
+	// ===== POST =====
+	// =================
 	@PostMapping("/")
-	public boolean addPropietarioInmueble(@RequestBody PropietarioInmuebleEntity propietarioInmueble) {
+	public ResponseEntity<?> addPropInm(@RequestBody PropietarioInmueble propInm) {
 
-		return propietarioInmuebleService.addPropietarioInmueble(propietarioInmueble);
+		try {
+			propInmService.addPropInm(propInm);
+			return new ResponseEntity<PropietarioInmueble>(propInm, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+
+		}
 
 	}
 
-	// --PUT--
+	// ==============
+	// ===== PUT=====
+	// ==============
 	@PutMapping("/")
-	public boolean updatePropietarioInmueble(@RequestBody PropietarioInmuebleEntity propietarioInmueble) {
+	public ResponseEntity<?> updatePropInm(@RequestBody PropietarioInmueble propInm) {
 
-		return propietarioInmuebleService.updatePropietarioInmueble(propietarioInmueble);
+		try {
+			propInmService.updatePropInm(propInm);
+			return new ResponseEntity<PropietarioInmueble>(propInm, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+
+		}
 
 	}
-	
-	
-	
-	
-	// --DELETE--
+
+	// ==================
+	// ===== DELETE =====
+	// ==================
 	@DeleteMapping("/{id}")
-	public boolean deletePropietarioInmueble(@PathVariable("id") int id) {
+	public ResponseEntity<?> deletePropInm(@PathVariable("id") UUID id) {
 
-		return propietarioInmuebleService.deletePropietarioInmueble(id);
+		try {
+			propInmService.deletePropInm(id);
+			return new ResponseEntity<PropietarioInmueble>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+
+		}
+
 	}
 
-
-
-	// --GET--
+	// ===================
+	// ===== GET ALL =====
+	// ===================
+	// ---LISTADO DE PROPIETARIOS PAGINADO---
 	@GetMapping("/listado")
-	public List<PropietarioInmuebleEntity> getAll(Pageable pageable) {
-		return propietarioInmuebleService.getAllPropietarioInmueble(pageable);
+	public Page<PropietarioInmueble> getAll(Pageable pageable) {
+		return propInmService.getAllPropInm(pageable);
 	}
-	
-	
-	
-	// ======== MÉTODOS DE BUSQUEDA ============
-	
-	
-	// --GET--
+
+	// ==================================================
+	// ============= MÉTODOS HTTP BÚSQUEDA =============
+	// ==================================================
+
+	// ===================
+	// ===== GET BY ID ===
+	// ===================
+	// ---PROPIETARIO POR ID---
 	@GetMapping("/id/{id}")
-	public PropietarioInmuebleEntity findById(@PathVariable("id") int id) {
+	public PropietarioInmueble findById(@PathVariable("id") UUID id) {
 
-		return propietarioInmuebleService.findById(id);
+		return propInmService.findById(id);
 
 	}
-	
 
-	// --GET--
+	// =======================
+	// ===== GET BY NOMBRE ===
+	// =======================
+	// ---LISTADO DE PROPIETARIOS O PROPIETARIO POR NOMBRE---
 	@GetMapping("/nombre/{nombre}")
-	public List<PropietarioInmuebleEntity> findByNombre(@PathVariable("nombre") String nombre) {
+	public Page<PropietarioInmueble> findByNombre(@PathVariable("nombre") String nombre, Pageable pageable) {
 
-		return propietarioInmuebleService.findByNombre(nombre);
+		return propInmService.findByNombre(nombre, pageable);
 
 	}
 
-	// --GET--
+	// =======================
+	// ===== GET BY APELLIDO ===
+	// =======================
+	// ---LISTADO DE PROPIETARIOS O PROPIETARIO POR APELLIDO---
 	@GetMapping("/apellido/{apellido}")
-	public List<PropietarioInmuebleEntity> findByApellido(@PathVariable("apellido") String apellido) {
+	public Page<PropietarioInmueble> findByApellido(@PathVariable("apellido") String apellido, Pageable pageable) {
 
-		return propietarioInmuebleService.findByApellido(apellido);
+		return propInmService.findByApellido(apellido, pageable);
 
 	}
 
-	// --GET--
+	// =======================
+	// ===== GET BY EDAD ===
+	// =======================
+	// ---LISTADO DE PROPIETARIOS O PROPIETARIO POR EDAD---
 	@GetMapping("/edad/{edad}")
-	public List<PropietarioInmuebleEntity> findByEdad(@PathVariable("edad") int edad) {
+	public Page<PropietarioInmueble> findByEdad(@PathVariable("edad") int edad, Pageable pageable) {
 
-		return propietarioInmuebleService.findByEdad(edad);
+		return propInmService.findByEdad(edad, pageable);
 
 	}
 
-	// --GET--
+	// =======================
+	// ===== GET BY FECHA NAC ===
+	// =======================
+	// ---LISTADO DE PROPIETARIOS O PROPIETARIO POR FECHA DE NAC---
 	@GetMapping("/fecha-nacimiento/{fecha}")
-	public List<PropietarioInmuebleEntity> findByFechaNacimiento(
-			@PathVariable("fecha") @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate fechaNacimiento) {
+	public Page<PropietarioInmueble> findByFechaNac(
+			@PathVariable("fecha") @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate fechaNacimiento,
+			Pageable pageable) {
 
-		return propietarioInmuebleService.findByFechaNacimiento(fechaNacimiento);
+		return propInmService.findByFechaNac(fechaNacimiento, pageable);
 
 	}
 
-	// --GET--
+	// =======================
+	// ===== GET BY TIPO DOC ===
+	// =======================
+	// ---LISTADO DE PROPIETARIOS O PROPIETARIO POR TIPO DOC---
 	@GetMapping("/tipo-documento/{tipo_documento}")
-	public List<PropietarioInmuebleEntity> findByTipoDocumento(@PathVariable("tipo_documento") String tipoDocumento) {
+	public Page<PropietarioInmueble> findByTipoDoc(@PathVariable("tipo_documento") String tipoDocumento,
+			Pageable pageable) {
 
-		return propietarioInmuebleService.findByTipoDocumento(tipoDocumento);
+		return propInmService.findByTipoDoc(tipoDocumento, pageable);
 
 	}
 
-	// --GET--
+	// =======================
+	// ===== GET BY NRO DOC ===
+	// =======================
+	// ---LISTADO DE PROPIETARIOS O PROPIETARIO POR NRO DE DOC---
 	@GetMapping("/nro-documento/{nro_documento}")
-	public List<PropietarioInmuebleEntity> findByNroDocumento(@PathVariable("nro_documento") String nroDocumento) {
+	public Page<PropietarioInmueble> findByNroDoc(@PathVariable("nro_documento") String nroDocumento,
+			Pageable pageable) {
 
-		return propietarioInmuebleService.findByNroDocumento(nroDocumento);
+		return propInmService.findByNroDoc(nroDocumento, pageable);
 
 	}
 
-	// --GET--
+	// =======================
+	// ===== GET BY DIREC ===
+	// =======================
+	// ---LISTADO DE PROPIETARIOS O PROPIETARIO POR DIREC---
 	@GetMapping("/direccion/{direccion}")
-	public List<PropietarioInmuebleEntity> findByDireccion(@PathVariable("direccion") String direcccion) {
+	public Page<PropietarioInmueble> findByDirec(@PathVariable("direccion") String direcccion, Pageable pageable) {
 
-		return propietarioInmuebleService.findByDireccion(direcccion);
+		return propInmService.findByDirec(direcccion, pageable);
 
 	}
 
-	// --GET--
+	// ==============================
+	// ===== GET BY NRO TEL PRINC ===
+	// ===============================
+	// ---LISTADO DE PROPIETARIOS O PROPIETARIO POR NRO DE TEL PRINC---
 	@GetMapping("/nro-telefono-principal/{nro-tel-princ}")
-	public List<PropietarioInmuebleEntity> findByNroTelefonoPrincipal(@PathVariable("nro-tel-princ") String nroTelefonoPrincipal) {
+	public Page<PropietarioInmueble> findByNroTelPrinc(@PathVariable("nro-tel-princ") String nroTelefonoPrincipal,
+			Pageable pageable) {
 
-		return propietarioInmuebleService.findByNroTelefonoPrincipal(nroTelefonoPrincipal);
+		return propInmService.findByNroTelPrinc(nroTelefonoPrincipal, pageable);
 
 	}
 
-	// --GET--
+	// ==============================
+	// ===== GET BY NRO TEL SEC ===
+	// ===============================
+	// ---LISTADO DE PROPIETARIOS O PROPIETARIO POR NRO DE TEL SEC---
 	@GetMapping("/nro-telefono-secundario/{nro-tel-sec}")
-	public List<PropietarioInmuebleEntity> findByNroTelefonoSecundario(@PathVariable("nro-tel-sec") String nroTelefonoSecundario) {
+	public Page<PropietarioInmueble> findByNroTelSec(@PathVariable("nro-tel-sec") String nroTelefonoSecundario,
+			Pageable pageable) {
 
-		return propietarioInmuebleService.findByNroTelefonoSecundario(nroTelefonoSecundario);
+		return propInmService.findByNroTelSec(nroTelefonoSecundario, pageable);
 
 	}
-	
-	// --GET--
-	@GetMapping("/email/{email}")
-	public List<PropietarioInmuebleEntity> findByEmail(@PathVariable("email") String email) {
 
-		return propietarioInmuebleService.findByEmail(email);
+	// =======================
+	// ===== GET BY EMAIL ===
+	// =======================
+	// ---LISTADO DE PROPIETARIOS O PROPIETARIO POR EMAIL---
+	@GetMapping("/email/{email}")
+	public Page<PropietarioInmueble> findByEmail(@PathVariable("email") String email, Pageable pageable) {
+
+		return propInmService.findByEmail(email, pageable);
 
 	}
 
