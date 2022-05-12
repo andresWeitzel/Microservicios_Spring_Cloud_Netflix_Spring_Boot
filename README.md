@@ -2,6 +2,15 @@
 
 * Implementación de Microservicios con Spring Boot, Spring Cloud, Spring Data JPA, Resilience4J, Grafana, Prometheus, Lombok, Maven, Postman, Api Restful, Postgres, Mysql y otras Tecnologías
 * Este proyecto surgió a fin de poner en práctica la interrelación y funcionamiento de varios Microservicios con diferentes SGDB como lo son Mysql y Postgres.
+
+</br>
+
+#### Arquitectura Desarrollada
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/MicroservicesArquitectura.png)
+
+</br>
+
 * Los Microservicios `PropietarioInmuebleService` e `InmuebleService` implementan una misma base de datos de tipo Postgres para una Inmobiliaria (https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres), qué es una réplica de la original desarrollada de otro proyecto personal  (https://github.com/andresWeitzel/db_Inmobiliaria_PostgreSQL)
 * El Microservicio `InspeccionInmuebleService` se comunicará con una base de datos de tipo Mysql para la validación y Control de los inmuebles de dicha inmobiliaria (https://github.com/andresWeitzel/db_inspecciones_inmuebles_microservicios_mysql) 
 * El Servicio de Gestión Genérico de los Microservicios será `EurekaService`, este no implementará ninguna base de datos ya que será el responsable de toda la gestión y Control del resto de los Microservicios y Servicios.
@@ -23,9 +32,56 @@
 * Servicios
 |  |  |  |-----> Servicio EurekaService -----------> Servidor de Gestión de Microservicios
 |  |  |--------> Servicio ApiGatewayService -------> Proxy con balanceo de carga para la gestión de peticiones de los Microservicios 
-|  |-----------> Servicio ResilienceFourJService -> Servicio para el Control de Excepciones y Tolerancia a Fallos
+|  |-----------> Servicio ResilienceFourJService --> Servicio para el Control de Excepciones y Tolerancia a Fallos. Patrón Circuit Breaker
+| |------------> Servicio Prometheus/Actuator -----> Manejo de los datos de ResilienceFourJ
+|--------------> Servicio Grafana Dashboard -------> Deploy de los datos transferidos por Prometheus
 ```
 
+</br>
+
+
+
+#### Servicios en Spring Cloud Eureka Server
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/eurekaServer.png)
+
+#### MicroServices por host y puerto independientes
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/microservicesList.png)
+
+
+</br>
+
+#### Deploy de Carga Inicial de Recursos a través de Grafana
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/carga_inicial.png)
+
+#### Métodos GET Testeo Microservices puerto Resilience con Postman
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/getMicroservices.png)
+
+#### Estadisticas de uso Http Métodos GET en Grafana
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/getHttpStadistic.png)
+
+#### Métodos POST Testeo Microservices puerto Resilience con Postman
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/postMicroservices.png)
+
+#### Estadisticas de uso Http Métodos POST en Grafana
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/postHttpStadistic.png)
+
+#### Deploy de Carga luego del consumo de Recursos a través de Grafana
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/carga_uso.png)
+
+#### Deploy de Carga de CPU Usada por el Sistema luego del consumo de Recursos a través de Grafana
+
+![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/systemCpuUsage.png)
+
+
+</br>
 
 ### Tecnologías Implementadas
 
@@ -73,6 +129,7 @@
 | DAO | Uso de interfaces y repositorios para la persistencia y almacenamiento de datos. |
 | MVC | Separación y Representación de los Datos, Manejo de errores, Escalabilidad, etc  |
 | VO  | Patrón Value Object para el relacionamiento de Objetos a través de Templates de cada Microservicio |
+| DTO  | Patrón para el Uso de Objetos POJO para tranferencia de datos entre los Microservices y Resilience4J |
 | Circuit Breaker | Patrón para el Control y Manejo de Excepciones junto con la Tolerancia a Fallos |
 
 </br>
