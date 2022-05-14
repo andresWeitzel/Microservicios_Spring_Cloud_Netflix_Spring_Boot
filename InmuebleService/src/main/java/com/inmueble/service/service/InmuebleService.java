@@ -1,9 +1,10 @@
 package com.inmueble.service.service;
 
-import java.util.List;
+import java.util.UUID;
 
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -16,163 +17,146 @@ import com.inmueble.service.valueobject.PropietarioInmuebleVO;
 
 @Service
 public class InmuebleService {
-	
-	
-	//============ Inyec Dep. ============
+
+	// ============ Inyec Dep. ============
 	@Autowired
-	private I_InmuebleRepository iInmuebleRepository;
-	
+	private I_InmuebleRepository iInmRepository;
+
 	@Autowired
 	private RestTemplate restTemplate;
-	
-	
-	// ============= LOGS ========================	
+
+	// ============= LOGS ========================
 	private static final Logger logger = org.apache.logging.log4j.LogManager.getLogger(InmuebleService.class);
 
-	
 	// ============ MÉTODOS CRUD ==================
-	
+
 	// ----INSERT----
-	public boolean addInmueble(InmuebleEntity inmueble) {
+	public void addInm(InmuebleEntity inm) {
 		try {
-			if(inmueble == null) {
-				logger.error("ERROR addInmueble : EL INMUEBLE " + inmueble+" ES NULO!!");
-				return false;
-			}else {
-				iInmuebleRepository.save(inmueble);
-				return true;
+			if (inm == null) {
+				logger.error("ERROR addInmueble : EL INMUEBLE " + inm + " ES NULO!!");
+
+			} else {
+				iInmRepository.save(inm);
+
 			}
-			
-			
+
 		} catch (Exception e) {
-			logger.error("ERROR addInmueble : EL INMUEBLE " + inmueble+ " NO SE HA INSERTADO EN LA DB!!");
-			return false;
+			logger.error("ERROR addInmueble : EL INMUEBLE " + inm + " NO SE HA INSERTADO EN LA DB!!");
+
 		}
 	}
-	
-	
+
 	// ----UPDATE----
-	public boolean updateInmueble(InmuebleEntity inmueble) {
+	public void updateInm(InmuebleEntity inm) {
 		try {
-			if(inmueble == null) {
-				logger.error("ERROR updateInmueble : EL INMUEBLE " + inmueble + " ES NULO!!");
-				return false;
-			}else {
-				iInmuebleRepository.save(inmueble);
-				return true;
+			if (inm == null) {
+				logger.error("ERROR updateInmueble : EL INMUEBLE " + inm + " ES NULO!!");
+				
+			} else {
+				iInmRepository.save(inm);
+				
 			}
-			
+
 		} catch (Exception e) {
-			logger.error("ERROR updateInmueble : EL INMUEBLE " + inmueble + " NO SE HA ACTUALIZADO EN LA DB!!");
-			return false;
+			logger.error("ERROR updateInmueble : EL INMUEBLE " + inm + " NO SE HA ACTUALIZADO EN LA DB!!");
+			
 		}
 	}
-	
+
 	// ----DELETE----
-	public boolean deleteInmueble(int id) {
+	public void deleteInm(UUID id) {
 		try {
-			if(id == 0) {
-				logger.error("ERROR deleteInmueble : EL INMUEBLE ES CERO!!");
-				return false;
-			}else {
-				iInmuebleRepository.delete(iInmuebleRepository.findById(id));
-				return true;
+			if (id == null) {
+				logger.error("ERROR deleteInmueble : EL INMUEBLE ES NO EXISTE!!");
+				
+			} else {
+				iInmRepository.deleteById(id);
+				
 			}
-			
+
 		} catch (Exception e) {
 			logger.error("ERROR deleteInmueble : EL ID DEL INMUEBLE " + id + " NO SE HA ELIMINADO DE LA DB!!");
-			return false;
+			
 		}
 	}
-	
+
 	// ----SELECT----
-	public List<InmuebleEntity> getAllInmueble(Pageable pageable){
-		
-		return iInmuebleRepository.findAll(pageable).getContent();
+	public Page<InmuebleEntity> getAllInm(Pageable pageable) {
+
+		return iInmRepository.findAll(pageable);
 	}
-	
 
 	
 	// ------TEMPLATE INMUEBLE WITH PROPIETARIO_INMUEBLE FIND BY ID---
-	public InmWithPropInmResponseTemplate findByInmWithPropInm(int idInmueble) {
-		
-		//Template microservices
+	public InmWithPropInmResponseTemplate findByInmWithPropInm(UUID idInm) {
+
+		// Template microservices
 		InmWithPropInmResponseTemplate inmWithPropInmTemplate = new InmWithPropInmResponseTemplate();
-		
-		//buscamos el objeto inmueble
-		InmuebleEntity inmueble = iInmuebleRepository.findById(idInmueble);
-		
-		//buscamos el objeto Prop Inm
-		PropietarioInmuebleVO propietarioInmuebleVO = 
-				restTemplate.getForObject("http://PROPIETARIO-INMUEBLE-SERVICE/propietarios-inmuebles/id/" 
-						+ inmueble.getIdPropietarioInmueble() , PropietarioInmuebleVO.class); 
-		
-		
-		//Guardamos ambos objetos en el Template
+
+		// buscamos el objeto inmueble
+		InmuebleEntity inmueble = iInmRepository.getById(idInm);
+
+		// buscamos el objeto Prop Inm
+		PropietarioInmuebleVO propietarioInmuebleVO = restTemplate.getForObject(
+				"http://PROPIETARIO-INMUEBLE-SERVICE/v1/propietarios-inmuebles/id/" + inmueble.getIdPropInm(),
+				PropietarioInmuebleVO.class);
+
+		// Guardamos ambos objetos en el Template
 		inmWithPropInmTemplate.setInmueble(inmueble);
-		inmWithPropInmTemplate.setPropietarioInmuebleVO(propietarioInmuebleVO);;
+		inmWithPropInmTemplate.setPropietarioInmuebleVO(propietarioInmuebleVO);
 		
+
 		return inmWithPropInmTemplate;
-		
-		
+
 	}
-	
 
 	
 	// ============ MÉTODOS DE BÚSQUEDA ==================
-	
-	//----ID-----
-	public InmuebleEntity findById(int id) {
-		return iInmuebleRepository.findById(id);
-	}
-	
 
-	//---- ID PROPIETARIO INMUEBLE-----
-	public List<InmuebleEntity> findByIdPropietarioInmueble(int id) {
-		return iInmuebleRepository.findByIdPropietarioInmueble(id);
+	// ----ID-----
+	public InmuebleEntity findById(UUID id) {
+		return iInmRepository.findById(id);
 	}
-	
-	
-	//---- DESCRIPCION INMUEBLE-----
-	public List<InmuebleEntity> findByDescripcion(String descripcion) {
-		return iInmuebleRepository.findByDescripcion(descripcion);
+
+	// ---- ID PROPIETARIO INMUEBLE-----
+	public Page<InmuebleEntity> findByIdPropInm(UUID id, Pageable pageable) {
+		return iInmRepository.findByIdPropInm(id,pageable);
 	}
-	
-	//----- TIPO DE INMUEBLE --------
-	public List<InmuebleEntity> findByTipo(String tipo) {
-		return iInmuebleRepository.findByTipo(tipo);
+
+	// ---- DESCRIPCION INMUEBLE-----
+	public Page<InmuebleEntity> findByDescr(String descripcion, Pageable pageable) {
+		return iInmRepository.findByDescr(descripcion, pageable);
 	}
-	
-	
-	//---- ESTADO INMUEBLE-----
-	public List<InmuebleEntity> findByEstadoInmuebleEnum(EstadoInmuebleEnum estadoInmueble) {
-		return iInmuebleRepository.findByEstadoInmuebleEnum(estadoInmueble);
+
+	// ----- TIPO DE INMUEBLE --------
+	public Page<InmuebleEntity> findByTipo(String tipo, Pageable pageable) {
+		return iInmRepository.findByTipo(tipo, pageable);
 	}
-	
-	
-	
-	//---- PRECIO INMUEBLE-----
-	public List<InmuebleEntity> findByPrecioInmueble(double precio) {
-		return iInmuebleRepository.findByPrecioInmuebleUsd(precio);
+
+	// ---- ESTADO INMUEBLE-----
+	public Page<InmuebleEntity> findByEstadoInmEnum(EstadoInmuebleEnum estadoInmueble, Pageable pageable) {
+		return iInmRepository.findByEstadoInmEnum(estadoInmueble, pageable);
 	}
-	
-	//---- DIRECCION INMUEBLE-----
-	public List<InmuebleEntity> findByDireccion(String direccion) {
-		return iInmuebleRepository.findByDireccion(direccion);
+
+	// ---- PRECIO INMUEBLE-----
+	public Page<InmuebleEntity> findByPrecInm(double precio, Pageable pageable) {
+		return iInmRepository.findByPrecInmUsd(precio, pageable);
 	}
-	
-	//---- UBICACION INMUEBLE-----
-	public List<InmuebleEntity> findByUbicacion(String ubicacion) {
-		return iInmuebleRepository.findByUbicacion(ubicacion);
+
+	// ---- DIRECCION INMUEBLE-----
+	public Page<InmuebleEntity> findByDirec(String direccion, Pageable pageable) {
+		return iInmRepository.findByDirec(direccion, pageable);
 	}
-	
-	//---- SITIO WEB INMUEBLE-----
-	public List<InmuebleEntity> findBySitioWeb(String sitioWeb) {
-		return iInmuebleRepository.findBySitioWeb(sitioWeb);
+
+	// ---- UBICACION INMUEBLE-----
+	public Page<InmuebleEntity> findByUbic(String ubicacion, Pageable pageable) {
+		return iInmRepository.findByUbic(ubicacion, pageable);
 	}
-		
-		
-	
-	
-	
+
+	// ---- SITIO WEB INMUEBLE-----
+	public Page<InmuebleEntity> findBySitWeb(String sitioWeb, Pageable pageable) {
+		return iInmRepository.findBySitWeb(sitioWeb, pageable);
+	}
+
 }

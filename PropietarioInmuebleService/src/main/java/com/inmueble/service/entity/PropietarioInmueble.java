@@ -1,5 +1,6 @@
 package com.inmueble.service.entity;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -38,7 +39,7 @@ public class PropietarioInmueble {
 	private int edad;
 	
 	@Column(name="fecha_nacimiento", nullable=false)
-	private LocalDate fechaNac;
+	private Date fechaNac;
 	
 	@Column(name="tipo_documento", nullable=false, length=30)
 	private String tipoDoc;
@@ -52,10 +53,10 @@ public class PropietarioInmueble {
 	@Column(name="nro_telefono_principal", nullable=false, length=40 , unique=true)
 	private String nroTelPrinc;
 	
-	@Column(name="nro_telefono_secundario", length=50 )
+	@Column(name="nro_telefono_secundario", nullable=true, length=50 )
 	private String nroTelSec;
 	
-	@Column(name="email", length=50 , unique=true)
+	@Column(name="email", nullable=true, length=50 , unique=true)
 	private String email;
 	
 	

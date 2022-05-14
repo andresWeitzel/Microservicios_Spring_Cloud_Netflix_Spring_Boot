@@ -1,5 +1,7 @@
 package com.inmueble.service.entity;
 
+import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -26,32 +28,32 @@ public class InmuebleEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	@Column(name="id")
-	private int id;
+	private UUID id;
 	
-	@Column(name="id_propietario_inmueble")
-	private int idPropietarioInmueble;
+	@Column(name="id_propietario_inmueble", nullable=false)
+	private UUID idPropInm;
 	
-	@Column(name="descripcion")
-	private String descripcion;
+	@Column(name="descripcion", nullable=false, length=200)
+	private String descr;
 	
-	@Column(name="tipo")
+	@Column(name="tipo", nullable=false, length=20)
 	private String tipo;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name="estado_inmueble")
-	private EstadoInmuebleEnum  estadoInmuebleEnum;
+	@Column(name="estado_inmueble", nullable=false)
+	private EstadoInmuebleEnum  estadoInmEnum;
 	
-	@Column(name="precio_inmueble_usd") 
-	private double precioInmuebleUsd;
+	@Column(name="precio_inmueble_usd", nullable=false) 
+	private double precInmUsd;
 	
-	@Column(name="direccion")
-	private String direccion;
+	@Column(name="direccion", nullable=false, length=100)
+	private String direc;
 	
-	@Column(name="ubicacion")
-	private String ubicacion;
+	@Column(name="ubicacion", nullable=false, length=100)
+	private String ubic;
 	
-	@Column(name="sitio_web")
-	private String sitioWeb;
+	@Column(name="sitio_web", nullable=true, length=100)
+	private String sitWeb;
 	
 	
 	

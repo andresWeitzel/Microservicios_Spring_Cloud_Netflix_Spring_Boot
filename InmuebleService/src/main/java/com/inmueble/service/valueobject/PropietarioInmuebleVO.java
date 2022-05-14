@@ -1,6 +1,7 @@
 package com.inmueble.service.valueobject;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PropietarioInmuebleVO {
 
-	private int id;
+	private UUID id;
 
 	private String nombre;
 
@@ -21,17 +22,17 @@ public class PropietarioInmuebleVO {
 
 	private int edad;
 
-	private LocalDate fechaNacimiento;
+	private LocalDate fechaNac;
 
-	private String tipoDocumento;
+	private String tipoDoc;
 
-	private String nroDocumento;
+	private String nroDoc;
 
-	private String direccion;
+	private String direc;
 
-	private String nroTelefonoPrincipal;
+	private String nroTelPrinc;
 
-	private String nroTelefonoSecundario;
+	private String nroTelSec;
 
 	private String email;
 

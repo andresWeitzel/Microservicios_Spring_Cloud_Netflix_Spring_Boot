@@ -1,5 +1,6 @@
 package com.inmueble.service.service;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -115,7 +116,7 @@ public class PropietarioInmuebleService {
 	}
 
 	// ---- FECHA_NACIMIENTO -----
-	public Page<PropietarioInmueble> findByFechaNac(LocalDate fechaNac, Pageable pageable) {
+	public Page<PropietarioInmueble> findByFechaNac(Date fechaNac, Pageable pageable) {
 		return iPropInmRepository.findByFechaNac(fechaNac, pageable);
 	}
 

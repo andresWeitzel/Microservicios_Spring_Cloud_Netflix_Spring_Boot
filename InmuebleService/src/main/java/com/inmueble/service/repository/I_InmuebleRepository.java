@@ -1,7 +1,7 @@
 package com.inmueble.service.repository;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,43 +14,35 @@ import com.inmueble.service.entity.InmuebleEntity;
 import com.inmueble.service.enums.EstadoInmuebleEnum;
 
 @Repository
-public interface I_InmuebleRepository extends JpaRepository<InmuebleEntity, Serializable>, PagingAndSortingRepository<InmuebleEntity, Serializable> {
+public interface I_InmuebleRepository
+		extends JpaRepository<InmuebleEntity, Serializable>, PagingAndSortingRepository<InmuebleEntity, Serializable> {
 
-	
-	//============================ MÉTODOS DE BÚSQUEDA ============================== 
-	
-	public abstract InmuebleEntity findById(int id);
-	
-	public abstract List<InmuebleEntity> findByIdPropietarioInmueble(int id);
+	// ============================ MÉTODOS DE BÚSQUEDA
+	// ==============================
 
-	@Query("select c from InmuebleEntity c where c.descripcion like %:descripcion%")
-	public abstract List<InmuebleEntity> findByDescripcion(String descripcion);
-	
+	public abstract InmuebleEntity findById(UUID id);
+
+	public abstract Page<InmuebleEntity> findByIdPropInm(UUID id, Pageable pageable);
+
+	@Query("select c from InmuebleEntity c where c.descr like %:descr%")
+	public abstract Page<InmuebleEntity> findByDescr(String descr, Pageable pageable);
+
 	@Query("select c from InmuebleEntity c where c.tipo like %:tipo%")
-	public abstract List<InmuebleEntity> findByTipo(String tipo);
-	
-	@Query("select c from InmuebleEntity c where c.estadoInmuebleEnum like %:estadoInmuebleEnum%")
-	public abstract List<InmuebleEntity> findByEstadoInmuebleEnum(EstadoInmuebleEnum  estadoInmuebleEnum);
-	
-	
-	public abstract List<InmuebleEntity> findByPrecioInmuebleUsd(double precioInmueble);
-	
-	@Query("select c from InmuebleEntity c where c.direccion like %:direccion%")
-	public abstract List<InmuebleEntity> findByDireccion(String direccion);
-	
-	@Query("select c from InmuebleEntity c where c.ubicacion like %:ubicacion%")
-	public abstract List<InmuebleEntity> findByUbicacion(String ubicacion);
-	
-	@Query("select c from InmuebleEntity c where c.sitioWeb like %:sitioWeb%")
-	public abstract List<InmuebleEntity> findBySitioWeb(String sitioWeb);
+	public abstract Page<InmuebleEntity> findByTipo(String tipo, Pageable pageable);
+
+	public abstract Page<InmuebleEntity> findByEstadoInmEnum(EstadoInmuebleEnum estadoInmEnum, Pageable pageable);
+
+	public abstract Page<InmuebleEntity> findByPrecInmUsd(double precioInm, Pageable pageable);
+
+	@Query("select c from InmuebleEntity c where c.direc like %:direc%")
+	public abstract Page<InmuebleEntity> findByDirec(String direc, Pageable pageable);
+
+	@Query("select c from InmuebleEntity c where c.ubic like %:ubic%")
+	public abstract Page<InmuebleEntity> findByUbic(String ubic, Pageable pageable);
+
+	@Query("select c from InmuebleEntity c where c.sitWeb like %:sitWeb%")
+	public abstract Page<InmuebleEntity> findBySitWeb(String sitWeb, Pageable pageable);
 
 	public abstract Page<InmuebleEntity> findAll(Pageable pageable);
-
-	//Para el template
-	//public abstract Inmueble findByIdPropietarioInmuebleVO(int idPropietarioInmueble);
-	
-	
-	
-	
 
 }

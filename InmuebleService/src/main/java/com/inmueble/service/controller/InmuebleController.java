@@ -1,9 +1,14 @@
 package com.inmueble.service.controller;
 
-import java.util.List;
+
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inmueble.service.entity.InmuebleEntity;
@@ -19,127 +25,184 @@ import com.inmueble.service.service.InmuebleService;
 import com.inmueble.service.valueobject.InmWithPropInmResponseTemplate;
 
 @RestController
-@RequestMapping("/inmuebles")
+@RequestMapping("/v1/inmuebles")
 public class InmuebleController {
 
 	@Autowired
-	private InmuebleService inmuebleService;
+	private InmuebleService inmService;
 
-	// ======== MÉTODOS HTTP ============
-	// --POST--
+	// ===============================================
+	// ============= MÉTODOS HTTP CRUD ==============
+	// ===============================================
+
+	// ================
+	// ===== POST =====
+	// =================
 	@PostMapping("/")
-	public boolean addInmueble(@RequestBody InmuebleEntity inmueble) {
+	public ResponseEntity<?> addInm(@RequestBody InmuebleEntity inm) {
 
-		return inmuebleService.addInmueble(inmueble);
+		try {
+			inmService.addInm(inm);
+			return new ResponseEntity<InmuebleEntity>(inm, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+
+		}
 
 	}
 
-	// --PUT--
+	// ================
+	// ===== PUT =====
+	// =================
 	@PutMapping("/")
-	public boolean updateInmueble(@RequestBody InmuebleEntity inmueble) {
+	public ResponseEntity<?> updateInm(@RequestBody InmuebleEntity inm) {
 
-		return inmuebleService.updateInmueble(inmueble);
+		try {
+			inmService.updateInm(inm);
+			return new ResponseEntity<InmuebleEntity>(inm, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+
+		}
 
 	}
 
-	// --DELETE--
+	// ================
+	// ===== DELETE =====
+	// =================
 	@DeleteMapping("/{id}")
-	public boolean deleteInmueble(@PathVariable("id") int id) {
+	public ResponseEntity<?> deleteInm(@PathVariable("id") UUID id) {
 
-		return inmuebleService.deleteInmueble(id);
+		try {
+			inmService.deleteInm(id);
+			return new ResponseEntity<InmuebleEntity>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+
+		}
 	}
-	
-	
 
-
-
-	// --GET--
-	
+	// ===================
+	// ===== GET ALL =====
+	// ===================
+	// ---LISTADO DE INMUEBLES PAGINADO---
 	@GetMapping("/listado")
-	public List<InmuebleEntity> getAll(Pageable pageable) {
-		return inmuebleService.getAllInmueble(pageable);
+	public Page<InmuebleEntity> getAllInm(Pageable pageable) {
+		return inmService.getAllInm(pageable);
 	}
 
-	// --GET--
-	// Template de Inmueble con Propietario Inmueble
+	// ===================
+	// ===== GET TEMPLATE =====
+	// ===================
+	// ---TEMPLATE INMUEBLE CON PROPIETARIO DEL INMUEBLE---
 	@GetMapping("/inmueble-con-propietario-inmueble/id-prop-inm/{id}")
-	public InmWithPropInmResponseTemplate getInmWithPropInmId(@PathVariable("id") int idInmueble) {
+	public InmWithPropInmResponseTemplate getInmWithPropInmId(@PathVariable("id") UUID idInmueble) {
 
-		return (InmWithPropInmResponseTemplate) inmuebleService.findByInmWithPropInm(idInmueble);
+		return (InmWithPropInmResponseTemplate) inmService.findByInmWithPropInm(idInmueble);
 	}
 
-	// ======== MÉTODOS DE BUSQUEDA ============
+	// ==================================================
+	// ============= MÉTODOS HTTP BÚSQUEDA =============
+	// ==================================================
 
-	// --GET--
+	// ===================
+	// ===== GET BY ID ===
+	// ===================
+	// ---INMUEBLE POR ID---
 	@GetMapping("/id/{id}")
-	public InmuebleEntity findById(@PathVariable("id") int id) {
+	public InmuebleEntity findById(@PathVariable("id") UUID id) {
 
-		return inmuebleService.findById(id);
+		return inmService.findById(id);
 
 	}
 
-	// --GET--
+	// ==============================
+	// ===== GET BY ID-PROPIETARIO===
+	// ==============================
+	// ---INMUEBLES SEGUN ID DE PROPIETARIO ---
 	@GetMapping("/id-propietario-inmueble/{id}")
-	public List<InmuebleEntity> findByIdPropietarioInmueble(@PathVariable("id") int id) {
+	public Page<InmuebleEntity> findByIdPropInm(@PathVariable("id") UUID id, Pageable pageable) {
 
-		return inmuebleService.findByIdPropietarioInmueble(id);
+		return inmService.findByIdPropInm(id, pageable);
 
 	}
 
-	// --GET--
+	// ============================
+	// ===== GET BY DESCRIPCION ===
+	// ============================
+	// ---INMUEBLE POR DESCRIPCION---
 	@GetMapping("/descripcion/{descripcion}")
-	public List<InmuebleEntity> findByDescripcion(@PathVariable("descripcion") String descripcion) {
+	public Page<InmuebleEntity> findByDescr(@PathVariable("descripcion") String descripcion, Pageable pageable) {
 
-		return inmuebleService.findByDescripcion(descripcion);
+		return inmService.findByDescr(descripcion, pageable);
 
 	}
 
-	// --GET--
+	// =====================
+	// ===== GET BY TIPO ===
+	// =====================
+	// ---INMUEBLE POR TIPO---
 	@GetMapping("/tipo/{tipo}")
-	public List<InmuebleEntity> findByTipo(@PathVariable("tipo") String tipo) {
+	public Page<InmuebleEntity> findByTipo(@PathVariable("tipo") String tipo, Pageable pageable) {
 
-		return inmuebleService.findByTipo(tipo);
+		return inmService.findByTipo(tipo, pageable);
 
 	}
 
-	// --GET--
+	// ================================
+	// ===== GET BY ESTADO-INMUEBLE ===
+	// ================================
+	// ---INMUEBLE POR ESTADO DEL INMUEBLE---
+	//Usando @RequestParam junto con la variable definida del enum 
+	//usaremos el Convertidor incorporado Spring Enum
 	@GetMapping("/estado-inmueble/{estado}")
-	public List<InmuebleEntity> findByEstadoInmuebleEnum(
-			@PathVariable("estado") EstadoInmuebleEnum estado) {
+	public Page<InmuebleEntity> findByEstadoInmEnum(@PathVariable("estado") EstadoInmuebleEnum estado, Pageable pageable) {
 
-		return inmuebleService.findByEstadoInmuebleEnum(estado);
+		return inmService.findByEstadoInmEnum(estado, pageable);
 
 	}
 
-	// --GET--
+	// =======================
+	// ===== GET BY PRECIO ===
+	// =======================
+	// ---INMUEBLE POR PRECIO---
 	@GetMapping("/precio/{precio}")
-	public List<InmuebleEntity> findByPrecioInmueble(@PathVariable("precio") double precio) {
+	public Page<InmuebleEntity> findByPrecInm(@PathVariable("precio") double precio, Pageable pageable) {
 
-		return inmuebleService.findByPrecioInmueble(precio);
+		return inmService.findByPrecInm(precio, pageable);
 
 	}
 
-	// --GET--
+	// ==========================
+	// ===== GET BY DIRECCION ===
+	// ==========================
+	// ---INMUEBLE POR DIRECCION---
 	@GetMapping("/direccion/{direccion}")
-	public List<InmuebleEntity> findByDireccion(@PathVariable("direccion") String direccion) {
+	public Page<InmuebleEntity> findByDirec(@PathVariable("direccion") String direccion, Pageable pageable) {
 
-		return inmuebleService.findByDireccion(direccion);
+		return inmService.findByDirec(direccion, pageable);
 
 	}
 
-	// --GET--
+	// ==========================
+	// ===== GET BY UBICACION ===
+	// ==========================
+	// ---INMUEBLE POR UBICACION---
 	@GetMapping("/ubicacion/{ubicacion}")
-	public List<InmuebleEntity> findByUbicacion(@PathVariable("ubicacion") String ubicacion) {
+	public Page<InmuebleEntity> findByUbic(@PathVariable("ubicacion") String ubicacion, Pageable pageable) {
 
-		return inmuebleService.findByUbicacion(ubicacion);
+		return inmService.findByUbic(ubicacion, pageable);
 
 	}
 
-	// --GET--
+	// ==========================
+	// ===== GET BY SITIO-WEB ===
+	// ==========================
+	// ---INMUEBLE POR SITIO-WEB---
 	@GetMapping("/sitio-web/{sitio-web}")
-	public List<InmuebleEntity> findBySitioWeb(@PathVariable("sitio-web") String sitioWeb) {
+	public Page<InmuebleEntity> findBySitWeb(@PathVariable("sitio-web") String sitioWeb, Pageable pageable) {
 
-		return inmuebleService.findBySitioWeb(sitioWeb);
+		return inmService.findBySitWeb(sitioWeb, pageable);
 
 	}
 

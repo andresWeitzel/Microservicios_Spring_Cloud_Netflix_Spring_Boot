@@ -1,5 +1,6 @@
 package com.inmueble.service.controller;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -23,7 +24,7 @@ import com.inmueble.service.entity.PropietarioInmueble;
 import com.inmueble.service.service.PropietarioInmuebleService;
 
 @RestController
-@RequestMapping("/propietarios-inmuebles")
+@RequestMapping("/v1/propietarios-inmuebles")
 public class PropietarioInmuebleController {
 
 	@Autowired
@@ -144,8 +145,7 @@ public class PropietarioInmuebleController {
 	// ---LISTADO DE PROPIETARIOS O PROPIETARIO POR FECHA DE NAC---
 	@GetMapping("/fecha-nacimiento/{fecha}")
 	public Page<PropietarioInmueble> findByFechaNac(
-			@PathVariable("fecha") @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate fechaNacimiento,
-			Pageable pageable) {
+			@PathVariable("fecha") Date fechaNacimiento, Pageable pageable) {
 
 		return propInmService.findByFechaNac(fechaNacimiento, pageable);
 
