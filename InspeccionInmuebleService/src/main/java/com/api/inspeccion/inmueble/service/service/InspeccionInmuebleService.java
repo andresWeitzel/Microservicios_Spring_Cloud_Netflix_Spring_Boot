@@ -1,11 +1,12 @@
 package com.api.inspeccion.inmueble.service.service;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
+import java.sql.Date;
+import java.sql.Time;
+import java.util.UUID;
 
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -34,76 +35,76 @@ public class InspeccionInmuebleService {
 	// ============ MÉTODOS CRUD ==================
 
 	// ----INSERT----
-	public boolean addInspeccionInmueble(InspeccionInmuebleEntity inspeccionInmueble) {
+	public void addInspeccionInmueble(InspeccionInmuebleEntity inspeccionInmueble) {
 		try {
 			if (inspeccionInmueble == null) {
 				logger.error("ERROR addInspeccionInmueble : LA INSPECCION DEL INMUEBLE " + inspeccionInmueble
 						+ " ES NULO!!");
-				return false;
+			
 			} else {
 				iInspeccionInmuebleRepository.save(inspeccionInmueble);
-				return true;
+			
 			}
 
 		} catch (Exception e) {
 			logger.error("ERROR addInspeccionInmueble : LA INSPECCION DEL INMUEBLE " + inspeccionInmueble
 					+ " NO SE HA INSERTADO EN LA DB!!");
-			return false;
+		
 		}
 	}
 
 	// ----UPDATE----
-	public boolean updateInspeccionInmueble(InspeccionInmuebleEntity inspeccionInmueble) {
+	public void updateInspeccionInmueble(InspeccionInmuebleEntity inspeccionInmueble) {
 		try {
 			if (inspeccionInmueble == null) {
 				logger.error("ERROR updateInspeccionInmueble : LA INSPECCION DEL INMUEBLE " + inspeccionInmueble
 						+ " ES NULO!!");
-				return false;
+				
 			} else {
 				iInspeccionInmuebleRepository.save(inspeccionInmueble);
-				return true;
+				
 			}
 
 		} catch (Exception e) {
 			logger.error("ERROR updateInspeccionInmueble : LA INSPECCION DEL INMUEBLE " + inspeccionInmueble
 					+ " NO SE HA ACTUALIZADO EN LA DB!!");
-			return false;
+			
 		}
 	}
 
 	// ----DELETE----
-	public boolean deleteInspeccionInmueble(int id) {
+	public void deleteInspeccionInmueble(UUID id) {
 		try {
-			if (id == 0) {
+			if (id == null) {
 				logger.error("ERROR deleteInspeccionInmueble : EL ID DE LA INSPECCION DEL INMUEBLE ES CERO!!");
-				return false;
+				
 			} else {
 				iInspeccionInmuebleRepository.delete(iInspeccionInmuebleRepository.findById(id));
-				return true;
+				
 			}
 
 		} catch (Exception e) {
 			logger.error("ERROR deleteInspeccionInmueble : LA INSPECCION DEL INMUEBLE CON EL ID " + id
 					+ " NO SE HA ELIMINADO DE LA DB!!");
-			return false;
+			
 		}
 	}
 
 	// ----SELECT----
-	public List<InspeccionInmuebleEntity> getAllInspeccionInmueble(Pageable pageable) {
+	public Page<InspeccionInmuebleEntity> getAllInspeccionInmueble(Pageable pageable) {
 
-		return iInspeccionInmuebleRepository.findAll(pageable).getContent();
+		return iInspeccionInmuebleRepository.findAll(pageable);
 	}
 	
 
 	// ------TEMPLATE INMUEBLE WITH PROPIETARIO_INMUEBLE FIND BY ID---
-	public InspecInmWithInmuebleResponseTemplate findByInspecInmWithInmueble(int idInmueble) {
+	public InspecInmWithInmuebleResponseTemplate findByInspecInmWithInmueble(UUID idInmueble) {
 		
 		//Template microservices
 		InspecInmWithInmuebleResponseTemplate inspecInmWithInmuebleTemplate = new InspecInmWithInmuebleResponseTemplate();
 		
 		//Buscamos el objeto inspeccion inmueble
-		InspeccionInmuebleEntity inspeccionInmueble = iInspeccionInmuebleRepository.findByIdInmueble(idInmueble);
+		InspeccionInmuebleEntity inspeccionInmueble = iInspeccionInmuebleRepository.findById(idInmueble);
 		
 		//Buscamos el objeto inmueble
 		InmuebleVO inmuebleVO = 
@@ -124,58 +125,58 @@ public class InspeccionInmuebleService {
 	// ============ MÉTODOS DE BÚSQUEDA ==================
 
 	// ----ID-----
-	public InspeccionInmuebleEntity findById(int id) {
+	public InspeccionInmuebleEntity findById(UUID id) {
 		return iInspeccionInmuebleRepository.findById(id);
 	}
 
 	// ----ID INMUEBLE-----
-	public InspeccionInmuebleEntity findByIdInmueble(int idInmueble) {
-		return iInspeccionInmuebleRepository.findById(idInmueble);
+	public InspeccionInmuebleEntity findByIdInmueble(UUID idInmueble) {
+		return iInspeccionInmuebleRepository.findByIdInmueble(idInmueble);
 	}
 
 	// ---- ESTADO INSPECCION-----
-	public List<InspeccionInmuebleEntity> findByEstadoInspeccion(EstadoInspeccionEnum estadoInspeccion) {
-		return iInspeccionInmuebleRepository.findByEstadoInspeccion(estadoInspeccion);
+	public Page<InspeccionInmuebleEntity> findByEstadoInspeccion(EstadoInspeccionEnum estadoInspeccion, Pageable pageable) {
+		return iInspeccionInmuebleRepository.findByEstadoInspeccion(estadoInspeccion, pageable);
 	}
 
 	// ---- TIPO INSPECCION-----
-	public List<InspeccionInmuebleEntity> findByTipoInspeccion(TipoInspeccionEnum tipoInspeccion) {
-		return iInspeccionInmuebleRepository.findByTipoInspeccion(tipoInspeccion);
+	public Page<InspeccionInmuebleEntity> findByTipoInspeccion(TipoInspeccionEnum tipoInspeccion, Pageable pageable) {
+		return iInspeccionInmuebleRepository.findByTipoInspeccion(tipoInspeccion, pageable);
 	}
 
 	// ---- DESCRIPCION INSPECCION-----
-	public List<InspeccionInmuebleEntity> findByDescripcionInspeccion(String descripcionInspeccion) {
-		return iInspeccionInmuebleRepository.findByDescripcionInspeccion(descripcionInspeccion);
+	public Page<InspeccionInmuebleEntity> findByDescripcionInspeccion(String descripcionInspeccion, Pageable pageable) {
+		return iInspeccionInmuebleRepository.findByDescripcionInspeccion(descripcionInspeccion, pageable);
 	}
 
 	// ---- EMPRESA-----
-	public List<InspeccionInmuebleEntity> findByEmpresa(String empresa) {
-		return iInspeccionInmuebleRepository.findByEmpresa(empresa);
+	public Page<InspeccionInmuebleEntity> findByEmpresa(String empresa, Pageable pageable) {
+		return iInspeccionInmuebleRepository.findByEmpresa(empresa, pageable);
 	}
 
 	// ---- DIRECCION -----
-	public List<InspeccionInmuebleEntity> findByDireccion(String direccion) {
-		return iInspeccionInmuebleRepository.findByDireccion(direccion);
+	public Page<InspeccionInmuebleEntity> findByDireccion(String direccion, Pageable pageable) {
+		return iInspeccionInmuebleRepository.findByDireccion(direccion, pageable);
 	}
 
 	// ---- NRO TELEFONO -----
-	public List<InspeccionInmuebleEntity> findByNroTelefono(String nroTelefono) {
-		return iInspeccionInmuebleRepository.findByNroTelefono(nroTelefono);
+	public Page<InspeccionInmuebleEntity> findByNroTelefono(String nroTelefono, Pageable pageable) {
+		return iInspeccionInmuebleRepository.findByNroTelefono(nroTelefono, pageable);
 	}
 
 	// ---- COSTO -----
-	public List<InspeccionInmuebleEntity> findByCosto(double costo) {
-		return iInspeccionInmuebleRepository.findByCosto(costo);
+	public Page<InspeccionInmuebleEntity> findByCosto(double costo, Pageable pageable) {
+		return iInspeccionInmuebleRepository.findByCosto(costo, pageable);
 	}
 
 	// ---- FECHA -----
-	public List<InspeccionInmuebleEntity> findByFecha(LocalDate fecha) {
-		return iInspeccionInmuebleRepository.findByFecha(fecha);
+	public Page<InspeccionInmuebleEntity> findByFecha(Date fecha, Pageable pageable) {
+		return iInspeccionInmuebleRepository.findByFecha(fecha, pageable);
 	}
 
 	// ---- HORA -----
-	public List<InspeccionInmuebleEntity> findByHora(LocalTime hora) {
-		return iInspeccionInmuebleRepository.findByHora(hora);
+	public Page<InspeccionInmuebleEntity> findByHora(Time hora, Pageable pageable) {
+		return iInspeccionInmuebleRepository.findByHora(hora, pageable);
 	}
 
 }

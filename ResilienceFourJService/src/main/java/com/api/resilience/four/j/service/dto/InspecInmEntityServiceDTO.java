@@ -1,8 +1,8 @@
 package com.api.resilience.four.j.service.dto;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
+import java.sql.Date;
+import java.sql.Time;
+import java.util.UUID;
 
 import com.api.resilience.four.j.service.enums.EstadoInspeccionEnum;
 import com.api.resilience.four.j.service.enums.TipoInspeccionEnum;
@@ -16,9 +16,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class InspecInmEntityServiceDTO {
 
-	private int id;
+	private UUID id;
 
-	private int idInmueble;
+	private UUID idInmueble;
 
 	private EstadoInspeccionEnum estadoInspeccion;
 
@@ -34,8 +34,8 @@ public class InspecInmEntityServiceDTO {
 
 	private double costo;
 
-	private LocalDate fecha;
+	private Date fecha;
 
-	private LocalTime hora;
+	private Time hora;
 
 }

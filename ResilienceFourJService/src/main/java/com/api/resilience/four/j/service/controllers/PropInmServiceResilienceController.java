@@ -1,5 +1,7 @@
 package com.api.resilience.four.j.service.controllers;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +18,7 @@ import com.api.resilience.four.j.service.dto.PropInmEntityServiceDTO;
 import com.api.resilience.four.j.service.services.PropInmServiceResilienceService;
 
 @RestController
-@RequestMapping("/propietario-inmueble-service")
+@RequestMapping("/v1/propietario-inmueble-service")
 public class PropInmServiceResilienceController {
 
 	@Autowired
@@ -40,7 +42,7 @@ public class PropInmServiceResilienceController {
 
 	// --DELETE PROPIETARIO INMUEBLE--
 	@DeleteMapping(value = "/{id}")
-	public String propInmServiceDeleteInmueble(@PathVariable("id") int id) {
+	public String propInmServiceDeleteInmueble(@PathVariable("id") UUID id) {
 		return propInmServResil.propInmServiceDeleteInmueble(id);
 
 	}

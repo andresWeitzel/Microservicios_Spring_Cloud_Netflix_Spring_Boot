@@ -95,7 +95,7 @@ public class InmuebleService {
 		InmWithPropInmResponseTemplate inmWithPropInmTemplate = new InmWithPropInmResponseTemplate();
 
 		// buscamos el objeto inmueble
-		InmuebleEntity inmueble = iInmRepository.getById(idInm);
+		InmuebleEntity inmueble = iInmRepository.findById(idInm);
 
 		// buscamos el objeto Prop Inm
 		PropietarioInmuebleVO propietarioInmuebleVO = restTemplate.getForObject(

@@ -1,5 +1,7 @@
 package com.api.resilience.four.j.service.services;
 
+import java.util.UUID;
+
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +28,7 @@ public class InspecInmServiceResilienceService {
 	// ======== VARS/CONST ============
 
 		// Devolveremos la url con el puerto del api gateway y el microservicio
-		private static final String INSPECCION_INMUEBLE_SERVICE_URL = "http://localhost:8095/inspecciones-inmuebles/";
+		private static final String INSPECCION_INMUEBLE_SERVICE_URL = "http://localhost:8095/v1/inspecciones-inmuebles/";
 
 		// nombre del servicio que usamos para el patron circuit breaker
 		private static final String INSPECCION_INMUEBLE_SERVICE = "INSPECCION-INMUEBLE-SERVICE";
@@ -65,7 +67,7 @@ public class InspecInmServiceResilienceService {
 		@RateLimiter(name = INSPECCION_INMUEBLE_SERVICE, fallbackMethod = "inspecInmuebleServiceFallBackRateLimit")
 		@Retry(name = INSPECCION_INMUEBLE_SERVICE, fallbackMethod = "inspecInmuebleServiceFallBackRetry")
 		@Bulkhead(name = INSPECCION_INMUEBLE_SERVICE, fallbackMethod = "inspecInmuebleServiceFallBackBulkHead")
-		public String inspecInmServiceDeleteInspecInmueble(int id) {
+		public String inspecInmServiceDeleteInspecInmueble(UUID id) {
 
 			// Para este caso se solventa el delete de esta forma ya que esta operacion no
 			// nos permite

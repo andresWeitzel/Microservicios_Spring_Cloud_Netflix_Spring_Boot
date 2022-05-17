@@ -1,6 +1,8 @@
 package com.api.resilience.four.j.service.services;
 
 
+import java.util.UUID;
+
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -28,7 +30,7 @@ public class InmuebleServiceResilienceService {
 
 	//Devolveremos la url con el puerto del api gateway y el microservicio
 	private static final String INMUEBLE_SERVICE_URL
-	= "http://localhost:9191/inmuebles/";
+	= "http://localhost:9191/v1/inmuebles/";
 	
 	
 	//nombre del servicio que usamos para el patron circuit breaker
@@ -69,7 +71,7 @@ public class InmuebleServiceResilienceService {
 		@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
 		@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
 		@Bulkhead(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackBulkHead")
-		public String  inmuebleServiceDeleteInmueble(int id ) {
+		public String  inmuebleServiceDeleteInmueble(UUID id ) {
 			
 			//Para este caso se solventa el delete de esta forma ya que esta operacion no nos permite
 			//devolver un resultado por que el metodo es void a comparacion del postForObject, getForObject
@@ -117,7 +119,7 @@ public class InmuebleServiceResilienceService {
 	@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
 	@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
 	@Bulkhead(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackBulkHead")
-	public String inmuebleServiceGetInmWithPropInm(int id) {
+	public String inmuebleServiceGetInmWithPropInm(UUID id) {
 		
 		String inmuebleServiceURL = INMUEBLE_SERVICE_URL + "inmueble-con-propietario-inmueble/id-prop-inm/"+id;
 		
@@ -134,7 +136,7 @@ public class InmuebleServiceResilienceService {
 	@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
 	@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
 	@Bulkhead(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackBulkHead")
-	public String inmuebleServiceGetById(int idInmueble) {
+	public String inmuebleServiceGetById(UUID idInmueble) {
 		
 		String inmuebleServiceURL = INMUEBLE_SERVICE_URL + "id/"+idInmueble;
 		
@@ -151,7 +153,7 @@ public class InmuebleServiceResilienceService {
 		@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
 		@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
 		@Bulkhead(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackBulkHead")
-		public String inmuebleServiceGetByIdPropInm(int id) {
+		public String inmuebleServiceGetByIdPropInm(UUID id) {
 			
 			String inmuebleServiceURL = INMUEBLE_SERVICE_URL + "id-propietario-inmueble/"+id;
 			

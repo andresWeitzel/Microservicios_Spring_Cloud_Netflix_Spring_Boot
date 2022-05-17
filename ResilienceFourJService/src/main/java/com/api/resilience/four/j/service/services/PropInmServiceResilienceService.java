@@ -1,11 +1,12 @@
 package com.api.resilience.four.j.service.services;
 
+import java.util.UUID;
+
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.api.resilience.four.j.service.dto.InmuebleEntityServiceDTO;
 import com.api.resilience.four.j.service.dto.PropInmEntityServiceDTO;
 
 import io.github.resilience4j.bulkhead.annotation.Bulkhead;
@@ -26,7 +27,7 @@ public class PropInmServiceResilienceService {
 	// ======== VARS/CONST ============
 
 	// Devolveremos la url con el puerto del api gateway y el microservicio
-	private static final String PROPIETARIO_INMUEBLE_SERVICE_URL = "http://localhost:8093/propietarios-inmuebles/";
+	private static final String PROPIETARIO_INMUEBLE_SERVICE_URL = "http://localhost:8093/v1/propietarios-inmuebles/";
 
 	// nombre del servicio que usamos para el patron circuit breaker
 	private static final String PROPIETARIO_INMUEBLE_SERVICE = "PROPIETARIO_INMUEBLE-SERVICE";
@@ -63,7 +64,7 @@ public class PropInmServiceResilienceService {
 	@RateLimiter(name = PROPIETARIO_INMUEBLE_SERVICE, fallbackMethod = "propInmuebleServiceFallBackRateLimit")
 	@Retry(name = PROPIETARIO_INMUEBLE_SERVICE, fallbackMethod = "propInmuebleServiceFallBackRetry")
 	@Bulkhead(name = PROPIETARIO_INMUEBLE_SERVICE, fallbackMethod = "propInmuebleServiceFallBackBulkHead")
-	public String propInmServiceDeleteInmueble(int id) {
+	public String propInmServiceDeleteInmueble(UUID id) {
 
 		// Para este caso se solventa el delete de esta forma ya que esta operacion no
 		// nos permite
@@ -100,23 +101,7 @@ public class PropInmServiceResilienceService {
 		return restTemplate.getForObject(propInmuebleServiceListURL, String.class);
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	// ======== MÉTODOS FALL BACK ============
 
 	// --CIRCUIT BREAKER--

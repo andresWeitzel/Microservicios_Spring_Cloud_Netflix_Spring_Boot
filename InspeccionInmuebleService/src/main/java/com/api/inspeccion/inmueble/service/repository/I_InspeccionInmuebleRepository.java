@@ -1,13 +1,14 @@
 package com.api.inspeccion.inmueble.service.repository;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
+import java.sql.Date;
+import java.sql.Time;
+import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
@@ -19,27 +20,31 @@ import com.api.inspeccion.inmueble.service.enums.TipoInspeccionEnum;
 @Repository
 public interface I_InspeccionInmuebleRepository extends JpaRepository<InspeccionInmuebleEntity, Serializable>, PagingAndSortingRepository<InspeccionInmuebleEntity, Serializable>  {
 	
-	public abstract InspeccionInmuebleEntity findById(int id);
+	public abstract InspeccionInmuebleEntity findById(UUID id);
 	
-	public abstract InspeccionInmuebleEntity findByIdInmueble(int idInmueble);
+	public abstract InspeccionInmuebleEntity findByIdInmueble(UUID idInmueble);
 	
-	public abstract List<InspeccionInmuebleEntity> findByEstadoInspeccion(EstadoInspeccionEnum estadoInspeccion);
+	public abstract Page<InspeccionInmuebleEntity> findByEstadoInspeccion(EstadoInspeccionEnum estadoInspeccion, Pageable pageable);
 	
-	public abstract List<InspeccionInmuebleEntity> findByTipoInspeccion(TipoInspeccionEnum tipoInspeccion);
+	public abstract Page<InspeccionInmuebleEntity> findByTipoInspeccion(TipoInspeccionEnum tipoInspeccion, Pageable pageable);
 	
-	public abstract List<InspeccionInmuebleEntity> findByDescripcionInspeccion(String descripcionInspeccion);
+	@Query("select c from InspeccionInmuebleEntity c where c.descripcionInspeccion like %:descripcionInspeccion%")
+	public abstract Page<InspeccionInmuebleEntity> findByDescripcionInspeccion(String descripcionInspeccion, Pageable pageable);
 	
-	public abstract List<InspeccionInmuebleEntity> findByEmpresa(String empresa);
+	@Query("select c from InspeccionInmuebleEntity c where c.empresa like %:empresa%")
+	public abstract Page<InspeccionInmuebleEntity> findByEmpresa(String empresa, Pageable pageable);
 	
-	public abstract List<InspeccionInmuebleEntity> findByDireccion(String direccion);
+	@Query("select c from InspeccionInmuebleEntity c where c.direccion like %:direccion%")
+	public abstract Page<InspeccionInmuebleEntity> findByDireccion(String direccion, Pageable pageable);
 	
-	public abstract List<InspeccionInmuebleEntity> findByNroTelefono(String nroTelefono);
+	@Query("select c from InspeccionInmuebleEntity c where c.nroTelefono like %:nroTelefono%")
+	public abstract Page<InspeccionInmuebleEntity> findByNroTelefono(String nroTelefono, Pageable pageable);
 	
-	public abstract List<InspeccionInmuebleEntity> findByCosto(double costo);
+	public abstract Page<InspeccionInmuebleEntity> findByCosto(double costo, Pageable pageable);
 	
-	public abstract List<InspeccionInmuebleEntity> findByFecha(LocalDate fecha);
+	public abstract Page<InspeccionInmuebleEntity> findByFecha(Date fecha, Pageable pageable);
 	
-	public abstract List<InspeccionInmuebleEntity> findByHora(LocalTime hora);
+	public abstract Page<InspeccionInmuebleEntity> findByHora(Time hora, Pageable pageable);
 	
 	public abstract Page<InspeccionInmuebleEntity> findAll(Pageable pageable);
 

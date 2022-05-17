@@ -1,6 +1,7 @@
 package com.api.resilience.four.j.service.dto;
 
-import java.time.LocalDate;
+import java.sql.Date;
+import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PropInmEntityServiceDTO {
 
-	private int id;
+	private UUID id;
 
 	private String nombre;
 
@@ -19,17 +20,17 @@ public class PropInmEntityServiceDTO {
 
 	private int edad;
 
-	private LocalDate fechaNacimiento;
+	private Date fechaNac;
 
-	private String tipoDocumento;
+	private String tipoDoc;
 
-	private String nroDocumento;
+	private String nroDoc;
 
-	private String direccion;
+	private String direc;
 
-	private String nroTelefonoPrincipal;
+	private String nroTelPrinc;
 
-	private String nroTelefonoSecundario;
+	private String nroTelSec;
 
 	private String email;
 

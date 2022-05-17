@@ -1,5 +1,7 @@
 package com.api.resilience.four.j.service.controllers;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +19,7 @@ import com.api.resilience.four.j.service.enums.EstadoInmuebleEnum;
 import com.api.resilience.four.j.service.services.InmuebleServiceResilienceService;
 
 @RestController
-@RequestMapping("/inmueble-service")
+@RequestMapping("/v1/inmueble-service")
 public class InmuebleServiceResilienceController {
 
 	@Autowired
@@ -41,7 +43,7 @@ public class InmuebleServiceResilienceController {
 
 	// --DELETE INMUEBLE--
 	@DeleteMapping(value = "/{id}")
-	public String inmuebleServiceDeleteInmueble(@PathVariable("id") int id ) {
+	public String inmuebleServiceDeleteInmueble(@PathVariable("id") UUID id ) {
 		return inmServResil.inmuebleServiceDeleteInmueble(id);
 	}
 	
@@ -56,17 +58,17 @@ public class InmuebleServiceResilienceController {
 	
 
 	@GetMapping(value = "/inmueble-con-propietario-inmueble/{id}")
-	public String inmuebleServiceGetInmWithPropInm(@PathVariable("id") int id) {
+	public String inmuebleServiceGetInmWithPropInm(@PathVariable("id") UUID id) {
 		return inmServResil.inmuebleServiceGetInmWithPropInm(id);
 	}
 
 	@GetMapping(value = "/id/{id}")
-	public String inmuebleServiceGetById(@PathVariable("id") int id) {
+	public String inmuebleServiceGetById(@PathVariable("id") UUID id) {
 		return inmServResil.inmuebleServiceGetById(id);
 	}
 
 	@GetMapping(value = "/id-propietario-inmueble/{id}")
-	public String inmuebleServiceGetByPropInm(@PathVariable("id") int id) {
+	public String inmuebleServiceGetByPropInm(@PathVariable("id") UUID id) {
 		return inmServResil.inmuebleServiceGetByIdPropInm(id);
 	}
 

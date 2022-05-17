@@ -1,5 +1,7 @@
 package com.api.resilience.four.j.service.controllers;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +17,7 @@ import com.api.resilience.four.j.service.dto.InspecInmEntityServiceDTO;
 import com.api.resilience.four.j.service.services.InspecInmServiceResilienceService;
 
 @RestController
-@RequestMapping("/inspeccion-inmueble-service")
+@RequestMapping("/v1/inspeccion-inmueble-service")
 public class InspecInmServiceResilienceController {
 	
 	@Autowired
@@ -40,7 +42,7 @@ public class InspecInmServiceResilienceController {
 
 		// --DELETE INSPECCION INMUEBLE--
 		@DeleteMapping(value = "/{id}")
-		public String inspecInmServiceDeleteInspecInmueble(@PathVariable("id") int id) {
+		public String inspecInmServiceDeleteInspecInmueble(@PathVariable("id") UUID id) {
 			return inspecInmServResil.inspecInmServiceDeleteInspecInmueble(id);
 
 		}

@@ -1,6 +1,6 @@
 package com.inmueble.service.valueobject;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.UUID;
 
 import lombok.AllArgsConstructor;
@@ -22,7 +22,7 @@ public class PropietarioInmuebleVO {
 
 	private int edad;
 
-	private LocalDate fechaNac;
+	private Date fechaNac;
 
 	private String tipoDoc;
 

@@ -29,7 +29,8 @@ public interface I_InmuebleRepository
 
 	@Query("select c from InmuebleEntity c where c.tipo like %:tipo%")
 	public abstract Page<InmuebleEntity> findByTipo(String tipo, Pageable pageable);
-
+	
+	@Query("select c from InmuebleEntity c where c.estadoInmEnum like %:estadoInmEnum%")
 	public abstract Page<InmuebleEntity> findByEstadoInmEnum(EstadoInmuebleEnum estadoInmEnum, Pageable pageable);
 
 	public abstract Page<InmuebleEntity> findByPrecInmUsd(double precioInm, Pageable pageable);
