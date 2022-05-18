@@ -4,14 +4,10 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.inmueble.service.enums.EstadoInmuebleEnum;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,9 +35,8 @@ public class InmuebleEntity {
 	@Column(name="tipo", nullable=false, length=20)
 	private String tipo;
 	
-	@Enumerated(EnumType.STRING)
-	@Column(name="estado_inmueble", nullable=false)
-	private EstadoInmuebleEnum  estadoInmEnum;
+	@Column(name="estado_inmueble", nullable=false, length=20)
+	private String estadoInm;
 	
 	@Column(name="precio_inmueble_usd", nullable=false) 
 	private double precInmUsd;

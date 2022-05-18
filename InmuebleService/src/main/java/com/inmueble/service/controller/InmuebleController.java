@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inmueble.service.entity.InmuebleEntity;
-import com.inmueble.service.enums.EstadoInmuebleEnum;
 import com.inmueble.service.service.InmuebleService;
 import com.inmueble.service.valueobject.InmWithPropInmResponseTemplate;
 
@@ -151,12 +150,10 @@ public class InmuebleController {
 	// ===== GET BY ESTADO-INMUEBLE ===
 	// ================================
 	// ---INMUEBLE POR ESTADO DEL INMUEBLE---
-	//Usando @RequestParam junto con la variable definida del enum 
-	//usaremos el Convertidor incorporado Spring Enum
 	@GetMapping("/estado-inmueble/{estado}")
-	public Page<InmuebleEntity> findByEstadoInmEnum(@PathVariable("estado") EstadoInmuebleEnum estado, Pageable pageable) {
+	public Page<InmuebleEntity> findByEstadoInm(@PathVariable("estado") String estado, Pageable pageable) {
 
-		return inmService.findByEstadoInmEnum(estado, pageable);
+		return inmService.findByEstadoInm(estado, pageable);
 
 	}
 

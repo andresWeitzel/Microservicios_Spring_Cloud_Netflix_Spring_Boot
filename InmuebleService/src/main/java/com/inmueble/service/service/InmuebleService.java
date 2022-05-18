@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.inmueble.service.entity.InmuebleEntity;
-import com.inmueble.service.enums.EstadoInmuebleEnum;
 import com.inmueble.service.repository.I_InmuebleRepository;
 import com.inmueble.service.valueobject.InmWithPropInmResponseTemplate;
 import com.inmueble.service.valueobject.PropietarioInmuebleVO;
@@ -135,8 +134,8 @@ public class InmuebleService {
 	}
 
 	// ---- ESTADO INMUEBLE-----
-	public Page<InmuebleEntity> findByEstadoInmEnum(EstadoInmuebleEnum estadoInmueble, Pageable pageable) {
-		return iInmRepository.findByEstadoInmEnum(estadoInmueble, pageable);
+	public Page<InmuebleEntity> findByEstadoInm(String estadoInmueble, Pageable pageable) {
+		return iInmRepository.findByEstadoInm(estadoInmueble, pageable);
 	}
 
 	// ---- PRECIO INMUEBLE-----

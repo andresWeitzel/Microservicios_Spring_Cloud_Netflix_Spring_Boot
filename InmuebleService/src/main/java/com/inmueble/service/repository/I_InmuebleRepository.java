@@ -11,7 +11,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import com.inmueble.service.entity.InmuebleEntity;
-import com.inmueble.service.enums.EstadoInmuebleEnum;
 
 @Repository
 public interface I_InmuebleRepository
@@ -30,8 +29,8 @@ public interface I_InmuebleRepository
 	@Query("select c from InmuebleEntity c where c.tipo like %:tipo%")
 	public abstract Page<InmuebleEntity> findByTipo(String tipo, Pageable pageable);
 	
-	@Query("select c from InmuebleEntity c where c.estadoInmEnum like %:estadoInmEnum%")
-	public abstract Page<InmuebleEntity> findByEstadoInmEnum(EstadoInmuebleEnum estadoInmEnum, Pageable pageable);
+	@Query("select c from InmuebleEntity c where c.estadoInm like %:estadoInm%")
+	public abstract Page<InmuebleEntity> findByEstadoInm(String estadoInm, Pageable pageable);
 
 	public abstract Page<InmuebleEntity> findByPrecInmUsd(double precioInm, Pageable pageable);
 
