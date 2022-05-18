@@ -30,59 +30,66 @@ public class PropietarioInmuebleService {
 	// ============ MÉTODOS CRUD ==================
 
 	// ----INSERT----
-	public void addPropInm(PropietarioInmueble propInm) {
+	public boolean addPropInm(PropietarioInmueble propInm) {
 		try {
-			//Si es Nulo o Vacio
+			
 			if (propInm == null || propInm.toString().isEmpty()) {
 				logger.error("ERROR addPropietarioInmueble : EL PROPIETARIO DEL INMUEBLE " + propInm
 						+ " ES NULO O VACIO!!");
-			
+				return false;
 			} else {
 				iPropInmRepository.save(propInm);
-				
+				return true;
 			}
 
 		} catch (Exception e) {
 			logger.error("ERROR addInmueble : EL PROPIETARIO DEL INMUEBLE " + propInm
 					+ " NO SE HA INSERTADO EN LA DB!!");
+			return false;
 			
 		}
 	}
 
 	// ----UPDATE----
-	public void updatePropInm(PropietarioInmueble propInm) {
+	public boolean updatePropInm(PropietarioInmueble propInm) {
 		try {
 			
 			if (propInm == null) {
 				logger.error("ERROR updatePropietarioInmueble : EL PROPIETARIO DEL INMUEBLE " + propInm
 						+ " ES NULO!!");
+			return false;
 				
 			} else {
 				iPropInmRepository.save(propInm);
+				return true;
 				
 			}
 
 		} catch (Exception e) {
 			logger.error("ERROR updatePropietarioInmueble : EL PROPIETARIO DEL INMUEBLE " + propInm
 					+ " NO SE HA ACTUALIZADO EN LA DB!!");
+			return false;
 			
 		}
 	}
 
 	// ----DELETE----
-	public void deletePropInm(UUID id) {
+	public boolean deletePropInm(UUID id) {
 		try {
 			if (id == null) {
 				logger.error("ERROR deletePropietarioInmueble : EL ID DEL PROPIETARIO DEL INMUEBLE NO EXISTE!!");
+				return false;
 				
 			} else {
 				iPropInmRepository.deleteById(id);
+				return true;
 				
 			}
 
 		} catch (Exception e) {
 			logger.error("ERROR deletePropietarioInmueble : EL PROPIETARIO DEL INMUEBLE CON EL ID " + id
 					+ " NO SE HA ELIMINADO DE LA DB!!");
+			return false;
 			
 		}
 	}

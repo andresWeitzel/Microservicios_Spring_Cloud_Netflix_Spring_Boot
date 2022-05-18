@@ -41,13 +41,19 @@ public class PropietarioInmuebleController {
 	public ResponseEntity<?> addPropInm(@RequestBody PropietarioInmueble propInm) {
 
 		try {
-			propInmService.addPropInm(propInm);
-			return new ResponseEntity<PropietarioInmueble>(propInm, HttpStatus.OK);
+			boolean propInmCheck = (propInmService.addPropInm(propInm)) ? true : false;
+			
+			if (propInmCheck) {
+				return new ResponseEntity<PropietarioInmueble>(propInm, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<String>("No se ha Insertado el Propietario del Inmueble en la Base de Datos",HttpStatus.UNPROCESSABLE_ENTITY);
+			}
+
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
 
 		}
-
+		
 	}
 
 	// ==============
@@ -57,8 +63,16 @@ public class PropietarioInmuebleController {
 	public ResponseEntity<?> updatePropInm(@RequestBody PropietarioInmueble propInm) {
 
 		try {
-			propInmService.updatePropInm(propInm);
-			return new ResponseEntity<PropietarioInmueble>(propInm, HttpStatus.OK);
+
+			boolean propInmCheck = (propInmService.updatePropInm(propInm)) ? true : false;
+
+			if (propInmCheck) {
+				return new ResponseEntity<PropietarioInmueble>(propInm, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<String>("No se ha Actualizado el Propietario del Inmueble en la Base de Datos",HttpStatus.UNPROCESSABLE_ENTITY);
+			}
+
+			
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
 
@@ -73,8 +87,16 @@ public class PropietarioInmuebleController {
 	public ResponseEntity<?> deletePropInm(@PathVariable("id") UUID id) {
 
 		try {
-			propInmService.deletePropInm(id);
-			return new ResponseEntity<PropietarioInmueble>(HttpStatus.OK);
+			
+			boolean propInmCheck = (propInmService.deletePropInm(id)) ? true : false;
+			
+			if (propInmCheck) {
+				return new ResponseEntity<String>("Se ha Eliminado el Propietario del Inmueble de la Base de Datos",HttpStatus.OK);
+			} else {
+				return new ResponseEntity<String>("No se ha Eliminado el Propietario del Inmueble de la Base de Datos",HttpStatus.UNPROCESSABLE_ENTITY);
+			}
+			
+			
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
 
@@ -144,8 +166,7 @@ public class PropietarioInmuebleController {
 	// =======================
 	// ---LISTADO DE PROPIETARIOS O PROPIETARIO POR FECHA DE NAC---
 	@GetMapping("/fecha-nacimiento/{fecha}")
-	public Page<PropietarioInmueble> findByFechaNac(
-			@PathVariable("fecha") Date fechaNacimiento, Pageable pageable) {
+	public Page<PropietarioInmueble> findByFechaNac(@PathVariable("fecha") Date fechaNacimiento, Pageable pageable) {
 
 		return propInmService.findByFechaNac(fechaNacimiento, pageable);
 
@@ -167,7 +188,7 @@ public class PropietarioInmuebleController {
 	// ===== GET BY NRO DOC ===
 	// =======================
 	// ---LISTADO DE PROPIETARIOS O PROPIETARIO POR NRO DE DOC---
-	@GetMapping("/nro-documento/{nro_documento}")
+	@GetMapping("/numero-documento/{nro_documento}")
 	public Page<PropietarioInmueble> findByNroDoc(@PathVariable("nro_documento") String nroDocumento,
 			Pageable pageable) {
 
@@ -190,7 +211,7 @@ public class PropietarioInmuebleController {
 	// ===== GET BY NRO TEL PRINC ===
 	// ===============================
 	// ---LISTADO DE PROPIETARIOS O PROPIETARIO POR NRO DE TEL PRINC---
-	@GetMapping("/nro-telefono-principal/{nro-tel-princ}")
+	@GetMapping("/numero-telefono-principal/{nro-tel-princ}")
 	public Page<PropietarioInmueble> findByNroTelPrinc(@PathVariable("nro-tel-princ") String nroTelefonoPrincipal,
 			Pageable pageable) {
 
@@ -202,7 +223,7 @@ public class PropietarioInmuebleController {
 	// ===== GET BY NRO TEL SEC ===
 	// ===============================
 	// ---LISTADO DE PROPIETARIOS O PROPIETARIO POR NRO DE TEL SEC---
-	@GetMapping("/nro-telefono-secundario/{nro-tel-sec}")
+	@GetMapping("/numero-telefono-secundario/{nro-tel-sec}")
 	public Page<PropietarioInmueble> findByNroTelSec(@PathVariable("nro-tel-sec") String nroTelefonoSecundario,
 			Pageable pageable) {
 

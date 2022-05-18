@@ -39,8 +39,17 @@ public class InmuebleController {
 	public ResponseEntity<?> addInm(@RequestBody InmuebleEntity inm) {
 
 		try {
+			
+			boolean inmCheck = (inmService.addInm(inm)) ? true : false;
+			
 			inmService.addInm(inm);
-			return new ResponseEntity<InmuebleEntity>(inm, HttpStatus.OK);
+			
+			if (inmCheck) {
+				return new ResponseEntity<InmuebleEntity>(inm, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<String>("No se ha Insertado el Inmueble en la Base de Datos",HttpStatus.UNPROCESSABLE_ENTITY);
+			}
+		
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
 
@@ -55,8 +64,16 @@ public class InmuebleController {
 	public ResponseEntity<?> updateInm(@RequestBody InmuebleEntity inm) {
 
 		try {
-			inmService.updateInm(inm);
-			return new ResponseEntity<InmuebleEntity>(inm, HttpStatus.OK);
+			boolean inmCheck = (inmService.updateInm(inm)) ? true : false;
+			
+			inmService.addInm(inm);
+			
+			if (inmCheck) {
+				return new ResponseEntity<InmuebleEntity>(inm, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<String>("No se ha Actualizado el Inmueble en la Base de Datos",HttpStatus.UNPROCESSABLE_ENTITY);
+			}
+		
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
 
@@ -71,8 +88,14 @@ public class InmuebleController {
 	public ResponseEntity<?> deleteInm(@PathVariable("id") UUID id) {
 
 		try {
-			inmService.deleteInm(id);
-			return new ResponseEntity<InmuebleEntity>(HttpStatus.OK);
+			boolean inmCheck = (inmService.deleteInm(id)) ? true : false;
+			
+			if (inmCheck) {
+				return new ResponseEntity<String>("Se ha Eliminado el Inmueble de la Base de Datos",HttpStatus.OK);
+			} else {
+				return new ResponseEntity<String>("No se ha Eliminado el Inmueble de la Base de Datos",HttpStatus.UNPROCESSABLE_ENTITY);
+			}
+			
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
 

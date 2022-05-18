@@ -30,52 +30,57 @@ public class InmuebleService {
 	// ============ MÉTODOS CRUD ==================
 
 	// ----INSERT----
-	public void addInm(InmuebleEntity inm) {
+	public boolean addInm(InmuebleEntity inm) {
 		try {
 			if (inm == null) {
 				logger.error("ERROR addInmueble : EL INMUEBLE " + inm + " ES NULO!!");
-
+				return false;
 			} else {
 				iInmRepository.save(inm);
+				return true;
 
 			}
 
 		} catch (Exception e) {
 			logger.error("ERROR addInmueble : EL INMUEBLE " + inm + " NO SE HA INSERTADO EN LA DB!!");
+			return false;
 
 		}
 	}
 
 	// ----UPDATE----
-	public void updateInm(InmuebleEntity inm) {
+	public boolean updateInm(InmuebleEntity inm) {
 		try {
 			if (inm == null) {
 				logger.error("ERROR updateInmueble : EL INMUEBLE " + inm + " ES NULO!!");
-				
+				return false;
 			} else {
 				iInmRepository.save(inm);
+				return true;
 				
 			}
 
 		} catch (Exception e) {
 			logger.error("ERROR updateInmueble : EL INMUEBLE " + inm + " NO SE HA ACTUALIZADO EN LA DB!!");
-			
+			return false;
 		}
 	}
 
 	// ----DELETE----
-	public void deleteInm(UUID id) {
+	public boolean deleteInm(UUID id) {
 		try {
 			if (id == null) {
 				logger.error("ERROR deleteInmueble : EL INMUEBLE ES NO EXISTE!!");
-				
+				return false;
 			} else {
 				iInmRepository.deleteById(id);
+				return true;
 				
 			}
 
 		} catch (Exception e) {
 			logger.error("ERROR deleteInmueble : EL ID DEL INMUEBLE " + id + " NO SE HA ELIMINADO DE LA DB!!");
+			return false;
 			
 		}
 	}
