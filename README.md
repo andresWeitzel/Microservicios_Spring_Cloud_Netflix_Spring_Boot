@@ -39,7 +39,15 @@
 
 </br>
 
+### Prueba de Funcionalidad API Rest Microservicio InmuebleService
+* [https://www.youtube.com/watch?v=dpEpQqyBTEw](https://www.youtube.com/watch?v=dpEpQqyBTEw&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=1)
 
+### Prueba de Funcionalidad API Rest Microservicio PropietarioInmuebleService
+* [https://www.youtube.com/watch?v=dpEpQqyBTEw](https://www.youtube.com/watch?v=ahi5WDX19rQ&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=2)
+
+
+
+</br>
 
 #### Servicios en Spring Cloud Eureka Server
 
