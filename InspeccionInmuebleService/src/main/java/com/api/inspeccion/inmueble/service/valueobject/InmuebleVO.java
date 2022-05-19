@@ -3,8 +3,6 @@ package com.api.inspeccion.inmueble.service.valueobject;
 
 import java.util.UUID;
 
-import com.api.inspeccion.inmueble.service.enums.EstadoInmuebleEnum;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,21 +15,20 @@ public class InmuebleVO {
 
 	private UUID id;
 
-	private UUID idPropietarioInmueble;
+	private UUID idPropInm;
 
-	private String descripcion;
+	private String descr;
 
 	private String tipo;
 
-	//Copia del Enumerado del InmuebleService con el Enumerado de nuestro paquete
-	private EstadoInmuebleEnum estadoInmuebleEnum;
+	private String estadoInm;
 
-	private double precioInmuebleUsd;
+	private double precioInmUsd;
 
-	private String direccion;
+	private String direc;
 
-	private String ubicacion;
+	private String ubic;
 
-	private String sitioWeb;
+	private String sitWeb;
 
 }

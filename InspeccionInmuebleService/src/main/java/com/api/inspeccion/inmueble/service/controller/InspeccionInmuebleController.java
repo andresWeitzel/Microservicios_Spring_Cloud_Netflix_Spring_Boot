@@ -18,18 +18,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.inspeccion.inmueble.service.entity.InspeccionInmuebleEntity;
-import com.api.inspeccion.inmueble.service.enums.EstadoInspeccionEnum;
-import com.api.inspeccion.inmueble.service.enums.TipoInspeccionEnum;
+import com.api.inspeccion.inmueble.service.entity.InspeccionInmueble;
 import com.api.inspeccion.inmueble.service.service.InspeccionInmuebleService;
-import com.api.inspeccion.inmueble.service.valueobject.InspecInmWithInmuebleResponseTemplate;
+import com.api.inspeccion.inmueble.service.valueobject.InspInmWithInmResponseTemplate;
 
 @RestController
 @RequestMapping("/v1/inspecciones-inmuebles")
 public class InspeccionInmuebleController {
 
 	@Autowired
-	InspeccionInmuebleService inspeccionInmuebleService;
+	InspeccionInmuebleService inspInmService;
 
 	// ===============================================
 	// ============= MÉTODOS HTTP CRUD ==============
@@ -39,11 +37,20 @@ public class InspeccionInmuebleController {
 	// ===== POST =====
 	// =================
 	@PostMapping("/")
-	public ResponseEntity<?> addInspeccionInmueble(@RequestBody InspeccionInmuebleEntity inspeccionInmueble) {
+	public ResponseEntity<?> addInspInm(@RequestBody InspeccionInmueble inspInm) {
 
 		try {
-			inspeccionInmuebleService.addInspeccionInmueble(inspeccionInmueble);
-			return new ResponseEntity<InspeccionInmuebleEntity>(inspeccionInmueble, HttpStatus.OK);
+
+			boolean inspInmCheck = (inspInmService.addInspInm(inspInm)) ? true : false;
+
+			if (inspInmCheck) {
+				return new ResponseEntity<InspeccionInmueble>(inspInm, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<String>(
+						"No se ha Insertado la Inspección del Inmueble " + "en la Base de datos ",
+						HttpStatus.UNPROCESSABLE_ENTITY);
+			}
+
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
 
@@ -55,11 +62,20 @@ public class InspeccionInmuebleController {
 	// ===== PUT =====
 	// =================
 	@PutMapping("/")
-	public ResponseEntity<?> updatePropietarioInmueble(@RequestBody InspeccionInmuebleEntity inspeccionInmueble) {
+	public ResponseEntity<?> updatePropInm(@RequestBody InspeccionInmueble inspInm) {
 
 		try {
-			inspeccionInmuebleService.updateInspeccionInmueble(inspeccionInmueble);
-			return new ResponseEntity<InspeccionInmuebleEntity>(inspeccionInmueble, HttpStatus.OK);
+
+			boolean inspInmCheck = (inspInmService.addInspInm(inspInm)) ? true : false;
+
+			if (inspInmCheck) {
+				return new ResponseEntity<InspeccionInmueble>(inspInm, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<String>(
+						"No se ha Actualizado la Inspección del Inmueble " + "en la Base de datos ",
+						HttpStatus.UNPROCESSABLE_ENTITY);
+			}
+
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
 
@@ -74,12 +90,20 @@ public class InspeccionInmuebleController {
 	public ResponseEntity<?> deletePropietarioInmueble(@PathVariable("id") UUID id) {
 
 		try {
-			inspeccionInmuebleService.deleteInspeccionInmueble(id);
 
-			return new ResponseEntity<InspeccionInmuebleEntity>(HttpStatus.OK);
+			boolean inspInmCheck = (inspInmService.deleteInspInm(id)) ? true : false;
+
+			if (inspInmCheck) {
+				return new ResponseEntity<String>(
+						"Se ha Eliminado la Inspección del Inmueble " + "de la Base de datos ",
+						HttpStatus.UNPROCESSABLE_ENTITY);
+			} else {
+				return new ResponseEntity<String>(
+						"No se ha Eliminado la Inspección del Inmueble " + "de la Base de datos ",
+						HttpStatus.UNPROCESSABLE_ENTITY);
+			}
 
 		} catch (Exception e) {
-
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
 
 		}
@@ -91,8 +115,8 @@ public class InspeccionInmuebleController {
 	// =================
 	// -- LISTADO DE INSPECCION DE INMUEBLES PAGINADO--
 	@GetMapping("/listado")
-	public Page<InspeccionInmuebleEntity> getAll(Pageable pageable) {
-		return inspeccionInmuebleService.getAllInspeccionInmueble(pageable);
+	public Page<InspeccionInmueble> getAll(Pageable pageable) {
+		return inspInmService.getAllInspInm(pageable);
 	}
 
 	// =====================
@@ -100,10 +124,9 @@ public class InspeccionInmuebleController {
 	// =====================
 	// -- TEMPLATE DE INSPECCIONES INMUEBLES CON INMUEBLES--
 	@GetMapping("/inspeccion-inmueble-con-inmueble/id-inmueble/{idInmueble}")
-	public InspecInmWithInmuebleResponseTemplate getInspInmWithInm(@PathVariable("idInmueble") UUID idInmueble) {
+	public InspInmWithInmResponseTemplate getInspInmWithInm(@PathVariable("idInmueble") UUID idInmueble) {
 
-		return (InspecInmWithInmuebleResponseTemplate) inspeccionInmuebleService
-				.findByInspecInmWithInmueble(idInmueble);
+		return (InspInmWithInmResponseTemplate) inspInmService.findByInspInmWithInm(idInmueble);
 	}
 
 	// ==================================================
@@ -115,9 +138,9 @@ public class InspeccionInmuebleController {
 	// ===================
 	// ---INMUEBLE POR ID---
 	@GetMapping("/id/{id}")
-	public InspeccionInmuebleEntity findById(@PathVariable("id") UUID id) {
+	public InspeccionInmueble findById(@PathVariable("id") UUID id) {
 
-		return inspeccionInmuebleService.findById(id);
+		return inspInmService.findById(id);
 
 	}
 
@@ -125,9 +148,9 @@ public class InspeccionInmuebleController {
 	// ===== GET BY ID INMUEBLE===
 	// ===========================
 	@GetMapping("/id-inmueble/{idInmueble}")
-	public InspeccionInmuebleEntity findByIdInmueble(@PathVariable("idInmueble") UUID idInmueble) {
+	public InspeccionInmueble findByIdInm(@PathVariable("idInmueble") UUID idInmueble) {
 
-		return inspeccionInmuebleService.findByIdInmueble(idInmueble);
+		return inspInmService.findByIdInm(idInmueble);
 
 	}
 
@@ -135,73 +158,74 @@ public class InspeccionInmuebleController {
 	// ===== GET BY ESTADO DE INSPECCION===
 	// ====================================
 	@GetMapping("/estado-inspeccion/{estadoInspeccion}")
-	public Page<InspeccionInmuebleEntity> findByEstadoInspeccion(
-			@PathVariable("estadoInspeccion") EstadoInspeccionEnum estadoInspeccion, Pageable pageable) {
+	public Page<InspeccionInmueble> findByEstadoInsp(
+			@PathVariable("estadoInspeccion") String estadoInsp, Pageable pageable) {
 
-		return inspeccionInmuebleService.findByEstadoInspeccion(estadoInspeccion, pageable);
+		return inspInmService.findByEstadoInsp(estadoInsp, pageable);
 
 	}
 
 	// ====================================
-		// ===== GET BY TIPO DE INSPECCION===
-		// ====================================
+	// ===== GET BY TIPO DE INSPECCION===
+	// ====================================
 	@GetMapping("/tipo-inspeccion/{tipoInspeccion}")
-	public Page<InspeccionInmuebleEntity> findByTipoInspeccion(
-			@PathVariable("tipoInspeccion") TipoInspeccionEnum tipoInspeccion, Pageable pageable) {
+	public Page<InspeccionInmueble> findByTipoInsp(
+			@PathVariable("tipoInspeccion") String tipoInsp, Pageable pageable) {
 
-		return inspeccionInmuebleService.findByTipoInspeccion(tipoInspeccion, pageable);
+		return inspInmService.findByTipoInsp(tipoInsp, pageable);
 
 	}
 
 	// ====================================
-		// ===== GET BY DESCRIPCION DE INSPECCION===
-		// ====================================
+	// ===== GET BY DESCRIPCION DE INSPECCION===
+	// ====================================
 	@GetMapping("/descripcion-inspeccion/{descripcionInspeccion}")
-	public Page<InspeccionInmuebleEntity> findByDescripcionInspeccion(
-			@PathVariable("descripcionInspeccion") String descripcionInspeccion, Pageable pageable) {
+	public Page<InspeccionInmueble> findByDescrInsp(
+			@PathVariable("descripcionInspeccion") String descrInsp, Pageable pageable) {
 
-		return inspeccionInmuebleService.findByDescripcionInspeccion(descripcionInspeccion, pageable);
+		return inspInmService.findByDescrInsp(descrInsp, pageable);
 
 	}
 
 	// --GET--
 	@GetMapping("/empresa/{empresa}")
-	public Page<InspeccionInmuebleEntity> findByEmpresa(@PathVariable("empresa") String empresa, Pageable pageable) {
+	public Page<InspeccionInmueble> findByEmpresa(@PathVariable("empresa") String empresa, Pageable pageable) {
 
-		return inspeccionInmuebleService.findByEmpresa(empresa, pageable);
+		return inspInmService.findByEmpresa(empresa, pageable);
 
 	}
 
 	// --GET--
 	@GetMapping("/direccion/{direccion}")
-	public Page<InspeccionInmuebleEntity> findByDireccion(@PathVariable("direccion") String direccion, Pageable pageable) {
+	public Page<InspeccionInmueble> findByDirec(@PathVariable("direccion") String direccion, Pageable pageable) {
 
-		return inspeccionInmuebleService.findByDireccion(direccion, pageable);
+		return inspInmService.findByDirec(direccion, pageable);
 
 	}
 
 	// --GET--
 	@GetMapping("/nro-telefono/{nroTelefono}")
-	public Page<InspeccionInmuebleEntity> findByNroTelefono(@PathVariable("nroTelefono") String nroTelefono, Pageable pageable) {
-		return inspeccionInmuebleService.findByNroTelefono(nroTelefono, pageable);
+	public Page<InspeccionInmueble> findByNroTel(@PathVariable("nroTelefono") String nroTelefono,
+			Pageable pageable) {
+		return inspInmService.findByNroTel(nroTelefono, pageable);
 	}
 
 	// // --GET--
 	@GetMapping("/costo/{costo}")
-	public Page<InspeccionInmuebleEntity> findByCosto(@PathVariable("costo") double costo, Pageable pageable) {
-		return inspeccionInmuebleService.findByCosto(costo, pageable);
+	public Page<InspeccionInmueble> findByCosto(@PathVariable("costo") double costo, Pageable pageable) {
+		return inspInmService.findByCosto(costo, pageable);
 	}
 
 	// // --GET--
 	@GetMapping("/fecha/{fecha}")
-	public Page<InspeccionInmuebleEntity> findByFecha(@PathVariable("fecha") Date fecha, Pageable pageable) {
-		return inspeccionInmuebleService.findByFecha(fecha, pageable);
+	public Page<InspeccionInmueble> findByFecha(@PathVariable("fecha") Date fecha, Pageable pageable) {
+		return inspInmService.findByFecha(fecha, pageable);
 	}
 
 	// // --GET--
 	@GetMapping("/hora/{hora}")
-	public Page<InspeccionInmuebleEntity> findByHora(@PathVariable("hora") Time hora, Pageable pageable) {
-		return inspeccionInmuebleService.findByHora(hora, pageable);
+	public Page<InspeccionInmueble> findByHora(@PathVariable("hora") Time hora, Pageable pageable) {
+		return inspInmService.findByHora(hora, pageable);
 	}
 
 }

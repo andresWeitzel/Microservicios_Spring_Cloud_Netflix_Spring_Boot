@@ -42,7 +42,6 @@ public class InmuebleController {
 			
 			boolean inmCheck = (inmService.addInm(inm)) ? true : false;
 			
-			inmService.addInm(inm);
 			
 			if (inmCheck) {
 				return new ResponseEntity<InmuebleEntity>(inm, HttpStatus.OK);
@@ -66,7 +65,6 @@ public class InmuebleController {
 		try {
 			boolean inmCheck = (inmService.updateInm(inm)) ? true : false;
 			
-			inmService.addInm(inm);
 			
 			if (inmCheck) {
 				return new ResponseEntity<InmuebleEntity>(inm, HttpStatus.OK);
