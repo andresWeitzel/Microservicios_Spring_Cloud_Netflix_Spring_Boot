@@ -45,6 +45,9 @@
 ### Prueba de Funcionalidad API Rest Microservicio PropietarioInmuebleService
 * [https://www.youtube.com/watch?v=dpEpQqyBTEw](https://www.youtube.com/watch?v=ahi5WDX19rQ&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=2)
 
+### Prueba de Funcionalidad API Rest Microservicio InspeccionInmuebleService
+* [https://www.youtube.com/watch?v=dpEpQqyBTEw](https://www.youtube.com/watch?v=6KeUPebnKu8&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=3&t=2s)
+
 
 
 </br>
