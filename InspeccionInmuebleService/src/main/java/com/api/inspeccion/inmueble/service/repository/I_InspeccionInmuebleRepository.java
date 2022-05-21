@@ -19,7 +19,7 @@ public interface I_InspeccionInmuebleRepository extends JpaRepository<Inspeccion
 	
 	public abstract InspeccionInmueble findById(UUID id);
 	
-	public abstract InspeccionInmueble findByIdInm(UUID idInm);
+	public abstract Page<InspeccionInmueble> findByIdInm(UUID idInm, Pageable pageable);
 	
 	@Query("select c from InspeccionInmueble c where c.estadoInsp like %:estadoInsp%")
 	public abstract Page<InspeccionInmueble> findByEstadoInsp(String estadoInsp, Pageable pageable);

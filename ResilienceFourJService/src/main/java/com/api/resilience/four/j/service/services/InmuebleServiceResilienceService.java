@@ -121,7 +121,7 @@ public class InmuebleServiceResilienceService {
 	@Bulkhead(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackBulkHead")
 	public String inmuebleServiceGetInmWithPropInm(UUID id) {
 		
-		String inmuebleServiceURL = INMUEBLE_SERVICE_URL + "inmueble-con-propietario-inmueble/id-prop-inm/"+id;
+		String inmuebleServiceURL = INMUEBLE_SERVICE_URL + "inmueble-con-propietario-inmueble/id-inm/"+id;
 		
 		//Devolvemos el template con el objeto inmueble
 		return restTemplate.getForObject(inmuebleServiceURL, String.class);

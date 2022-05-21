@@ -41,7 +41,7 @@ public class InspeccionInmuebleService {
 				return false;
 			} else {
 				iInspInmRepository.save(inspecInm);
-				return false;
+				return true;
 			
 			}
 
@@ -114,7 +114,7 @@ public class InspeccionInmuebleService {
 		
 		//Buscamos el objeto inmueble
 		InmuebleVO inmVO = 
-				restTemplate.getForObject("http://INMUEBLE-SERVICE/inmuebles/id/" 
+				restTemplate.getForObject("http://INMUEBLE-SERVICE/v1/inmuebles/id/" 
 						+ inspInm.getIdInm() , InmuebleVO.class); 
 		
 		
@@ -136,8 +136,8 @@ public class InspeccionInmuebleService {
 	}
 
 	// ----ID INMUEBLE-----
-	public InspeccionInmueble findByIdInm (UUID idInm) {
-		return iInspInmRepository.findByIdInm(idInm);
+	public Page<InspeccionInmueble> findByIdInm (UUID idInm, Pageable pageable) {
+		return iInspInmRepository.findByIdInm(idInm, pageable);
 	}
 
 	// ---- ESTADO INSPECCION-----

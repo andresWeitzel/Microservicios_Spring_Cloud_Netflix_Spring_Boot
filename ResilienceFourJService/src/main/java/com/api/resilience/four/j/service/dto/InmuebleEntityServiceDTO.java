@@ -2,8 +2,6 @@ package com.api.resilience.four.j.service.dto;
 
 import java.util.UUID;
 
-import com.api.resilience.four.j.service.enums.EstadoInmuebleEnum;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +19,7 @@ public class InmuebleEntityServiceDTO {
 
 	private String tipo;
 
-	private EstadoInmuebleEnum estadoInmEnum;
+	private String estadoInmEnum;
 
 	private double precInmUsd;
 

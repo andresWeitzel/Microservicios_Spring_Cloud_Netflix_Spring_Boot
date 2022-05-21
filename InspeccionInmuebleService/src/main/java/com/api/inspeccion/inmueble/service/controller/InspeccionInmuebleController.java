@@ -96,7 +96,7 @@ public class InspeccionInmuebleController {
 			if (inspInmCheck) {
 				return new ResponseEntity<String>(
 						"Se ha Eliminado la Inspección del Inmueble " + "de la Base de datos ",
-						HttpStatus.UNPROCESSABLE_ENTITY);
+						HttpStatus.OK);
 			} else {
 				return new ResponseEntity<String>(
 						"No se ha Eliminado la Inspección del Inmueble " + "de la Base de datos ",
@@ -148,9 +148,9 @@ public class InspeccionInmuebleController {
 	// ===== GET BY ID INMUEBLE===
 	// ===========================
 	@GetMapping("/id-inmueble/{idInmueble}")
-	public InspeccionInmueble findByIdInm(@PathVariable("idInmueble") UUID idInmueble) {
+	public Page<InspeccionInmueble> findByIdInm(@PathVariable("idInmueble") UUID idInmueble, Pageable pageable) {
 
-		return inspInmService.findByIdInm(idInmueble);
+		return inspInmService.findByIdInm(idInmueble, pageable);
 
 	}
 

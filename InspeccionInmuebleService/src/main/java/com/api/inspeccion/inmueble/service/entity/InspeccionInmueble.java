@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -24,6 +26,7 @@ public class InspeccionInmueble {
 	@Id
 	@Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
 	@Type(type = "uuid-char")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 
 	@Column(name = "id_inmueble", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
