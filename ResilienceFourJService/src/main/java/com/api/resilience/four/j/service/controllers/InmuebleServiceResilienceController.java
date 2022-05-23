@@ -1,8 +1,10 @@
 package com.api.resilience.four.j.service.controllers;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -49,15 +51,15 @@ public class InmuebleServiceResilienceController {
 	
 	//-- GET ALL INMUEBLE--
 	@GetMapping(value = "/listado")
-	public String inmuebleServiceGetAll() {
-		return inmServResil.inmuebleServiceGetAll();
+	public String inmuebleServiceGetAll(Pageable pageable) {
+		return inmServResil.inmuebleServiceGetAll(pageable);
 	}
 
 	// ======== MÉTODOS DE BUSQUEDA ============
 
 	
 
-	@GetMapping(value = "/inmueble-con-propietario-inmueble/{id}")
+	@GetMapping(value = "/inmueble-con-propietario-inmueble/id-inm/{id}")
 	public String inmuebleServiceGetInmWithPropInm(@PathVariable("id") UUID id) {
 		return inmServResil.inmuebleServiceGetInmWithPropInm(id);
 	}
@@ -67,7 +69,7 @@ public class InmuebleServiceResilienceController {
 		return inmServResil.inmuebleServiceGetById(id);
 	}
 
-	@GetMapping(value = "/id-propietario-inmueble/{id}")
+	@GetMapping(value = "/id-prop-inm/{id}")
 	public String inmuebleServiceGetByPropInm(@PathVariable("id") UUID id) {
 		return inmServResil.inmuebleServiceGetByIdPropInm(id);
 	}
@@ -83,9 +85,9 @@ public class InmuebleServiceResilienceController {
 	}
 
 	@GetMapping(value = "/estado-inmueble/{estado}")
-	public String inmuebleServiceGetByEstadoInmuebleEnum(
-			@PathVariable("estado") EstadoInmuebleEnum estado) {
-		return inmServResil.inmuebleServiceGetByEstadoInmuebleEnum(estado);
+	public String inmuebleServiceGetByEstadoInm(
+			@PathVariable("estado") String estado) {
+		return inmServResil.inmuebleServiceGetByEstadoInm(estado);
 	}
 	
 	@GetMapping(value = "/precio/{precio}")

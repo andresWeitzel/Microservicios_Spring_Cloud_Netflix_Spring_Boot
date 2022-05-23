@@ -22,5 +22,12 @@ public class FallBackMethodController {
 				+ "más de lo esperado. Por favor intente más tarde."; 
 	}
 	
+	@GetMapping("/inspeccionInmuebleServiceFallBack")
+	public String inspeccionInmuebleServiceFallBack () {
+		
+		return "El Microservicio INSPECCION-INMUEBLE-SERVICE está tardando "
+				+ "más de lo esperado. Por favor intente más tarde."; 
+	}
+	
 	
 }

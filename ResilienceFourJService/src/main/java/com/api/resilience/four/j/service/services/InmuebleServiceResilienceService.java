@@ -1,15 +1,19 @@
 package com.api.resilience.four.j.service.services;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import com.api.resilience.four.j.service.dto.InmuebleEntityServiceDTO;
 import com.api.resilience.four.j.service.enums.EstadoInmuebleEnum;
+
+
 
 import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
@@ -103,12 +107,13 @@ public class InmuebleServiceResilienceService {
 	@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
 	@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
 	@Bulkhead(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackBulkHead")
-	public String inmuebleServiceGetAll() {
+	public String inmuebleServiceGetAll(Pageable pageable) {
 		
-		String inmuebleServiceURL = INMUEBLE_SERVICE_URL + "listado";
+		String inmuebleServiceURL = INMUEBLE_SERVICE_URL + "listado" + pageable;
 		
 		//Devolvemos el template con el objeto inmueble
 		return restTemplate.getForObject(inmuebleServiceURL, String.class);
+		
 	}
 	
 	
@@ -196,13 +201,13 @@ public class InmuebleServiceResilienceService {
 				
 			}
 		
-		//-- INMUEBLES POR ESTADO INMUEBLE ENUM --
+		//-- INMUEBLES POR ESTADO INMUEBLE --
 	
 		@CircuitBreaker(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackCircuitBreaker")
 		@RateLimiter(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRateLimit")
 		@Retry(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackRetry")
 		@Bulkhead(name = INMUEBLE_SERVICE , fallbackMethod="inmuebleServiceFallBackBulkHead")
-		public String inmuebleServiceGetByEstadoInmuebleEnum(EstadoInmuebleEnum estado) {
+		public String inmuebleServiceGetByEstadoInm(String estado) {
 			
 			String inmuebleServiceURL = INMUEBLE_SERVICE_URL + "estado-inmueble/"+estado;
 			
