@@ -39,19 +39,19 @@
 </br>
 
 ### EndPoints MicroServicios Por Defecto:
-*http://localhost:8092/v1/inmuebles/
-*http://localhost:8093/v1/propietarios-inmuebles/
-*http://localhost:8095/v1/inspecciones-inmuebles/
+* http://localhost:8092/v1/inmuebles/
+* http://localhost:8093/v1/propietarios-inmuebles/
+* http://localhost:8095/v1/inspecciones-inmuebles/
 
 ### EndPoints MicroServicios con Api Gateway:
-*http://localhost:9191/v1/inmuebles/
-*http://localhost:9191/v1/propietarios-inmuebles/
-*http://localhost:9191/v1/inspecciones-inmuebles/
+* http://localhost:9191/v1/inmuebles/
+* http://localhost:9191/v1/propietarios-inmuebles/
+* http://localhost:9191/v1/inspecciones-inmuebles/
 
 ### EndPoints MicroServicios con ResilienceFourJ:
-*http://localhost:9295/v1/inmueble-service
-*http://localhost:9295/v1/propietario-inmueble-service/
-*http://localhost:9295/v1/inspeccion-inmueble-service/
+* http://localhost:9295/v1/inmueble-service
+* http://localhost:9295/v1/propietario-inmueble-service/
+* http://localhost:9295/v1/inspeccion-inmueble-service/
 
 
 </br>
