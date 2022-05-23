@@ -36,18 +36,39 @@
 | |------------> Servicio Prometheus/Actuator -----> Manejo de los datos de ResilienceFourJ
 |--------------> Servicio Grafana Dashboard -------> Deploy de los datos transferidos por Prometheus
 ```
+</br>
+
+### EndPoints MicroServicios Por Defecto:
+*http://localhost:8092/v1/inmuebles/
+*http://localhost:8093/v1/propietarios-inmuebles/
+*http://localhost:8095/v1/inspecciones-inmuebles/
+
+### EndPoints MicroServicios con Api Gateway:
+*http://localhost:9191/v1/inmuebles/
+*http://localhost:9191/v1/propietarios-inmuebles/
+*http://localhost:9191/v1/inspecciones-inmuebles/
+
+### EndPoints MicroServicios con ResilienceFourJ:
+*http://localhost:9295/v1/inmueble-service
+*http://localhost:9295/v1/propietario-inmueble-service/
+*http://localhost:9295/v1/inspeccion-inmueble-service/
+
 
 </br>
 
-### Prueba de Funcionalidad API Rest Microservicio InmuebleService
-* [https://www.youtube.com/watch?v=dpEpQqyBTEw](https://www.youtube.com/watch?v=dpEpQqyBTEw&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=1)
+### Prueba de Funcionalidad API's Rest Microservicios Por Defecto
 
-### Prueba de Funcionalidad API Rest Microservicio PropietarioInmuebleService
-* [https://www.youtube.com/watch?v=dpEpQqyBTEw](https://www.youtube.com/watch?v=ahi5WDX19rQ&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=2)
+* Microservicio Inmueble Service : [https://www.youtube.com/watch?v=dpEpQqyBTEw](https://www.youtube.com/watch?v=dpEpQqyBTEw&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=1)
 
-### Prueba de Funcionalidad API Rest Microservicio InspeccionInmuebleService
-* [https://www.youtube.com/watch?v=dpEpQqyBTEw](https://www.youtube.com/watch?v=6KeUPebnKu8&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=3&t=2s)
+* Microservicio Propietario Inmueble Service :  [https://www.youtube.com/watch?v=dpEpQqyBTEw](https://www.youtube.com/watch?v=ahi5WDX19rQ&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=2)
 
+* Microservicio Inspeccion Inmueble Service : [https://www.youtube.com/watch?v=dpEpQqyBTEw](https://www.youtube.com/watch?v=6KeUPebnKu8&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=3&t=2s)
+
+</br>
+
+### Prueba de Funcionalidad API's Rest Microservicios con Api Gateway
+
+* Microservicios : [https://www.youtube.com/watch?v=kkjxv7HMlNI](https://www.youtube.com/watch?v=kkjxv7HMlNI&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=4)
 
 
 </br>
