@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.api.resilience.four.j.service.dto.PropInmEntityServiceDTO;
+import com.api.resilience.four.j.service.dto.PropInmResilEntityDTO;
 
 import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
@@ -15,14 +15,13 @@ import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 
 @Service
-public class PropInmServiceResilienceService {
+public class PropInmResilService {
 
 	@Autowired
 	private RestTemplate restTemplate;
 
 	// ============= LOGS ========================
-	private static final Logger logger = org.apache.logging.log4j.LogManager
-			.getLogger(PropInmServiceResilienceService.class);
+	private static final Logger logger = org.apache.logging.log4j.LogManager.getLogger(PropInmResilService.class);
 
 	// ======== VARS/CONST ============
 
@@ -32,34 +31,51 @@ public class PropInmServiceResilienceService {
 	// nombre del servicio que usamos para el patron circuit breaker
 	private static final String PROPIETARIO_INMUEBLE_SERVICE = "PROPIETARIO_INMUEBLE-SERVICE";
 
-	// ========= MÉTODOS CRUD ============
+	// ===============================================
+	// ============= MÉTODOS HTTP CRUD ==============
+	// ===============================================
 
-	// --ADD PROPIETARIO INMUEBLE--
-
+	// ========================
+	// ===== ADD INMUEBLE =====
+	// ========================
 	@CircuitBreaker(name = PROPIETARIO_INMUEBLE_SERVICE, fallbackMethod = "propInmuebleServiceFallBackCircuitBreaker")
 	@RateLimiter(name = PROPIETARIO_INMUEBLE_SERVICE, fallbackMethod = "propInmuebleServiceFallBackRateLimit")
 	@Retry(name = PROPIETARIO_INMUEBLE_SERVICE, fallbackMethod = "propInmuebleServiceFallBackRetry")
 	@Bulkhead(name = PROPIETARIO_INMUEBLE_SERVICE, fallbackMethod = "propInmuebleServiceFallBackBulkHead")
-	public String propInmServiceAddInmueble(PropInmEntityServiceDTO propInm) {
+	public String propInmServiceAddInmueble(PropInmResilEntityDTO propInm) {
 
-		// Devolvemos el template con el objeto de propietario inmueble
-		return restTemplate.postForObject(PROPIETARIO_INMUEBLE_SERVICE_URL, propInm, String.class);
+		try {
+			// Devolvemos el template con el objeto de propietario inmueble
+			return restTemplate.postForObject(PROPIETARIO_INMUEBLE_SERVICE_URL, propInm, String.class);
+
+		} catch (Exception e) {
+			return "No se Ha Agregado el Propietario del Inmueble en la Base de Datos. Producido por " + e.getMessage();
+		}
+
 	}
 
-	// --UPDATE PROPIETARIO INMUEBLE--
-
+	// ===========================
+	// ===== UPDATE INMUEBLE =====
+	// ===========================
 	@CircuitBreaker(name = PROPIETARIO_INMUEBLE_SERVICE, fallbackMethod = "propInmuebleServiceFallBackCircuitBreaker")
 	@RateLimiter(name = PROPIETARIO_INMUEBLE_SERVICE, fallbackMethod = "propInmuebleServiceFallBackRateLimit")
 	@Retry(name = PROPIETARIO_INMUEBLE_SERVICE, fallbackMethod = "propInmuebleServiceFallBackRetry")
 	@Bulkhead(name = PROPIETARIO_INMUEBLE_SERVICE, fallbackMethod = "propInmuebleServiceFallBackBulkHead")
-	public String propInmServiceUpdateInmueble(PropInmEntityServiceDTO propInm) {
-
-		// Devolvemos el template con el objeto de propietario inmueble
-		return restTemplate.postForObject(PROPIETARIO_INMUEBLE_SERVICE_URL, propInm, String.class);
+	public String propInmServiceUpdateInmueble(PropInmResilEntityDTO propInm) {
+		
+		try {
+			// Devolvemos el template con el objeto de propietario inmueble
+			return restTemplate.postForObject(PROPIETARIO_INMUEBLE_SERVICE_URL, propInm, String.class);
+			
+		} catch (Exception e) {
+			return "No se Ha Actualizado el Propietario del Inmueble en la Base de Datos. Producido por " + e.getMessage();
+		}
+		
 	}
 
-	// --DELETE INMUEBLE--
-
+	// ===========================
+	// ===== DELETE INMUEBLE =====
+	// ===========================
 	@CircuitBreaker(name = PROPIETARIO_INMUEBLE_SERVICE, fallbackMethod = "propInmuebleServiceFallBackCircuitBreaker")
 	@RateLimiter(name = PROPIETARIO_INMUEBLE_SERVICE, fallbackMethod = "propInmuebleServiceFallBackRateLimit")
 	@Retry(name = PROPIETARIO_INMUEBLE_SERVICE, fallbackMethod = "propInmuebleServiceFallBackRetry")
@@ -71,24 +87,31 @@ public class PropInmServiceResilienceService {
 		// devolver un resultado por que el metodo es void a comparacion del
 		// postForObject, getForObject
 
-		String propInmuebleServiceURLWithId = PROPIETARIO_INMUEBLE_SERVICE_URL + id;
-
 		try {
-			// Devolvemos el template con el objeto inmueble
+			
+			String propInmuebleServiceURLWithId = PROPIETARIO_INMUEBLE_SERVICE_URL + id;
+
+
+			// Devolvemos el template con el objeto propinmueble
 			restTemplate.delete(propInmuebleServiceURLWithId);
 
-			return "true";
+			return "Se Ha Eliminado Correctamente el Propietario del Inmueble de la Base de Datos";
 
 		} catch (Exception e) {
 
-			return "false";
+			return "No se Ha Eliminado el Propietario del Inmueble de la Base de Datos. Producido por " + e.getMessage();
+
 		}
 
 	}
+	
+	
 	// ======== MÉTODOS DE BUSQUEDA ============
-
-	// -- LISTADO COMPLETO Y PAGINADO --
-
+	
+	
+	// ===================
+	// ===== GET ALL ====
+	// ===================
 	@CircuitBreaker(name = PROPIETARIO_INMUEBLE_SERVICE, fallbackMethod = "propInmuebleServiceFallBackCircuitBreaker")
 	@RateLimiter(name = PROPIETARIO_INMUEBLE_SERVICE, fallbackMethod = "propInmuebleServiceFallBackRateLimit")
 	@Retry(name = PROPIETARIO_INMUEBLE_SERVICE, fallbackMethod = "propInmuebleServiceFallBackRetry")
@@ -101,10 +124,15 @@ public class PropInmServiceResilienceService {
 		return restTemplate.getForObject(propInmuebleServiceListURL, String.class);
 	}
 
+	// =====================================================
+	// ===== EL RESTO DE LOS METODOS NO SE DESARROLLAN =====
+	// =====================================================
 
 	// ======== MÉTODOS FALL BACK ============
 
-	// --CIRCUIT BREAKER--
+	// ==========================
+	// ===== CIRCUIT BREAKER ===
+	// ==========================
 	public String propInmuebleServiceFallBackCircuitBreaker(Exception e) {
 
 		// Logging
@@ -115,7 +143,9 @@ public class PropInmServiceResilienceService {
 		return "SE HA PRODUCIDO UN ERROR AL LLAMAR AL MICROSERVICIO " + PROPIETARIO_INMUEBLE_SERVICE;
 	}
 
-	// --RATE LIMIT--
+	// ====================
+	// ===== RATE LIMIT ===
+	// ====================
 	public String propInmuebleServiceFallBackRateLimit(Exception e) {
 
 		// Logging
@@ -126,7 +156,9 @@ public class PropInmServiceResilienceService {
 		return "SE HA ALCANZADO EL LIMITE MÁXIMO DE VELOCIDAD PARA EL MICROSERVICIO " + PROPIETARIO_INMUEBLE_SERVICE;
 	}
 
-	// --RETRY--
+	// ==============
+	// ===== RETRY===
+	// ==============
 	public String propInmuebleServiceFallBackRetry(Exception e) {
 
 		// Logging
@@ -138,7 +170,9 @@ public class PropInmServiceResilienceService {
 				+ PROPIETARIO_INMUEBLE_SERVICE;
 	}
 
-	// --BULK HEAD--
+	// ===================
+	// ===== BULK HEAD ===
+	// ===================
 	public String propInmuebleServiceFallBackBulkHead(Exception e) {
 
 		// Logging

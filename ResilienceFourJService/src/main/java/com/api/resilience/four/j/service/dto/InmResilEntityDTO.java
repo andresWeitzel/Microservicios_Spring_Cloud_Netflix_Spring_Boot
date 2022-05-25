@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class InmuebleEntityServiceDTO {
-
-	private UUID id;
+public class InmResilEntityDTO {
 
 	private UUID idPropInm;
 
@@ -19,7 +17,7 @@ public class InmuebleEntityServiceDTO {
 
 	private String tipo;
 
-	private String estadoInmEnum;
+	private String estadoInm;
 
 	private double precInmUsd;
 

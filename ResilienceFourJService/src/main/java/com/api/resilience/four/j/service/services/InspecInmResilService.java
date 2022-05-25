@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.api.resilience.four.j.service.dto.InspecInmEntityServiceDTO;
+import com.api.resilience.four.j.service.dto.InspecInmResilEntityDTO;
 
 import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
@@ -15,14 +15,14 @@ import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 
 @Service
-public class InspecInmServiceResilienceService {
+public class InspecInmResilService {
 	
 	@Autowired
 	private RestTemplate restTemplate;
 
 	// ============= LOGS ========================
 	private static final Logger logger = org.apache.logging.log4j.LogManager
-			.getLogger(InspecInmServiceResilienceService.class);
+			.getLogger(InspecInmResilService.class);
 
 
 	// ======== VARS/CONST ============
@@ -34,65 +34,79 @@ public class InspecInmServiceResilienceService {
 		private static final String INSPECCION_INMUEBLE_SERVICE = "INSPECCION-INMUEBLE-SERVICE";
 
 		
-		// ========= MÉTODOS CRUD ============
+		// ===============================================
+		// ============= MÉTODOS HTTP CRUD ==============
+		// ===============================================
 
-		// --ADD INSPECCION INMUEBLE--
-
+		// ===================================
+		// ===== ADD INSPECCION INMUEBLE =====
+		// ===================================
 		@CircuitBreaker(name = INSPECCION_INMUEBLE_SERVICE, fallbackMethod = "inspecInmuebleServiceFallBackCircuitBreaker")
 		@RateLimiter(name = INSPECCION_INMUEBLE_SERVICE, fallbackMethod = "inspecInmuebleServiceFallBackRateLimit")
 		@Retry(name = INSPECCION_INMUEBLE_SERVICE, fallbackMethod = "inspecInmuebleServiceFallBackRetry")
 		@Bulkhead(name = INSPECCION_INMUEBLE_SERVICE, fallbackMethod = "inspecInmuebleServiceFallBackBulkHead")
-		public String inspecInmServiceAddInspecInmueble(InspecInmEntityServiceDTO inspecInm) {
+		public String inspecInmServiceAddInspecInmueble(InspecInmResilEntityDTO inspecInm) {
 
-			// Devolvemos el template con el objeto inspeccion inmueble
-			return restTemplate.postForObject(INSPECCION_INMUEBLE_SERVICE_URL, inspecInm, String.class);
+			try {
+				// Devolvemos el template con el objeto inspeccion inmueble
+				return restTemplate.postForObject(INSPECCION_INMUEBLE_SERVICE_URL, inspecInm, String.class);
+			} catch (Exception e) {
+				return "No se Ha Agregado la Inspección del Inmueble en la Base de Datos. Producido por " + e.getMessage();
+			}
+			
+			
 		}
 		
-		
-		// --UPDATE INSPECCION INMUEBLE--
-
+		// ===================================
+		// ===== UPDATE INSPECCION INMUEBLE =====
+		// ===================================
 		@CircuitBreaker(name = INSPECCION_INMUEBLE_SERVICE, fallbackMethod = "inspecInmuebleServiceFallBackCircuitBreaker")
 		@RateLimiter(name = INSPECCION_INMUEBLE_SERVICE, fallbackMethod = "inspecInmuebleServiceFallBackRateLimit")
 		@Retry(name = INSPECCION_INMUEBLE_SERVICE, fallbackMethod = "inspecInmuebleServiceFallBackRetry")
 		@Bulkhead(name = INSPECCION_INMUEBLE_SERVICE, fallbackMethod = "inspecInmuebleServiceFallBackBulkHead")
-		public String inspecInmServiceUpdateInspecInmueble(InspecInmEntityServiceDTO inspecInm) {
+		public String inspecInmServiceUpdateInspecInmueble(InspecInmResilEntityDTO inspecInm) {
 
-			// Devolvemos el template con el objeto inspeccion inmueble
-			return restTemplate.postForObject(INSPECCION_INMUEBLE_SERVICE_URL, inspecInm, String.class);
+			try {
+
+				// Devolvemos el template con el objeto inspeccion inmueble
+				return restTemplate.postForObject(INSPECCION_INMUEBLE_SERVICE_URL, inspecInm, String.class);
+			} catch (Exception e) {
+				return "No se Ha Actualizado la Inspección del Inmueble en la Base de Datos. Producido por " + e.getMessage();
+			}
 		}
 		
-		// --DELETE INMUEBLE--
-
+		// ===================================
+		// ===== DELETE INSPECCION INMUEBLE =====
+		// ===================================
 		@CircuitBreaker(name = INSPECCION_INMUEBLE_SERVICE, fallbackMethod = "inspecInmuebleServiceFallBackCircuitBreaker")
 		@RateLimiter(name = INSPECCION_INMUEBLE_SERVICE, fallbackMethod = "inspecInmuebleServiceFallBackRateLimit")
 		@Retry(name = INSPECCION_INMUEBLE_SERVICE, fallbackMethod = "inspecInmuebleServiceFallBackRetry")
 		@Bulkhead(name = INSPECCION_INMUEBLE_SERVICE, fallbackMethod = "inspecInmuebleServiceFallBackBulkHead")
 		public String inspecInmServiceDeleteInspecInmueble(UUID id) {
 
-			// Para este caso se solventa el delete de esta forma ya que esta operacion no
-			// nos permite
-			// devolver un resultado por que el metodo es void a comparacion del
-			// postForObject, getForObject
-
-			String inspecInmuebleServiceURLWithId = INSPECCION_INMUEBLE_SERVICE_URL + id;
-
 			try {
+				String inspecInmuebleServiceURLWithId = INSPECCION_INMUEBLE_SERVICE_URL + id;
+
 				// Devolvemos el template con el objeto inmueble
 				restTemplate.delete(inspecInmuebleServiceURLWithId);
 
-				return "true";
+				return "Se Ha Eliminado Correctamente la Inspeccion del Inmueble de la Base de Datos";
 
 			} catch (Exception e) {
 
-				return "false";
+				return "No se Ha Eliminado la Inspección del Inmueble de la Base de Datos. Producido por " + e.getMessage();
+
 			}
 
 		}
 		
+
 		// ======== MÉTODOS DE BUSQUEDA ============
-
-		// -- LISTADO COMPLETO Y PAGINADO --
-
+		
+		
+		// ===================
+		// ===== GET ALL ====
+		// ===================
 		@CircuitBreaker(name = INSPECCION_INMUEBLE_SERVICE, fallbackMethod = "inspecInmuebleServiceFallBackCircuitBreaker")
 		@RateLimiter(name = INSPECCION_INMUEBLE_SERVICE, fallbackMethod = "inspecInmuebleServiceFallBackRateLimit")
 		@Retry(name = INSPECCION_INMUEBLE_SERVICE, fallbackMethod = "inspecInmuebleServiceFallBackRetry")
@@ -109,10 +123,19 @@ public class InspecInmServiceResilienceService {
 		
 		
 
+		// =====================================================
+		// ===== EL RESTO DE LOS METODOS NO SE DESARROLLAN =====
+		// =====================================================
 		
+		
+		
+		
+
 		// ======== MÉTODOS FALL BACK ============
 
-		// --CIRCUIT BREAKER--
+		// ==========================
+		// ===== CIRCUIT BREAKER ===
+		// ==========================
 		public String inspecInmuebleServiceFallBackCircuitBreaker(Exception e) {
 
 			// Logging
@@ -123,7 +146,9 @@ public class InspecInmServiceResilienceService {
 			return "SE HA PRODUCIDO UN ERROR AL LLAMAR AL MICROSERVICIO " + INSPECCION_INMUEBLE_SERVICE;
 		}
 
-		// --RATE LIMIT--
+		// ====================
+		// ===== RATE LIMIT ===
+		// ====================
 		public String inspecInmuebleServiceFallBackRateLimit(Exception e) {
 
 			// Logging
@@ -134,7 +159,9 @@ public class InspecInmServiceResilienceService {
 			return "SE HA ALCANZADO EL LIMITE MÁXIMO DE VELOCIDAD PARA EL MICROSERVICIO " + INSPECCION_INMUEBLE_SERVICE;
 		}
 
-		// --RETRY--
+		// ==============
+		// ===== RETRY===
+		// ==============
 		public String inspecInmuebleServiceFallBackRetry(Exception e) {
 
 			// Logging
@@ -146,7 +173,9 @@ public class InspecInmServiceResilienceService {
 					+ INSPECCION_INMUEBLE_SERVICE;
 		}
 
-		// --BULK HEAD--
+		// ===================
+		// ===== BULK HEAD ===
+		// ===================
 		public String inspecInmuebleServiceFallBackBulkHead(Exception e) {
 
 			// Logging
