@@ -73,7 +73,7 @@ public class InmuebleResilController {
 	// ==============================
 	// ===== GET BY ID-PROPIETARIO===
 	// ==============================
-	@GetMapping(value = "/id-prop-inm/{id}")
+	@GetMapping(value = "/id-propietario-inmueble/{id}")
 	public String inmuebleServiceGetByPropInm(@PathVariable("id") UUID id) {
 		return inmServResil.inmuebleServiceGetByIdPropInm(id);
 	}
