@@ -53,6 +53,12 @@
 * http://localhost:9295/v1/propietario-inmueble-service/
 * http://localhost:9295/v1/inspeccion-inmueble-service/
 
+### EndPoint Analítica con Prometheus
+* http://localhost:9295/actuator/prometheus
+
+### EndPoint Deploy con Grafana (username:admin password:admin)
+* http://localhost:3000/d/X034JGT7Gz/springboot-apm-dashboard?orgId=1&from=now-1m&to=now
+
 
 </br>
 
@@ -70,6 +76,19 @@
 
 * Microservicios : [https://www.youtube.com/watch?v=kkjxv7HMlNI](https://www.youtube.com/watch?v=kkjxv7HMlNI&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=4)
 
+</br>
+
+### Prueba de Funcionalidad API's Rest Microservicios con Resilience4J
+
+* Microservicio Inmueble-Service Resilience : [https://www.youtube.com/watch?v=9OEwhURfrXw&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=6&t=214s](https://www.youtube.com/watch?v=9OEwhURfrXw&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=6&t=214s)
+
+* Microservicios Propietario-Inmueble-Service e Inspección-Inmueble-Service Resilience : [https://www.youtube.com/watch?v=mn-jAeEwt-8&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=6 ](https://www.youtube.com/watch?v=mn-jAeEwt-8&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=6)
+
+</br>
+
+### Deploy Analítica de Datos Microservicios con Grafana y Prometheus 
+
+* Análisis Peticiones HTTP :[https://www.youtube.com/watch?v=9TxvWcXT-JM](https://www.youtube.com/watch?v=9TxvWcXT-JM&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=7)
 
 </br>
 
@@ -123,6 +142,13 @@
 | Spring Tool Suite 4 | 4.9.0  | IDE |
 | Spring Boot |   2.5.4  | Framework |
 | Spring Boot Data JPA  | 2.6.3 | Mapeo de objetos y persistencia en la db |
+| Eureka Server and Client | 3.1.1 | Administración de Microservicios |
+| Api-Gateway | 3.1.1 | Manejo de Recursos de nuestro Proxy |
+| Resilience4J | 3.1.1 | Utilización del Patrón Circuit Breaker |
+| Spring-Actuator | 3.1.1 | Monitorización y Administraciíon ApiRest |
+| Micrometer-Prometheus | 1.8.4 | Dashboard y Monitorizacion data |
+| Prometheus App | 2.35 |  Monitoreo |
+| Grafana App | 8.4.6 | Deploy de Analítica Microservicios |
 | Lombok | 1.18.22 | Automatización de Código | 
 | Maven |  4.0.0 | Gestor de Proyectos |
 | PostMan | 9.4.1 | Test de Apis |
@@ -143,6 +169,9 @@
 | ------------- | ------------- | ------------- |
 | Java-JDK 12 | https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html |  https://docs.oracle.com/en/ |
 | Spring Tool Suite 4 |https://spring.io/tools | https://spring.io/guides |
+| Prometheus | https://prometheus.io/download/ | https://prometheus.io/download/ |
+| Grafana | https://grafana.com/grafana/download?platform=windows | https://grafana.com/grafana/download?platform=windows |
+| Dependencias | https://mvnrepository.com/ | https://mvnrepository.com/ |
 | XAMPP | https://www.apachefriends.org/download.html | https://community.apachefriends.org/f/ |
 | DBeaver | 	https://dbeaver.io/download/ | 	https://github.com/dbeaver/dbeaver/wiki |
 | PostgreSQL | https://www.postgresql.org/download/ | https://www.postgresql.org/docs/current/tutorial.html | 
@@ -206,6 +235,10 @@
 
 ## ` Documentación y Guía del Proyecto `
 #### (Esta Documentación que Desarrollé es para la Creación y Configuración de los Microservicios Desarrollados, Manejo y Dependencias de Maven, Spring Data con Eureka, Spring Boot, Hibernate-JPA, Mysql y PostgreSQL, Loombok, Config de Servidores, entre otros usos. Recomiendo Leerla y Realizar todo paso a paso como se indica en la misma. No se explica a detalle el desarrollo de cada Servicio REST por tiempo y redundancia de código, para el desarrollo detallado de una API REST leer el siguiente repositorio https://github.com/andresWeitzel/Api_Rest_Spring_Productos).
+
+</br>
+
+## DOCUMENTACIÓN SIN REVISIÓN E INCOMPLETA MOMENTÁNEAMENTE
 
 </br>
 
