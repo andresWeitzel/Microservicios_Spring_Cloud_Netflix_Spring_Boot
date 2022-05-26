@@ -38,6 +38,8 @@
 ```
 </br>
 
+<hr>
+
 ### EndPoints MicroServicios Por Defecto:
 * http://localhost:8092/v1/inmuebles/
 * http://localhost:8093/v1/propietarios-inmuebles/
@@ -59,6 +61,10 @@
 ### EndPoint Deploy con Grafana (username:admin password:admin)
 * http://localhost:3000/d/X034JGT7Gz/springboot-apm-dashboard?orgId=1&from=now-1m&to=now
 
+
+<hr>
+
+</br>
 
 </br>
 
@@ -89,6 +95,10 @@
 ### Deploy Analítica de Datos Microservicios con Grafana y Prometheus 
 
 * Análisis Peticiones HTTP :[https://www.youtube.com/watch?v=9TxvWcXT-JM](https://www.youtube.com/watch?v=9TxvWcXT-JM&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=7)
+
+<hr>
+
+</br>
 
 </br>
 
