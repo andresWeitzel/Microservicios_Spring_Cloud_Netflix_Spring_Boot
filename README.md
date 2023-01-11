@@ -235,10 +235,10 @@ Servicios
 
 ### Documentación No Oficial Recomendada
 
-* Estructuración y Creación de Microservicios: https://www.youtube.com/watch?v=BnknNTN8icw&t=5s
-* Desarrollo de Resilience4j : https://www.youtube.com/watch?v=Z_viIJSGXJw&list=PLq3uEqRnr_2GlhVSqltfLtpO8GF4VIICY&index=1
-* Setup Dashboard Grafana : https://www.youtube.com/watch?v=4WWW2ZLEg74
-* Setup/Config Dashboard Grafana : https://www.youtube.com/watch?v=zTZe447nDhI
+* [Estructuración y Creación de Microservicios](https://www.youtube.com/watch?v=BnknNTN8icw&t=5s)
+* [Desarrollo de Resilience4j](https://www.youtube.com/watch?v=Z_viIJSGXJw&list=PLq3uEqRnr_2GlhVSqltfLtpO8GF4VIICY&index=1)
+* [Setup Dashboard Grafana](https://www.youtube.com/watch?v=4WWW2ZLEg74)
+* [Setup/Config Dashboard Grafana](https://www.youtube.com/watch?v=zTZe447nDhI)
 
 
 <hr>
