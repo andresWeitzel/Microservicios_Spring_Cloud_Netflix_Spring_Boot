@@ -11,8 +11,8 @@
 
 </br>
 
-* Los Microservicios `PropietarioInmuebleService` e `InmuebleService` implementan una misma base de datos de tipo Postgres para una Inmobiliaria (https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres), qué es una réplica de la original desarrollada de otro proyecto personal  (https://github.com/andresWeitzel/db_Inmobiliaria_PostgreSQL)
-* El Microservicio `InspeccionInmuebleService` se comunicará con una base de datos de tipo Mysql para la validación y Control de los inmuebles de dicha inmobiliaria (https://github.com/andresWeitzel/db_inspecciones_inmuebles_microservicios_mysql) 
+* Los Microservicios `PropietarioInmuebleService` e `InmuebleService` implementan una misma base de datos de tipo SGDB Postgres para una [Inmobiliaria](https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres), qué es una réplica de la original desarrollada de otro [proyecto personal](https://github.com/andresWeitzel/db_Inmobiliaria_PostgreSQL).
+* El Microservicio `InspeccionInmuebleService` se comunicará con una base de datos de tipo Mysql para la validación y Control de los inmuebles de dicha [inmobiliaria](https://github.com/andresWeitzel/db_inspecciones_inmuebles_microservicios_mysql).
 * El Servicio de Gestión Genérico de los Microservicios será `EurekaService`, este no implementará ninguna base de datos ya que será el responsable de toda la gestión y Control del resto de los Microservicios y Servicios.
 * El Servicio `Api Gateway` será el encargado de la gestión del resto de los 3 microservicios de la aplicación, se entrelaza mediante el Patrón de Diseño Circuit Breaker para el Control de Excepciones, Tolerancias a fallos, etc. Todos los recursos de los microservicios pasan a través del puerto y dirección de este.
 * El Servicio `ResilienceFourJ` será el encargado de manejar de forma directa el Control de Excepciones, Errores, etc que se puedan presentar, al igual que el ApiGateway maneja el patrón Circuit Breaker, además para cada recurso de cada microservicio se implementar los módulos de dicho patrón.
