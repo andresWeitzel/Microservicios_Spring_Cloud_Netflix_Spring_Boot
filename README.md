@@ -22,14 +22,14 @@
 * El Proyecto consta de 3 microservicios de tipo REST y 3 servicios de gestión, administración y seguridad para los microservicios
 
 ```
-* Microservicios
+ Microservicios
 |  |  |--------> Microservice Rest InmuebleService ----------------> db_inmobiliaria_microservicios  		--> (Postgres) --> (compartida) 
 |  |-----------> Microservice Rest PropietarioInmuebleService------> db_inmobiliaria_microservicios  		--> (Postgres) --> (compartida) 
 |--------------> Microservice Rest InspeccionInmuebleService-------> db_inspecciones_inmuebles_microservicios   --> (Mysql)    --> (única)  
 ```
 
 ```
-* Servicios
+Servicios
 |  |  |  |-----> Servicio EurekaService -----------> Servidor de Gestión de Microservicios
 |  |  |--------> Servicio ApiGatewayService -------> Proxy con balanceo de carga para la gestión de peticiones de los Microservicios 
 |  |-----------> Servicio ResilienceFourJService --> Servicio para el Control de Excepciones y Tolerancia a Fallos. Patrón Circuit Breaker
@@ -70,31 +70,31 @@
 
 ### Prueba de Funcionalidad API's Rest Microservicios Por Defecto
 
-* Microservicio Inmueble Service : [https://www.youtube.com/watch?v=dpEpQqyBTEw](https://www.youtube.com/watch?v=dpEpQqyBTEw&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=1)
+* [Microservicio Inmueble Service](https://www.youtube.com/watch?v=dpEpQqyBTEw&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=1)
 
-* Microservicio Propietario Inmueble Service :  [https://www.youtube.com/watch?v=dpEpQqyBTEw](https://www.youtube.com/watch?v=ahi5WDX19rQ&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=2)
+* [Microservicio Propietario Inmueble Service](https://www.youtube.com/watch?v=ahi5WDX19rQ&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=2)
 
-* Microservicio Inspeccion Inmueble Service : [https://www.youtube.com/watch?v=dpEpQqyBTEw](https://www.youtube.com/watch?v=6KeUPebnKu8&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=3&t=2s)
+* [Microservicio Inspeccion Inmueble Service](https://www.youtube.com/watch?v=6KeUPebnKu8&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=3&t=2s)
 
 </br>
 
 ### Prueba de Funcionalidad API's Rest Microservicios con Api Gateway
 
-* Microservicios : [https://www.youtube.com/watch?v=kkjxv7HMlNI](https://www.youtube.com/watch?v=kkjxv7HMlNI&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=4)
+* [Microservicios](https://www.youtube.com/watch?v=kkjxv7HMlNI&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=4)
 
 </br>
 
 ### Prueba de Funcionalidad API's Rest Microservicios con Resilience4J
 
-* Microservicio Inmueble-Service Resilience : [https://www.youtube.com/watch?v=9OEwhURfrXw&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=6&t=214s](https://www.youtube.com/watch?v=9OEwhURfrXw&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=6&t=214s)
+* [Microservicio Inmueble-Service Resilience](https://www.youtube.com/watch?v=9OEwhURfrXw&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=6&t=214s)
 
-* Microservicios Propietario-Inmueble-Service e Inspección-Inmueble-Service Resilience : [https://www.youtube.com/watch?v=mn-jAeEwt-8&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=6 ](https://www.youtube.com/watch?v=mn-jAeEwt-8&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=6)
+* [Microservicios Propietario-Inmueble-Service e Inspección-Inmueble-Service Resilience](https://www.youtube.com/watch?v=mn-jAeEwt-8&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=6)
 
 </br>
 
 ### Deploy Analítica de Datos Microservicios con Grafana y Prometheus 
 
-* Análisis Peticiones HTTP :[https://www.youtube.com/watch?v=9TxvWcXT-JM](https://www.youtube.com/watch?v=9TxvWcXT-JM&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=7)
+* [Análisis Peticiones HTTP](https://www.youtube.com/watch?v=9TxvWcXT-JM&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=7)
 
 <hr>
 
