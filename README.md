@@ -149,7 +149,7 @@ Servicios
 | [Mysql](https://www.mysql.com/) | 10.1.38 | Sistema de Gestión de Bases de Datos |
 | [PostgreSQL](https://www.postgresql.org/) | 13.4 | Sistema de Gestión de Bases de Datos |
 | [CMD](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cmd) | 10 | Símbolo del Sistema para linea de comandos | 
-| [GNU bash / Terminal](https://www.gnu.org/software/bash/) | 4.4.23  | Bash / Terminal para el manejo e implementación de Git integrado al Spring Tool Suite |
+| [GNU bash / Terminal](https://www.gnu.org/software/bash/) | 4.4.23  | Bash / Terminal para el manejo e implementación de Git. |
 | [Git](https://git-scm.com/) | 2.29.1  | Control de Versiones |
 
 <br>
@@ -184,151 +184,12 @@ Servicios
 </details>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</br>
-
-#### Arquitectura Desarrollada
-
-
-</br>
-
-<hr>
-
-### EndPoints MicroServicios Por Defecto:
-* http://localhost:8092/v1/inmuebles/
-* http://localhost:8093/v1/propietarios-inmuebles/
-* http://localhost:8095/v1/inspecciones-inmuebles/
-
-### EndPoints MicroServicios con Api Gateway:
-* http://localhost:9191/v1/inmuebles/
-* http://localhost:9191/v1/propietarios-inmuebles/
-* http://localhost:9191/v1/inspecciones-inmuebles/
-
-### EndPoints MicroServicios con ResilienceFourJ:
-* http://localhost:9295/v1/inmueble-service
-* http://localhost:9295/v1/propietario-inmueble-service/
-* http://localhost:9295/v1/inspeccion-inmueble-service/
-
-### EndPoint Analítica con Prometheus
-* http://localhost:9295/actuator/prometheus
-
-### EndPoint Deploy con Grafana (username:admin password:admin)
-* http://localhost:3000/d/X034JGT7Gz/springboot-apm-dashboard?orgId=1&from=now-1m&to=now
-
-
-<hr>
-
-</br>
-
-</br>
-
-### Prueba de Funcionalidad API's Rest Microservicios Por Defecto
-
-* [Microservicio Inmueble Service](https://www.youtube.com/watch?v=dpEpQqyBTEw&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=1)
-
-* [Microservicio Propietario Inmueble Service](https://www.youtube.com/watch?v=ahi5WDX19rQ&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=2)
-
-* [Microservicio Inspeccion Inmueble Service](https://www.youtube.com/watch?v=6KeUPebnKu8&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=3&t=2s)
-
-</br>
-
-### Prueba de Funcionalidad API's Rest Microservicios con Api Gateway
-
-* [Microservicios](https://www.youtube.com/watch?v=kkjxv7HMlNI&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=4)
-
-</br>
-
-### Prueba de Funcionalidad API's Rest Microservicios con Resilience4J
-
-* [Microservicio Inmueble-Service Resilience](https://www.youtube.com/watch?v=9OEwhURfrXw&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=6&t=214s)
-
-* [Microservicios Propietario-Inmueble-Service e Inspección-Inmueble-Service Resilience](https://www.youtube.com/watch?v=mn-jAeEwt-8&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=6)
-
-</br>
-
-### Deploy Analítica de Datos Microservicios con Grafana y Prometheus 
-
-* [Análisis Peticiones HTTP](https://www.youtube.com/watch?v=9TxvWcXT-JM&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=7)
-
-<hr>
-
-</br>
-
-</br>
-
-#### Servicios en Spring Cloud Eureka Server
-
-![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/eurekaServer.png)
-
-#### MicroServices por host y puerto independientes
-
-![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/microservicesList.png)
-
-
-</br>
-
-#### Deploy de Carga Inicial de Recursos a través de Grafana
-
-![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/carga_inicial.png)
-
-#### Métodos GET Testeo Microservices puerto Resilience con Postman
-
-![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/getMicroservices.png)
-
-#### Estadisticas de uso Http Métodos GET en Grafana
-
-![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/getHttpStadistic.png)
-
-#### Métodos POST Testeo Microservices puerto Resilience con Postman
-
-![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/postMicroservices.png)
-
-#### Estadisticas de uso Http Métodos POST en Grafana
-
-![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/postHttpStadistic.png)
-
-#### Deploy de Carga luego del consumo de Recursos a través de Grafana
-
-![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/carga_uso.png)
-
-#### Deploy de Carga de CPU Usada por el Sistema luego del consumo de Recursos a través de Grafana
-
-![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/systemCpuUsage.png)
-
-
-
-
-
-
-
-### Dependencias Implementadas
+### 1.3) Dependencias Maven [🔝](#índice-)
+
+<details>
+ <summary>Ver</summary>
+ 
+ <br>
 
 | **Dependencia Maven**  | **Versión** | **Finalidad** |             
 | ------------- | ------------- | ------------- |
@@ -353,9 +214,141 @@ Servicios
 | spring-cloud-dependencies | 2021.0.0 | Administrador de Dependencias cloud |
 
 
+<br>
+
+</details>
+
+
+
+<br>
+
+## Sección 2) EndPoints y Recursos
+
+### 2.0) EndPoints [🔝](#índice-)
+
+<details>
+ <summary>Ver</summary>
+ 
+### EndPoints MicroServicios Por Defecto:
+* http://localhost:8092/v1/inmuebles/
+* http://localhost:8093/v1/propietarios-inmuebles/
+* http://localhost:8095/v1/inspecciones-inmuebles/
+
+### EndPoints MicroServicios con Api Gateway:
+* http://localhost:9191/v1/inmuebles/
+* http://localhost:9191/v1/propietarios-inmuebles/
+* http://localhost:9191/v1/inspecciones-inmuebles/
+
+### EndPoints MicroServicios con ResilienceFourJ:
+* http://localhost:9295/v1/inmueble-service
+* http://localhost:9295/v1/propietario-inmueble-service/
+* http://localhost:9295/v1/inspeccion-inmueble-service/
+
+### EndPoint Analítica con Prometheus
+* http://localhost:9295/actuator/prometheus
+
+### EndPoint Deploy con Grafana (username:admin password:admin)
+* http://localhost:3000/d/X034JGT7Gz/springboot-apm-dashboard?orgId=1&from=now-1m&to=now
+  
+
+<br>
+
+</details>
+
+
+
+
+
+### 2.1) Recursos por Endpoints. (Swagger UI) [🔝](#índice-)
+
+<details>
+ <summary>Ver</summary>
+
+### Servicios en Spring Cloud Eureka Server
+![Index app](./documentacion/eurekaServer.png)
+
+### MicroServices por host y puerto independientes
+![Index app](./documentacion/microservicesList.png)
+
+### Deploy de Carga Inicial de Recursos a través de Grafana
+![Index app](./documentacion/carga_inicial.png)
+
+### Métodos GET Testeo Microservices puerto Resilience con Postman
+![Index app](./documentacion/getMicroservices.png)
+
+### Estadisticas de uso Http Métodos GET en Grafana
+![Index app](./documentacion/getHttpStadistic.png)
+
+### Métodos POST Testeo Microservices puerto Resilience con Postman
+![Index app](./documentacion/postMicroservices.png)
+
+### Estadisticas de uso Http Métodos POST en Grafana
+![Index app](./documentacion/postHttpStadistic.png)
+
+### Deploy de Carga luego del consumo de Recursos a través de Grafana
+![Index app](./documentacion/carga_uso.png)
+	
+### Deploy de Carga de CPU Usada por el Sistema luego del consumo de Recursos a través de Grafana
+![Index app](./documentacion/systemCpuUsage.png)
+
+ 
+ <br>
+
+</details>
+
+
+<br>
+
+## Sección 3) Prueba de Funcionalidad y Referencias
+
+
+### 3.0) Prueba de Funcionalidad [🔝](#índice-)
+
+<details>
+ <summary>Ver</summary>
+
+
+### API's Rest Microservicios Por Defecto
+
+* [Microservicio Inmueble Service](https://www.youtube.com/watch?v=dpEpQqyBTEw&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=1)
+
+* [Microservicio Propietario Inmueble Service](https://www.youtube.com/watch?v=ahi5WDX19rQ&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=2)
+
+* [Microservicio Inspeccion Inmueble Service](https://www.youtube.com/watch?v=6KeUPebnKu8&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=3&t=2s)
 
 </br>
 
+###  API's Rest Microservicios con Api Gateway
+
+* [Microservicios](https://www.youtube.com/watch?v=kkjxv7HMlNI&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=4)
+
+</br>
+
+### API's Rest Microservicios con Resilience4J
+
+* [Microservicio Inmueble-Service Resilience](https://www.youtube.com/watch?v=9OEwhURfrXw&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=6&t=214s)
+
+* [Microservicios Propietario-Inmueble-Service e Inspección-Inmueble-Service Resilience](https://www.youtube.com/watch?v=mn-jAeEwt-8&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=6)
+
+</br>
+
+### Deploy Analítica de Datos Microservicios con Grafana y Prometheus 
+
+* [Análisis Peticiones HTTP](https://www.youtube.com/watch?v=9TxvWcXT-JM&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=7)	
+	
+ <br>
+
+</details>
+
+
+
+
+
+### 3.1) Referencias [🔝](#índice-)
+
+<details>
+ <summary>Ver</summary>
+	
 ### Documentación No Oficial Recomendada
 
 * [Estructuración y Creación de Microservicios](https://www.youtube.com/watch?v=BnknNTN8icw&t=5s)
@@ -363,8 +356,34 @@ Servicios
 * [Setup Dashboard Grafana](https://www.youtube.com/watch?v=4WWW2ZLEg74)
 * [Setup/Config Dashboard Grafana](https://www.youtube.com/watch?v=zTZe447nDhI)
 
+ <br>
 
-<hr>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+<br>
+
+
+
+
+
+### `Siguiente sección en proceso de actualización`
+
+<details>
+ <summary>Ver</summary>
+	
+<br>
 
 ## ` Documentación y Guía del Proyecto `
 #### (Esta Documentación que Desarrollé es para la Creación y Configuración de los Microservicios Desarrollados, Manejo y Dependencias de Maven, Spring Data con Eureka, Spring Boot, Hibernate-JPA, Mysql y PostgreSQL, Loombok, Config de Servidores, entre otros usos. Recomiendo Leerla y Realizar todo paso a paso como se indica en la misma. No se explica a detalle el desarrollo de cada Servicio REST por tiempo y redundancia de código, para el desarrollo detallado de una API REST leer el siguiente repositorio https://github.com/andresWeitzel/Api_Rest_Spring_Productos).
@@ -1433,5 +1452,8 @@ spring.data.rest.max-page-size = 10
 * git push -f --set-upstream origin master
 
 
-</br>
+
+ <br>
+
+</details>
 
