@@ -6,6 +6,13 @@
 # Microservicios Inmuebles
 Implementación de Microservicios con Spring Boot, Spring Cloud, Spring Data JPA, Resilience4J, Grafana, Prometheus, Lombok, Maven, Postman, Api Restful, Postgres, Mysql y otras Tecnologías.
 
+<br>
+
+* [Repositorio db inmobiliaria postgres](https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres)
+* [Repositorio db inspecciones inmuebles mysql](https://github.com/andresWeitzel/db_inspecciones_inmuebles_microservicios_mysql)
+* [PlayList Proyecto](https://www.youtube.com/playlist?list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe)
+ 
+
 
 <br>
 
@@ -108,6 +115,79 @@ Servicios
 <br>
 
 </details>
+
+
+
+### 1.2) Tecnologías [🔝](#índice-)
+
+<details>
+ <summary>Ver</summary>
+ 
+ <br>
+
+| **Tecnologías** | **Versión** | **Finalidad** |           
+| ------------- | ------------- | ------------- |
+| [Java](https://docs.oracle.com/en/) |  12.0.2 | JDK |
+| [Spring Tool Suite 4](https://spring.io/blog/2021/06/21/spring-tools-4-11-0-released) | 4.9.0  | IDE |
+| [Spring Boot](https://spring.io/) |  2.6.4  | Framework |
+| [Spring Boot Data JPA](https://spring.io/projects/spring-data-jpa)  | 2.6.3 | Mapeo de objetos y persistencia en la db |
+| [Spring Validation](https://www.baeldung.com/spring-boot-bean-validation)  | 2.7 | Anotations para Validaciones |
+| [Eureka Server and Client](https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-eureka-server.html) | 3.1.1 | Administración de Microservicios |
+| [Api-Gateway](https://www.baeldung.com/spring-cloud-gateway) | 3.1.1 | Manejo de Recursos de nuestro Proxy |
+| [Resilience4J](https://resilience4j.readme.io/docs) | 3.1.1 | Utilización del Patrón Circuit Breaker |
+| [Spring-Actuator](https://resilience4j.readme.io/docs) | 3.1.1 | Monitorización y Administraciíon ApiRest |
+| [Micrometer-Prometheus](https://www.baeldung.com/micrometer) | 1.8.4 | Dashboard y Monitorizacion data |
+| [Prometheus App](https://prometheus.io/) | 2.35 |  Monitoreo |
+| [Grafana App](https://grafana.com/) | 8.4.6 | Deploy de Analítica Microservicios |
+| [Lombok](https://projectlombok.org/) | 1.18.22 | Automatización de Código | 
+| [Open-Api y UI Swagger](https://www.openapis.org/) | 1.6.4 | Documentación de la Api | 
+| [UI Swagger](https://swagger.io/tools/swagger-ui/) | 1.6.4 | Visualización y Gestión de la Api | 
+| [Maven](https://maven.apache.org/) |  4.0.0 | Gestor de Proyectos |
+| [Postman](https://www.postman.com/) | 9.1.1 | Visualización y Gestión de la Api | 
+| [XAMPP](https://www.apachefriends.org/https://www.apachefriends.org/) | 3.2.2  | Paquete de Servidores |
+| [DBeaver](https://www.apachefriends.org/) | 21.1 | Gestor de Base de Datos |
+| [Mysql](https://www.mysql.com/) | 10.1.38 | Sistema de Gestión de Bases de Datos |
+| [PostgreSQL](https://www.postgresql.org/) | 13.4 | Sistema de Gestión de Bases de Datos |
+| [CMD](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cmd) | 10 | Símbolo del Sistema para linea de comandos | 
+| [GNU bash / Terminal](https://www.gnu.org/software/bash/) | 4.4.23  | Bash / Terminal para el manejo e implementación de Git integrado al Spring Tool Suite |
+| [Git](https://git-scm.com/) | 2.29.1  | Control de Versiones |
+
+<br>
+
+</details>
+
+
+### 1.2.1) Descargas [🔝](#índice-)
+
+<details>
+ <summary>Ver</summary>
+ 
+ <br>
+
+* [Java-JDK 12](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html)
+* [Spring Tool Suite 4](https://spring.io/tools)
+* [Prometheus](https://prometheus.io/download/)
+* [Grafana](https://grafana.com/grafana/download?platform=windows)
+* [Dbeaver](https://dbeaver.io/download/)
+* [PostgreSQL](https://www.postgresql.org/download/)
+* [MySQL](https://www.mysql.com/it/)	
+* [Xampp](https://www.apachefriends.org/download.html)
+* [Lombok](https://projectlombok.org/download)
+* [Open UI](https://open-ui.org/)
+* [Postman](https://www.postman.com/downloads/)
+* [MongoDB](https://www.mongodb.com/try/download/community)
+* [MongoDB Compass](https://www.mongodb.com/try/download/compass)
+* [Git](https://git-scm.com/downloads)
+
+<br>
+
+</details>
+
+
+
+
+
+
 
 
 
@@ -243,55 +323,7 @@ Servicios
 ![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/systemCpuUsage.png)
 
 
-</br>
 
-### Tecnologías Implementadas
-
-| **Tecnologías** | **Versión** | **Finalidad** |               
-| ------------- | ------------- | ------------- |
-| Java |   12.0.2 | JDK |
-| Spring Tool Suite 4 | 4.9.0  | IDE |
-| Spring Boot |   2.5.4  | Framework |
-| Spring Boot Data JPA  | 2.6.3 | Mapeo de objetos y persistencia en la db |
-| Eureka Server and Client | 3.1.1 | Administración de Microservicios |
-| Api-Gateway | 3.1.1 | Manejo de Recursos de nuestro Proxy |
-| Resilience4J | 3.1.1 | Utilización del Patrón Circuit Breaker |
-| Spring-Actuator | 3.1.1 | Monitorización y Administraciíon ApiRest |
-| Micrometer-Prometheus | 1.8.4 | Dashboard y Monitorizacion data |
-| Prometheus App | 2.35 |  Monitoreo |
-| Grafana App | 8.4.6 | Deploy de Analítica Microservicios |
-| Lombok | 1.18.22 | Automatización de Código | 
-| Maven |  4.0.0 | Gestor de Proyectos |
-| PostMan | 9.4.1 | Test de Apis |
-| XAMPP | 3.2.2  | Paquete de Servidores |
-| DBeaver | 21.1 | Gestor de Base de Datos |
-| Mysql | 10.1.38 | Sistema de Gestión de Bases de Datos |
-| PostgreSQL | 13.4 | Sistema de Gestión de Bases de Datos |
-| CMD | 10 | Símbolo del Sistema para línea de Comandos | 
-| GNU bash / Terminal | 4.4.23  | Bash / Terminal para el manejo e implementación de Git integrado al IDE Eclipse |
-| Git | 2.29.1  | Control de Versiones |
-
-
-</br>
-
-### Descarga y Documentacion de las Tecnologías Implementadas
-
-| **Tecnología**  | **Descarga** | **Documentación** |               
-| ------------- | ------------- | ------------- |
-| Java-JDK 12 | https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html |  https://docs.oracle.com/en/ |
-| Spring Tool Suite 4 |https://spring.io/tools | https://spring.io/guides |
-| Prometheus | https://prometheus.io/download/ | https://prometheus.io/download/ |
-| Grafana | https://grafana.com/grafana/download?platform=windows | https://grafana.com/grafana/download?platform=windows |
-| Dependencias | https://mvnrepository.com/ | https://mvnrepository.com/ |
-| XAMPP | https://www.apachefriends.org/download.html | https://community.apachefriends.org/f/ |
-| DBeaver | 	https://dbeaver.io/download/ | 	https://github.com/dbeaver/dbeaver/wiki |
-| PostgreSQL | https://www.postgresql.org/download/ | https://www.postgresql.org/docs/current/tutorial.html | 
-| Mysql  | https://www.mysql.com/it/ | https://www.mysql.com/it/ |
-| Maven Repository | https://mvnrepository.com/ | https://mvnrepository.com/ | 
-| PostMan | https://www.postman.com/downloads/ | https://www.postman.com/product/what-is-postman/ |
-| Git  | https://git-scm.com/downloads |  https://git-scm.com/docs |
-
-</br>
 
 
 
