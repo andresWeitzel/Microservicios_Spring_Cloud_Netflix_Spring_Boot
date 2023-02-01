@@ -1,18 +1,59 @@
+
+<img src="./documentacion/MicroservicesArquitectura.png" style="width: 100%; height: 80%"/>
+
+<br>
+
 # Microservicios Inmuebles
+Implementación de Microservicios con Spring Boot, Spring Cloud, Spring Data JPA, Resilience4J, Grafana, Prometheus, Lombok, Maven, Postman, Api Restful, Postgres, Mysql y otras Tecnologías.
 
-* Implementación de Microservicios con Spring Boot, Spring Cloud, Spring Data JPA, Resilience4J, Grafana, Prometheus, Lombok, Maven, Postman, Api Restful, Postgres, Mysql y otras Tecnologías
+
+<br>
+
+## Índice 📜
+
+<details>
+ <summary> Ver </summary>
+ 
+ <br>
+ 
+ 
+### Sección 1) Descripción, Tecnologías y Dependencias 
+ 
+ - [1.0) Descripción del Proyecto.](#10-descripción-)
+ - [1.1) Patrones de Diseño.](#11-patrones-de-diseño-)
+ - [1.2) Tecnologías.](#12-tecnologías-)
+     - [1.2.1) Descargas.](#121-descargas)
+ - [1.3) Dependencias Maven.](#13-dependencias-maven-)
+ 
+### Sección 2) Endpoints y Recursos 
+ 
+ - [2.0) EndPoints.](#endpoints-)
+ - [2.1) Recursos por Endpoints.](#documentación-gráfica-de-recursos-por-endpoints-swagger-ui-)
+ 
+ 
+### Sección 3) Prueba de Funcionalidad y Referencias
+ 
+ - [3.0) Prueba de Funcionalidad.](#30-prueba-de-funcionalidad-)
+ - [3.1) Referencias.](#31-referencias-)
+
+</details>
+
+
+<br>
+
+## Sección 1) Descripción, Tecnologías y Dependencias 
+
+
+### 1.0) Descripción [🔝](#índice-) 
+
+<details>
+ <summary>Ver</summary>
+ 
+ <br>
+
 * Este proyecto surgió a fin de poner en práctica la interrelación y funcionamiento de varios Microservicios con diferentes SGDB como lo son Mysql y Postgres.
-
-</br>
-
-#### Arquitectura Desarrollada
-
-![Index app](https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot/blob/master/documentacion/MicroservicesArquitectura.png)
-
-</br>
-
-* Los Microservicios `PropietarioInmuebleService` e `InmuebleService` implementan una misma base de datos de tipo SGDB Postgres para una [Inmobiliaria](https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres), qué es una réplica de la original desarrollada de otro [proyecto personal](https://github.com/andresWeitzel/db_Inmobiliaria_PostgreSQL).
-* El Microservicio `InspeccionInmuebleService` se comunicará con una base de datos de tipo Mysql para la validación y Control de los inmuebles de dicha [inmobiliaria](https://github.com/andresWeitzel/db_inspecciones_inmuebles_microservicios_mysql).
+* Los Microservicios `PropietarioInmuebleService` e `InmuebleService` implementan una misma base de datos de tipo SGDB Postgres para una inmobiliaria.
+* El Microservicio `InspeccionInmuebleService` se comunicará con una base de datos de tipo Mysql para la validación y control de los inmuebles de dicha.
 * El Servicio de Gestión Genérico de los Microservicios será `EurekaService`, este no implementará ninguna base de datos ya que será el responsable de toda la gestión y Control del resto de los Microservicios y Servicios.
 * El Servicio `Api Gateway` será el encargado de la gestión del resto de los 3 microservicios de la aplicación, se entrelaza mediante el Patrón de Diseño Circuit Breaker para el Control de Excepciones, Tolerancias a fallos, etc. Todos los recursos de los microservicios pasan a través del puerto y dirección de este.
 * El Servicio `ResilienceFourJ` será el encargado de manejar de forma directa el Control de Excepciones, Errores, etc que se puedan presentar, al igual que el ApiGateway maneja el patrón Circuit Breaker, además para cada recurso de cada microservicio se implementar los módulos de dicho patrón.
@@ -36,6 +77,66 @@ Servicios
 | |------------> Servicio Prometheus/Actuator -----> Manejo de los datos de ResilienceFourJ
 |--------------> Servicio Grafana Dashboard -------> Deploy de los datos transferidos por Prometheus
 ```
+ 
+ <br>
+
+* [Repositorio db inmobiliaria postgres](https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres)
+* [Repositorio db inspecciones inmuebles mysql](https://github.com/andresWeitzel/db_inspecciones_inmuebles_microservicios_mysql)
+* [PlayList Proyecto](https://www.youtube.com/playlist?list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe)
+ 
+<br>
+
+</details>
+
+
+
+### 1.1) Patrones de Diseño [🔝](#índice-)
+
+<details>
+ <summary>Ver</summary>
+ 
+ <br>
+
+| **Patrón de Diseño** | **Finalidad** |               
+| ------------- | ------------- |
+| DAO | Uso de interfaces y repositorios para la persistencia y almacenamiento de datos. |
+| MVC | Separación y Representación de los Datos, Manejo de errores, Escalabilidad, etc  |
+| VO  | Patrón Value Object para el relacionamiento de Objetos a través de Templates de cada Microservicio |
+| DTO  | Patrón para el Uso de Objetos POJO para tranferencia de datos entre los Microservices y Resilience4J |
+| Circuit Breaker | Patrón para el Control y Manejo de Excepciones junto con la Tolerancia a Fallos |
+
+<br>
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</br>
+
+#### Arquitectura Desarrollada
+
+
 </br>
 
 <hr>
@@ -193,17 +294,7 @@ Servicios
 </br>
 
 
-### Patrones de Diseño Implementados
 
-| **Patrón de Diseño** | **Finalidad** |               
-| ------------- | ------------- |
-| DAO | Uso de interfaces y repositorios para la persistencia y almacenamiento de datos. |
-| MVC | Separación y Representación de los Datos, Manejo de errores, Escalabilidad, etc  |
-| VO  | Patrón Value Object para el relacionamiento de Objetos a través de Templates de cada Microservicio |
-| DTO  | Patrón para el Uso de Objetos POJO para tranferencia de datos entre los Microservices y Resilience4J |
-| Circuit Breaker | Patrón para el Control y Manejo de Excepciones junto con la Tolerancia a Fallos |
-
-</br>
 
 ### Dependencias Implementadas
 
