@@ -53,6 +53,7 @@ Implementación de Microservicios con Spring Boot, Spring Cloud, Spring Data JPA
      - [4.0.4) Servicios.](#404-servicios)
      - [4.0.5) Objetos Value Object.](#405-objetos-value-objects)
      - [4.0.6) Template Value Object.](#406-template-value-objects)
+     - [4.0.7) Controllers.](#407-controllers)
 - [4.1) Configuración de la db.](#41-configuración-de-la-db-)
 - [4.2) Configuración del application.properties.](#42-configuración-del-application-properties)
 - [4.3) Manejo de Postgres desde cmd.](#43-manejo-de-postgres-desde-cmd)
@@ -847,557 +848,11 @@ public class PropietarioInmuebleResponseTemplate {
 
 ```
 
-<br>
-
-
  <br>
 
-</details>
 
+#### 4.0.7) Controllers
 
-
-
-
-
-
-
-
-
-
-
-
-<br>
-
-<br>
-
-
-
-
-
-### `Siguiente sección en proceso de actualización`
-
-<details>
- <summary>Ver</summary>
-	
-<br>
-
-## ` Documentación y Guía del Proyecto `
-#### (Esta Documentación que Desarrollé es para la Creación y Configuración de los Microservicios Desarrollados, Manejo y Dependencias de Maven, Spring Data con Eureka, Spring Boot, Hibernate-JPA, Mysql y PostgreSQL, Loombok, Config de Servidores, entre otros usos. Recomiendo Leerla y Realizar todo paso a paso como se indica en la misma. No se explica a detalle el desarrollo de cada Servicio REST por tiempo y redundancia de código, para el desarrollo detallado de una API REST leer el siguiente repositorio https://github.com/andresWeitzel/Api_Rest_Spring_Productos).
-
-</br>
-
-## DOCUMENTACIÓN SIN REVISIÓN E INCOMPLETA MOMENTÁNEAMENTE
-
-</br>
-
-## Indice
-
-#### Sección 1) Microservicio InmuebleService ( Modelo de Desarrollo )
-   
-   - [Paso 1) Creación y Configuraciones del Microservicio ](#paso-1-creación-y-configuraciones-del-microservicio-inmuebleservice)
-  
-   - [Paso 2) Desarrollo del Microservicio ](#paso-2-desarrollo-del-microservicio-inmuebleservice)
-   
-   - [Paso 3) Configuraciones de la Base de Datos](#paso-3-configuraciones-de-la-base-de-datos)
-
-   - [Paso 4) Configuraciones del application.properties](#paso-4-configuraciones-del-application.properties)
-
-   - [Paso 5) Manejo de Postgres desde CMD](#paso-5-manejo-de-postgres-desde-cmd)
-
-   - [Paso 6) Prueba del Microservicio](#paso-6-prueba-del-microservicio-inmuebleservice)
-
-
-#### Sección 2) Microservicio PropietarioInmuebleService
-	
-   - [Paso 7) Desarrollo del Microservicio](#paso-7-desarrollo-del-microservicio-propietarioinmuebleservice)
-
-
-#### Sección 3) Microservicio InspeccionInmuebleService
-	
-   - [Paso 8) Desarrollo del Microservicio](#paso-8-desarrollo-del-microservicio-inspeccioninmuebleservice)
-
-
-
-</br>
-
-</br>
-
-
-
-
-</br>
-
-## Sección 1) Microservicio InmuebleService
-
-</br>
-
-
-### Paso 1) Creación y Configuración del Microservicio `InmuebleService`
-#### (Solamente se explicará e incluirá código relevante para microservicios, toda explicación y pasos desde cero para una API REST se incluye en otro proyecto..https://github.com/andresWeitzel/Api_Rest_Spring_Productos)
-
-
-* Creamos y configuramos un Spring Started Proyect ( Name: InmuebleService | Group: com.inmueble.service | Package : com.inmueble.service )
-* Desde la configuración del proyecto agregamos las dependencias spring web, spring data jpa, postgresql driver y Lombok
-
-```xml
-<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-```
-
-</br>
-
-#### 1.1) Configuración e Instalación de `Lombok`
-* Seguidamente de tener el jars a través de la dependencia en nuestro proyecto, vamos a instalar lombok para poder utilizarlo, no basta con la descarga, hay que realizar la configuración y descarga del mismo en nuestro ordenador.
-* Buscamos el jar en Maven Dependencies `lombok-1.18....` Click derecho y properties
-* Pestaña Java Source Attachment y buscamos el Path donde se descargo el jar de lombok.
-* Nos dirigimos a dicha carpeta, en mi caso `C:\Users\andre\.m2\repository\org\projectlombok\lombok\1.18.22` y ejecutamos el jar de lombok `lombok-1.18.22.jar`
-* VAMOS A REALIZAR LA INSTALACIÓN EN LA CARPETA DE CONFIGURACIÓN DE NUESTRO IDE SELECCIONANDO SELECCIONANDO SPECIFY LOCATION, EN MI CASO SPRING TOOL SUITE `C:\Program Files (x86)\sts-4.13.1.RELEASE`
-* Instalamos, siguiente siguiente...
-* Cerramos y Abrimos el IDE para que los cambios se ejecuten correctamente
-
-
-</br>
-
-
-### Paso 2) Desarrollo del Microservicio `InmuebleService`
-#### (Solamente se explicará e incluirá código relevante para microservicios, toda explicación y pasos desde cero para una API REST se incluye en otro proyecto..https://github.com/andresWeitzel/Api_Rest_Spring_Productos)
-
-
-
-
-</br>
-
-### 2.1) Creación y Configuracion del Enum `EstadoInmuebleEnum`
-* Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `enums`
-* Vamos a crear una clase enumerado para el campo `estado_inmueble_enum` de la entidad `Inmueble` que crearemos a continuación
-* Dentro del paquete `enum` creamos la clase `EstadoInmuebleEnum`
-* Para esta clase no Agregamos la annotation @Entity de JPA ya que no vamos a crear una tabla en la base de datos, sino usar los posibles valores de los enumerados
-* Agregamos los tipos de enumerados disponibles para utilizar de la base de datos..
- ```java
- 
-
- package com.inmueble.service.enums;
- 
-
-
-public enum EstadoInmuebleEnum {
-	VENDIDO, DISPONIBLE, NO_DISPONIBLE, FALTA_INSPECCION;
-
-}
-
- ```
-
-</br>
-
-### 2.2) Creación y Configuracion de la Entidad `Inmueble`
-
-* Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `entity`
-* Dentro del mismo la clase `Inmueble`
-* Agregamos las annotations correspondientes de la clase para JPA 
-* Desarrollamos todos los campos privados modelando la tabla inmuebles de la db `db_inmuebles_microservicios`
-* Agregamos también las annotations necesarias para los campos, seguidamente `@Enumerated(EnumType.STRING)` para el enumerado. No agregamos el resto de las anotaciones ya que vamos a implementar lombok
-* Luego Agregamos las anotaciones para lombok `@Data` , `@AllArgsConstructor` y `@NoArgsConstructor` , la primera para la generacion de los getters y setters y el resto de metodos, la segunda para los constructores sobrecargados de la Entidad y la tercera para constructor vacio 
-
- 
- ```java
-package com.inmueble.service.entity;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import com.inmueble.service.enums.EstadoInmuebleEnum;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Table(name="inmuebles")
-@Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Inmueble {
-	
-	
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Id
-	@Column(name="id")
-	private int id;
-	
-	@Column(name="id_propietario_inmueble")
-	private int idPropietarioInmueble;
-	
-	@Column(name="descripcion")
-	private String descripcion;
-	
-	@Column(name="tipo")
-	private String tipo;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(name="estado_inmueble")
-	private EstadoInmuebleEnum  estadoInmuebleEnum;
-	
-	@Column(name="precio_inmueble_usd") 
-	private double precioInmuebleUsd;
-	
-	@Column(name="direccion")
-	private String direccion;
-	
-	@Column(name="ubicacion")
-	private String ubicacion;
-	
-	@Column(name="sitio_web")
-	private String sitioWeb;
-	
-	
-	
-
-}
-
-
- ```
-
-</br>
-
-### 2.3) Creación y Configuracion de la Interfaz `I_InmuebleRepository`
-
-* Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `repository`
-* Dentro del mismo la Interfaz `I_InmuebleRepository`
-* Agregamos la annotation `@Repository` de la clase para JPA y usamos la interfaz  `JpaRepository<InmuebleEntity, Serializable>` junto con la Interfaz de Paginación `PagingAndSortingRepository<Inmueble, Long>` para toda la funcionalidad para la creación de los métodos Jpa.
-* Creamos y Definimos todos los métodos abstractos haciendo referencia a los campos de la entidad tentativos de uso. 
-* No creamos los métodos CRUD (add, save, update) en la interfaz, ya que declaramos todos los métodos abstractos sin devolución de valores. El método `findAll` será para Paginados..
- 
- ```java
-package com.inmueble.service.repository;
-
-import java.io.Serializable;
-import java.util.List;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.stereotype.Repository;
-
-import com.inmueble.service.entity.Inmueble;
-import com.inmueble.service.enums.EstadoInmuebleEnum;
-
-@Repository
-public interface I_InmuebleRepository extends JpaRepository<Inmueble, Serializable>, PagingAndSortingRepository<Inmueble, Serializable> {
-
-	
-	//============================ MÉTODOS DE BÚSQUEDA ============================== 
-	
-	public abstract Inmueble findById(int id);
-	
-	public abstract List<Inmueble> findByIdPropietarioInmueble(int id);
-	
-	public abstract List<Inmueble> findByDescripcion(String descripcion);
-	
-	public abstract List<Inmueble> findByTipo(String tipo);
-	
-	public abstract List<Inmueble> findByEstadoInmuebleEnum(EstadoInmuebleEnum  estadoInmuebleEnum);
-	
-	public abstract List<Inmueble> findByPrecioInmuebleUsd(double precioInmueble);
-	
-	public abstract List<Inmueble> findByDireccion(String direccion);
-	
-	public abstract List<Inmueble> findByUbicacion(String ubicacion);
-	
-	public abstract List<Inmueble> findBySitioWeb(String sitioWeb);
-
-	public abstract Page<Inmueble> findAll(Pageable pageable);
-	
-	
-	
-	
-
-}
-
-
- ```
-
-</br>
-
-### 2.4) Creación y Configuración del Servicio  `InmuebleService`
- 
- 
-* Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `service`
-* Dentro del mismo la Clase Service `InmuebleService`
-* Agregamos la annotation `@Service` de la clase haciendo referencia para Spring y `@Autowired` para implementar Inyección de Dependencias de la interfaz creada.
-* Usamos log4j para los logs de error en los métodos CRUD para la persistencia. 
-* Desarrollamos el cuerpo de cada método de la interfaz
-* Cada Método CRUD tiene su comprobación de Persistencia y devolverán un booleano según el resultado de la operación, los mismos pueden ser modificados para adicionar mayor seguridad.
- 
- ```java
-package com.inmueble.service.service;
-
-import java.util.List;
-
-import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
-import com.inmueble.service.entity.Inmueble;
-import com.inmueble.service.enums.EstadoInmuebleEnum;
-import com.inmueble.service.repository.I_InmuebleRepository;
-
-@Service
-public class InmuebleService {
-	
-	@Autowired
-	private I_InmuebleRepository iInmuebleRepository;
-	
-	
-	// ============= LOGS ========================	
-	private static final Logger logger = org.apache.logging.log4j.LogManager.getLogger(InmuebleService.class);
-
-	
-	// ============ MÉTODOS CRUD ==================
-	
-	// ----INSERT----
-	public boolean addInmueble(Inmueble inmueble) {
-		try {
-			if(inmueble == null) {
-				logger.error("ERROR addInmueble : EL INMUEBLE " + inmueble+" ES NULO!!");
-				return false;
-			}else {
-				iInmuebleRepository.save(inmueble);
-				return true;
-			}
-			
-			
-		} catch (Exception e) {
-			logger.error("ERROR addInmueble : EL INMUEBLE " + inmueble+ " NO SE HA INSERTADO EN LA DB!!");
-			return false;
-		}
-	}
-	
-	
-	// ----UPDATE----
-	public boolean updateInmueble(Inmueble inmueble) {
-		try {
-			if(inmueble == null) {
-				logger.error("ERROR updateInmueble : EL INMUEBLE " + inmueble + " ES NULO!!");
-				return false;
-			}else {
-				iInmuebleRepository.save(inmueble);
-				return true;
-			}
-			
-		} catch (Exception e) {
-			logger.error("ERROR updateInmueble : EL INMUEBLE " + inmueble + " NO SE HA ACTUALIZADO EN LA DB!!");
-			return false;
-		}
-	}
-	
-	// ----DELETE----
-	public boolean deleteInmueble(int id) {
-		try {
-			if(id == 0) {
-				logger.error("ERROR deleteInmueble : EL ID DEL INMUEBLE ES CERO!!");
-				return false;
-			}else {
-				iInmuebleRepository.delete(iInmuebleRepository.findById(id));
-				return true;
-			}
-			
-		} catch (Exception e) {
-			logger.error("ERROR deleteInmueble : EL INMUEBLE CON EL ID " + id + " NO SE HA ELIMINADO DE LA DB!!");
-			return false;
-		}
-	}
-	
-	// ----SELECT----
-	public List<Inmueble> getAllInmueble(Pageable pageable){
-		
-		return iInmuebleRepository.findAll(pageable).getContent();
-	}
-	
-	// ============ MÉTODOS DE BÚSQUEDA ==================
-	
-	//----ID-----
-	public Inmueble findById(int id) {
-		return iInmuebleRepository.findById(id);
-	}
-	
-
-	//---- ID PROPIETARIO INMUEBLE-----
-	public List<Inmueble> findByIdPropietarioInmueble(int id) {
-		return iInmuebleRepository.findByIdPropietarioInmueble(id);
-	}
-	
-	
-	//---- DESCRIPCION INMUEBLE-----
-	public List<Inmueble> findByDescripcion(String descripcion) {
-		return iInmuebleRepository.findByDescripcion(descripcion);
-	}
-	
-	//----- TIPO DE INMUEBLE --------
-	public List<Inmueble> findByTipo(String tipo) {
-		return iInmuebleRepository.findByTipo(tipo);
-	}
-	
-	
-	//---- ESTADO INMUEBLE-----
-	public List<Inmueble> findByEstadoInmuebleEnum(EstadoInmuebleEnum estadoInmuebleEnum) {
-		return iInmuebleRepository.findByEstadoInmuebleEnum(estadoInmuebleEnum);
-	}
-	
-	
-	
-	//---- PRECIO INMUEBLE-----
-	public List<Inmueble> findByPrecioInmueble(double precio) {
-		return iInmuebleRepository.findByPrecioInmuebleUsd(precio);
-	}
-	
-	//---- DIRECCION INMUEBLE-----
-	public List<Inmueble> findByDireccion(String direccion) {
-		return iInmuebleRepository.findByDireccion(direccion);
-	}
-	
-	//---- UBICACION INMUEBLE-----
-	public List<Inmueble> findByUbicacion(String ubicacion) {
-		return iInmuebleRepository.findByUbicacion(ubicacion);
-	}
-	
-	//---- SITIO WEB INMUEBLE-----
-	public List<Inmueble> findBySitioWeb(String sitioWeb) {
-		return iInmuebleRepository.findBySitioWeb(sitioWeb);
-	}
-		
-		
-	
-	
-	
-}
-
- ```
-  
- </br>
-
-### 2.5) Creación y Configuración del Objeto de Valor  `PropietarioInmuebleVO`
-#### (Los objetos de valor nos van a permiten relacionar los microservicios a través de nuestro servicio REST garantizando nua expresividad máxima de nuetsro código)
-
-</br> 
-
-* Creamos el paquete `valueobjects` dentro de la ruta convencional
-* Creamos la clase `PropietarioInmuebleVO` 
-* ES NECESARIO TENER O CONOCER LOS ATRIBUTOS DE LA ENTIDAD DEL MICROSERVICIO `PropietarioInmuebleService` para copiar los mismos de la clase original entity sin las anotaciones, salvo las de lombok, ya que será una clase pojo.
-* Esta paso de los value object lo agrego acá por temas de organización de código, se puede desarrollar ambos microservicios y luego realizar este paso, temas de comodidad.
-
-
-```java
-package com.inmueble.service.valueobjects;
-
-import java.time.LocalDate;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class PropietarioInmuebleVO {
-
-	private int id;
-
-	private String nombre;
-
-	private String apellido;
-
-	private int edad;
-
-	private LocalDate fechaNacimiento;
-
-	private String tipoDocumento;
-
-	private String nroDocumento;
-
-	private String direccion;
-
-	private String nroTelefonoPrincipal;
-
-	private String nroTelefonoSecundario;
-
-	private String email;
-
-}
-
-```
-
- </br>
-
-### 2.6) Creación y Configuración del Template  `PropietarioInmuebleResponseTemplate`
-#### (Esta Clase será el template que contenga los objetos Inmueble y PropietarioInmuebleVO)
-
-</br> 
-* Dentro del paquete `valueobjects` creamos la clase template `PropietarioInmuebleResponseTemplate`
-* Aplicamos todas las anotaciones de lombok necesarias
-* AL IGUAL QUE EL PASO ANTERIOR, ES NECESARIO TENER PARTE DEL OTRO MICROSERVICIO DESARROLLADO PARA TRABAJAR EL MISMO
-* Usamos las clases ya mencionadas y aplicamios lombok
-* Código..
-```java
-package com.inmueble.service.valueobjects;
-
-import com.inmueble.service.entity.Inmueble;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class PropietarioInmuebleResponseTemplate {
-	
-	private PropietarioInmuebleVO propietarioInmuebleVO;
-	
-	private Inmueble inmueble;
-	
-
-}
-
-```
- 
- 
-</br>
-
-### 2.7) Creación y Configuración del Controlador  `InmuebleController`
- 
  
 * Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `controller`
 * Dentro del mismo la Clase Controller `InmuebleController`
@@ -1550,9 +1005,21 @@ public class InmuebleController {
  ```
 
 
-</br>
+ <br>
 
-### Paso 3) Configuraciones de la db `db_inmobiliaria_microservicios`
+</details>
+
+
+
+
+
+
+
+### 4.1) Configuración de la db [🔝](#índice-)
+
+<details>
+ <summary>Ver</summary>
+	
 #### (El Microservicio persistirá los datos en esta db, no detallaré como levantar la db, ejecutar los servicios, etc. Todos estos pasos se encuentran en el repositorio de la misma..https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres)
 
 </br>
@@ -1566,11 +1033,16 @@ Contraseña:postgres
 * Para trabajar con enumerados desde postgres y desde java es necesario que haya una conversión de tipos para su correcta sincronización y persistencia, además de haber agregado las anotations correspondientes para los enumerados desde java, se implementa un casteo desde el DDL de la db, especificamente `CREATE CAST (varchar AS estado_inmueble_enum) WITH INOUT AS IMPLICIT;
 `
 
-</br>
+ <br>
 
-### Paso 4) Configuraciones del `application.properties`
-  
-</br>
+</details>
+
+
+### 4.2) Configuración del application.properties [🔝](#índice-)
+
+<details>
+ <summary>Ver</summary>
+	
 
 * Revisar Repositorio de Api Rest para información detallada acerca del archivo de propiedades
 * La única diferencia con la API REST mencionada es que utilizo como sgdb mysql y no postgres, entonces se cambia el dialect para hibernate, puerto, etc.
@@ -1602,11 +1074,17 @@ spring.data.rest.max-page-size = 10
 
 ```
 
- </br>
- 
+ <br>
+
+</details>
 
 
-### Paso 5) Manejo de Postgres desde `CMD`
+
+### 4.3) Manejo de Postgres desde cmd [🔝](#índice-)
+
+<details>
+ <summary>Ver</summary>
+	
 #### (Esta es una forma rápida y eficaz de comprobar que tenemos tablas, registros, columnas, etc insertadas en nuestra base de datos, previamente y durante la etapa de testing del microservicio recomiendo implementar este método)
 
 </br>
@@ -1667,10 +1145,18 @@ C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQ
 * Todos los comandos que se puedan implementar con Postgres desde algún editor son completamente validos desde el cmd, si queremos listar todos los inmuebles `select * from inmuebles`, si queremos borrar una tabla `drop table inmuebles`, etc
 
 
- </br>
+ <br>
 
- 
-### Paso 6) Prueba del Microservicio `InmuebleService` con `Postman` 
+</details>
+
+
+
+
+### 4.4) Prueba de Funcionalidad [🔝](#índice-)
+
+<details>
+ <summary>Ver</summary>
+	
 #### (Vamos a testear los métodos desarrollados con Postman, es importante que se hayan ejecutado los pasos anteriores de forma correcta y se tenga corriendo la db con sus registros y tablas correctamente)
 
  </br>
@@ -1822,7 +1308,41 @@ C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQ
 
 * Nuestra API REST cumple con lo desarrollado
 
+ <br>
 
+</details>
+
+
+
+
+
+
+
+
+
+
+<br>
+
+<br>
+
+
+
+
+
+### `Siguiente sección en proceso de actualización`
+
+<details>
+ <summary>Ver</summary>
+	
+<br>
+
+#### Sección 2) Microservicio PropietarioInmuebleService
+	
+   - [Paso 7) Desarrollo del Microservicio](#paso-7-desarrollo-del-microservicio-propietarioinmuebleservice)
+
+#### Sección 3) Microservicio InspeccionInmuebleService
+	
+   - [Paso 8) Desarrollo del Microservicio](#paso-8-desarrollo-del-microservicio-inspeccioninmuebleservice)
 
 
 </br>
