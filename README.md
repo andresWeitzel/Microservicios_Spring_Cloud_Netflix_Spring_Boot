@@ -42,6 +42,22 @@ Implementación de Microservicios con Spring Boot, Spring Cloud, Spring Data JPA
  
  - [3.0) Prueba de Funcionalidad.](#30-prueba-de-funcionalidad-)
  - [3.1) Referencias.](#31-referencias-)
+	
+### Sección 4) Creación y Configuración de Microservicios desde cero
+ 
+ - [4.0) Modelo de Microservicio InmuebleService.](#40-modelo-de-microservicio-inmuebleservice-)
+     - [4.0.0) Creación y Configuración.](#400-creción-y-configuración)
+     - [4.0.1) Desarrollo.](#401-desarrollo)
+     - [4.0.2) Enums.](#402-enums)
+     - [4.0.3) Entidades.](#403-entidades)
+     - [4.0.4) Interfaces.](#404-interfaces)
+     - [4.0.5) Servicios.](#405-servicios)
+     - [4.0.6) Objetos Value Object.](#406-objetos-value-objects)
+     - [4.0.7) Template Value Object.](#407-template-value-objects)
+- [4.1) Configuración de la db.](#41-configuración-de-la-db-)
+- [4.2) Configuración del application.properties.](#42-configuración-del-application-properties)
+- [4.3) Manejo de Postgres desde cmd.](#43-manejo-de-postgres-desde-cmd)
+- [4.4) Prueba de funcionalidad.](#44-prueba-de-funcionalidad)
 
 </details>
 
