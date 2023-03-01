@@ -43,7 +43,7 @@ Implementación de Microservicios con Spring Boot, Spring Cloud, Spring Data JPA
  - [3.0) Prueba de Funcionalidad.](#30-prueba-de-funcionalidad-)
  - [3.1) Referencias.](#31-referencias-)
 	
-### Sección 4) Creación y Configuración de Microservicios desde cero
+### Sección 4) Creación y Configuración del Modelo de Microservicio InmuebleService desde cero
  
  - [4.0) Modelo de Microservicio InmuebleService.](#40-modelo-de-microservicio-inmuebleservice-)
      - [4.0.0) Creación y Configuración.](#400-creción-y-configuración)
@@ -383,7 +383,7 @@ Servicios
 
 <br>
 
-## Sección 4) Creación y Configuración de Microservicios desde cero
+## Sección 4) Creación y Configuración del Modelo de Microservicio InmuebleService desde cero
 
 
 ### 4.0) Modelo de Microservicio InmuebleService [🔝](#índice-)
