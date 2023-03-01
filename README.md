@@ -59,6 +59,14 @@ Implementación de Microservicios con Spring Boot, Spring Cloud, Spring Data JPA
 - [4.3) Manejo de Postgres desde cmd.](#43-manejo-de-postgres-desde-cmd)
 - [4.4) Prueba de funcionalidad.](#44-prueba-de-funcionalidad)
 
+### Sección 5) Uso y manejo de Git
+
+- [5.0) Descarga.](#50-descarga-)
+- [5.1) Subir proyecto al repositorio remoto.](#51-subir-proyecto-al-repositorio-remoto-)
+- [5.2) Actualización del repositorio del proyecto.](#52-actualización-del-repositorio-del-proyecto-)
+ 
+	
+	
 </details>
 
 
@@ -1319,99 +1327,16 @@ C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQ
 
 
 
-
-
 <br>
 
-<br>
+## Sección 5) Uso y manejo de Git
 
 
-
-
-
-### `Siguiente sección en proceso de actualización`
+### 5.0) Descarga [🔝](#índice-)
 
 <details>
  <summary>Ver</summary>
 	
-<br>
-
-#### Sección 2) Microservicio PropietarioInmuebleService
-	
-   - [Paso 7) Desarrollo del Microservicio](#paso-7-desarrollo-del-microservicio-propietarioinmuebleservice)
-
-#### Sección 3) Microservicio InspeccionInmuebleService
-	
-   - [Paso 8) Desarrollo del Microservicio](#paso-8-desarrollo-del-microservicio-inspeccioninmuebleservice)
-
-
-</br>
-
-##  Sección 2) Microservicio PropietarioInmuebleService
-
-</br>
-
-
-### Paso 7) Desarrollo del Microservicio `PropietarioInmuebleService`
-#### (Por temas de simplificación y duplicidad de código no se replican los pasos necesarios para el desarrollo de este microservicio. El mismo sigue la misma estructura de creación que el anterior desarrollado)
-
-</br>
-
-* Para poder correr este microservicio, además de haber desarrollado el código necesario para el mismo, es importante cambiar el puerto de uso del server de spring para este microservicio.
-* Código del application.properties..
- ```xml
-
-server.port = 8093
-server.error.whitelabel.enabled=true
-
-spring.datasource.url = jdbc:postgresql://localhost:5432/db_inmobiliaria_microservicios?serverTimezone=UTC
-spring.datasource.username = postgres
-spring.datasource.password = postgres
-
-
-spring.jpa.show-sql = true
-spring.jpa.hibernate.ddl-auto = update
-spring.jpa.hibernate.naming.strategy = org.hibernate.cfg.ImprovedNamingStrategy
-spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
-
-
-
-spring.data.rest.page-param-name=page
-spring.data.rest.sort-param-name=sort
-spring.data.rest.limit-param-name=limit
-spring.data.rest.default-page-size = 1
-spring.data.rest.max-page-size = 10
-
-
-
-  ```
-* Al igual que el Microservice anterior se testea correctamente su API
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</br>
-
-## Sección 9) Uso y Manejo de Git.
-
-</br>
-
-### Uso y Manejo de Git
-### Descarga de Git
 * Nos dirigimos a https://git-scm.com/downloads y descargamos el versionador
 * Como toda aplicacion siguiente.... siguiente....
 * IMPORTANTE:NO TENER DBEAVER ABIERTO DURANTE LA INSTALACION, SINO NO RECONOCE EL PATH
@@ -1423,7 +1348,16 @@ spring.data.rest.max-page-size = 10
 * --> Una vez dentro del Proyecto podremos hacer uso de Git
 
 
-### Subir el proyecto al repositorio de github desde la consola de git 
+ <br>
+
+</details>
+
+
+### 5.1) Subir proyecto al repositorio remoto [🔝](#índice-)
+
+<details>
+ <summary>Ver</summary>
+
 
 #### 1)Creamos un nuevo repositorio en GitHub.
 
@@ -1442,11 +1376,18 @@ spring.data.rest.max-page-size = 10
 #### 6)Subimos nuestro proyecto.
 * git push -u origin master
 
+	
+ <br>
 
-</br>
+</details>
 
 
-### Actualización del repositorio del proyecto desde la consola de GIT
+
+### 5.2) Actualización del repositorio del proyecto [🔝](#índice-)
+
+<details>
+ <summary>Ver</summary>
+
 
 #### 1)Visualizamos las modificaciones realizadas en local
 * git status
@@ -1464,12 +1405,16 @@ spring.data.rest.max-page-size = 10
 #### 5)Enviamos todos los cambios locales al repo en github
 * git push https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot
 
-#### 6) En casos extremos pisamos todo el repositorio
+#### 6) En casos extremos pisamos la rama del repositorio (No recomendado)
 * git push -f --set-upstream origin master
 
-
-
+	
  <br>
 
 </details>
+
+
+
+
+
 
