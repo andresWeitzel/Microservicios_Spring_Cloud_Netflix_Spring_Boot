@@ -817,12 +817,12 @@ public class PropietarioInmuebleVO {
 #### 4.0.6) Template Value Object
 #### (Esta Clase será el template que contenga los objetos Inmueble y PropietarioInmuebleVO)
 
-</br> 
 * Dentro del paquete `valueobjects` creamos la clase template `PropietarioInmuebleResponseTemplate`
 * Aplicamos todas las anotaciones de lombok necesarias
 * AL IGUAL QUE EL PASO ANTERIOR, ES NECESARIO TENER PARTE DEL OTRO MICROSERVICIO DESARROLLADO PARA TRABAJAR EL MISMO
 * Usamos las clases ya mencionadas y aplicamios lombok
 * Código..
+
 ```java
 package com.inmueble.service.valueobjects;
 
@@ -850,7 +850,6 @@ public class PropietarioInmuebleResponseTemplate {
 <br>
 
 
-	
  <br>
 
 </details>
