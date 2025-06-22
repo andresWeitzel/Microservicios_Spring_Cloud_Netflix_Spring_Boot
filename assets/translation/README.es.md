@@ -1,20 +1,20 @@
 <div align="center">
-  <img src="./assets/img/MicroservicesArquitectura.png" >
+  <img src="../img/MicroservicesArquitectura.png" >
 </div>
 
   <div align="right">
-    <img width="24" height="24" src="./assets/icons/backend/java/png/java.png" />
-    <img width="20" height="20" src="./assets/icons/devops/png/maven.png" />
-    <img width="22" height="22" src="./assets/icons/devops/png/postman.png" />
-    <img width="22" height="22" src="./assets/icons/devops/png/git.png" />
-	<img width="20" height="20" src="./assets/icons/devops/png/grafana.png" /> 
-	<img width="20" height="20" src="./assets/icons/devops/png/prometheus.png" />  
-    <img width="20" height="" src="./assets/icons/backend/java/png/junit.png" />
-    <img width="20" height="20" src="./assets/icons/backend/java/png/spring-boot.png" /> 
-    <img width="20" height="20" src="./assets/icons/backend/java/png/spring-cloud.png" /> 
-	<img width="20" height="19" src="./assets/icons/backend/java/png/spring-security.png" /> 
-	<img width="20" height="19" src="./assets/icons/database/png/mysql.png" />  
-	<img width="20" height="20" src="./assets/icons/database/png/postgres.png" />
+    <img width="24" height="24" src="../icons/backend/java/png/java.png" />
+    <img width="20" height="20" src="../icons/devops/png/maven.png" />
+    <img width="22" height="22" src="../icons/devops/png/postman.png" />
+    <img width="22" height="22" src="../icons/devops/png/git.png" />
+	<img width="20" height="20" src="../icons/devops/png/grafana.png" /> 
+	<img width="20" height="20" src="../icons/devops/png/prometheus.png" />  
+    <img width="20" height="" src="../icons/backend/java/png/junit.png" />
+    <img width="20" height="20" src="../icons/backend/java/png/spring-boot.png" /> 
+    <img width="20" height="20" src="../icons/backend/java/png/spring-cloud.png" /> 
+	<img width="20" height="19" src="../icons/backend/java/png/spring-security.png" /> 
+	<img width="20" height="19" src="../icons/database/png/mysql.png" />  
+	<img width="20" height="20" src="../icons/database/png/postgres.png" />
 	   
   </div>
 
@@ -25,11 +25,11 @@
 
 
 <div align="right"> 
-  <a href="./assets/translation/README.es.md">
-    <img width="65" height="40" src="./assets/icons/translation/arg-flag.jpg" />
+  <a href="./README.es.md">
+    <img width="65" height="40" src="../icons/translation/arg-flag.jpg" />
   </a> 
-  <a href="./README.md">
-    <img width="65" height="40" src="./assets/icons/translation/eeuu-flag.jpg" />
+  <a href="../../README.md">
+    <img width="65" height="40" src="../icons/translation/eeuu-flag.jpg" />
   </a> 
 </div>
 
@@ -39,71 +39,71 @@
 
 <div align="center">
 
-# Real Estate Microservices ![(status-completed)](./assets/icons/badges/status-completed.svg)
+# Microservicios Inmobiliaria ![(status-completed)](../icons/badges/status-completed.svg)
 
 </div>
 
-Implementation of Microservices for real estate with Spring Boot, Spring Cloud, Spring Data JPA, Resilience4J, Grafana, Prometheus, Lombok, Maven, Postman, RESTful API, Postgres, MySQL and other Technologies.
+Implementación de Microservicios para inmobiliaria con Spring Boot, Spring Cloud, Spring Data JPA, Resilience4J, Grafana, Prometheus, Lombok, Maven, Postman, Api Restful, Postgres, Mysql y otras Tecnologías.
 
 <br>
 
-* [Postgres real estate database repository](https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres)
-* [MySQL property inspections database repository](https://github.com/andresWeitzel/db_inspecciones_inmuebles_microservicios_mysql)
-* [Functional Playlist](https://www.youtube.com/playlist?list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe) <a href="https://www.youtube.com/playlist?list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe" target="_blank"> <img src="./assets/icons/social-networks/yt.png" width="25" /></a>
+* [Repositorio db inmobiliaria postgres](https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres)
+* [Repositorio db inspecciones inmuebles mysql](https://github.com/andresWeitzel/db_inspecciones_inmuebles_microservicios_mysql)
+* [Functional Playlist](https://www.youtube.com/playlist?list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe) <a href="https://www.youtube.com/playlist?list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe" target="_blank"> <img src="../icons/social-networks/yt.png" width="25" /></a>
  
 
 
 <br>
 
-## Index 📜
+## Índice 📜
 
 <details>
- <summary> View </summary>
+ <summary> Ver </summary>
  
  <br>
  
  
-### Section 1) Description, Technologies and Dependencies 
+### Sección 1) Descripción, Tecnologías y Dependencias 
  
- - [1.0) Project Description.](#10-project-description-)
- - [1.1) Design Patterns.](#11-design-patterns-)
- - [1.2) Technologies.](#12-technologies-)
-     - [1.2.1) Downloads.](#121-downloads)
- - [1.3) Maven Dependencies.](#13-maven-dependencies-)
+ - [1.0) Descripción del Proyecto.](#10-descripción-)
+ - [1.1) Patrones de Diseño.](#11-patrones-de-diseño-)
+ - [1.2) Tecnologías.](#12-tecnologías-)
+     - [1.2.1) Descargas.](#121-descargas)
+ - [1.3) Dependencias Maven.](#13-dependencias-maven-)
  
-### Section 2) Endpoints and Resources 
+### Sección 2) Endpoints y Recursos 
  
  - [2.0) EndPoints.](#endpoints-)
- - [2.1) Resources by Endpoints.](#graphical-documentation-of-resources-by-endpoints-swagger-ui-)
- - [2.2) Request and Response Examples.](#22-request-and-response-examples-)
+ - [2.1) Recursos por Endpoints.](#documentación-gráfica-de-recursos-por-endpoints-swagger-ui-)
+ - [2.2) Ejemplos de Requests y Responses.](#22-ejemplos-de-requests-y-responses-)
  
  
-### Section 3) Functionality Testing and References
+### Sección 3) Prueba de Funcionalidad y Referencias
  
- - [3.0) Functionality Testing.](#30-functionality-testing-)
- - [1.1) References.](#31-references-)
+ - [3.0) Prueba de Funcionalidad.](#30-prueba-de-funcionalidad-)
+ - [3.1) Referencias.](#31-referencias-)
 	
-### Section 4) Creation and Configuration of the InmuebleService Microservice Model from scratch
+### Sección 4) Creación y Configuración del Modelo de Microservicio InmuebleService desde cero
  
- - [4.0) InmuebleService Microservice Model.](#40-inmuebleservice-microservice-model-)
-     - [4.0.0) Creation and Configuration.](#400-creation-and-configuration)
+ - [4.0) Modelo de Microservicio InmuebleService.](#40-modelo-de-microservicio-inmuebleservice-)
+     - [4.0.0) Creación y Configuración.](#400-creción-y-configuración)
      - [4.0.1) Enums.](#401-enums)
-     - [4.0.2) Entities.](#402-entities)
+     - [4.0.2) Entidades.](#402-entidades)
      - [4.0.3) Interfaces.](#403-interfaces)
-     - [4.0.4) Services.](#404-services)
-     - [4.0.5) Value Objects.](#405-value-objects)
-     - [4.0.6) Template Value Objects.](#406-template-value-objects)
+     - [4.0.4) Servicios.](#404-servicios)
+     - [4.0.5) Objetos Value Object.](#405-objetos-value-objects)
+     - [4.0.6) Template Value Object.](#406-template-value-objects)
      - [4.0.7) Controllers.](#407-controllers)
-- [4.1) Database configuration.](#41-database-configuration-)
-- [4.2) application.properties configuration.](#42-application-properties-configuration)
-- [4.3) PostgreSQL management from cmd.](#43-postgresql-management-from-cmd)
-- [4.4) Functionality testing.](#44-functionality-testing)
+- [4.1) Configuración de la db.](#41-configuración-de-la-db-)
+- [4.2) Configuración del application.properties.](#42-configuración-del-application-properties)
+- [4.3) Manejo de Postgres desde cmd.](#43-manejo-de-postgres-desde-cmd)
+- [4.4) Prueba de funcionalidad.](#44-prueba-de-funcionalidad)
 
-### Section 5) Git usage and management
+### Sección 5) Uso y manejo de Git
 
-- [5.0) Download.](#50-download-)
-- [5.1) Upload project to remote repository.](#51-upload-project-to-remote-repository-)
-- [5.2) Project repository update.](#52-project-repository-update-)
+- [5.0) Descarga.](#50-descarga-)
+- [5.1) Subir proyecto al repositorio remoto.](#51-subir-proyecto-al-repositorio-remoto-)
+- [5.2) Actualización del repositorio del proyecto.](#52-actualización-del-repositorio-del-proyecto-)
  
 	
 	
@@ -112,47 +112,47 @@ Implementation of Microservices for real estate with Spring Boot, Spring Cloud, 
 
 <br>
 
-## Section 1) Description, Technologies and Dependencies 
+## Sección 1) Descripción, Tecnologías y Dependencias 
 
 
-### 1.0) Project Description [🔝](#index-) 
+### 1.0) Descripción [🔝](#índice-) 
 
 <details>
- <summary>View</summary>
+ <summary>Ver</summary>
  
  <br>
 
-* This project was created to put into practice the interrelation and operation of several Microservices with different DBMS such as MySQL and PostgreSQL.
-* The `PropietarioInmuebleService` and `InmuebleService` Microservices implement the same PostgreSQL DBMS database for a real estate company.
-* The `InspeccionInmuebleService` Microservice will communicate with a MySQL database for the validation and control of the properties.
-* The Generic Management Service for Microservices will be `EurekaService`, this will not implement any database as it will be responsible for all the management and Control of the rest of the Microservices and Services.
-* The `API Gateway` Service will be in charge of managing the rest of the 3 microservices of the application, it is interconnected through the Circuit Breaker Design Pattern for Exception Control, Fault Tolerance, etc. All microservice resources go through the port and address of this service.
-* The `ResilienceFourJ` Service will be in charge of directly handling Exception Control, Errors, etc. that may occur, just like the API Gateway handles the Circuit Breaker pattern, in addition, for each resource of each microservice, the modules of said pattern are implemented.
-* ResilienceFourJ is directly configured to work with `Prometheus` and `Grafana`. Prometheus will handle all the ResilienceFourJ information and Grafana will deploy this information in a Dashboard-type Graphical environment.
+* Este proyecto surgió a fin de poner en práctica la interrelación y funcionamiento de varios Microservicios con diferentes SGDB como lo son Mysql y Postgres.
+* Los Microservicios `PropietarioInmuebleService` e `InmuebleService` implementan una misma base de datos de tipo SGDB Postgres para una inmobiliaria.
+* El Microservicio `InspeccionInmuebleService` se comunicará con una base de datos de tipo Mysql para la validación y control de los inmuebles de dicha.
+* El Servicio de Gestión Genérico de los Microservicios será `EurekaService`, este no implementará ninguna base de datos ya que será el responsable de toda la gestión y Control del resto de los Microservicios y Servicios.
+* El Servicio `Api Gateway` será el encargado de la gestión del resto de los 3 microservicios de la aplicación, se entrelaza mediante el Patrón de Diseño Circuit Breaker para el Control de Excepciones, Tolerancias a fallos, etc. Todos los recursos de los microservicios pasan a través del puerto y dirección de este.
+* El Servicio `ResilienceFourJ` será el encargado de manejar de forma directa el Control de Excepciones, Errores, etc que se puedan presentar, al igual que el ApiGateway maneja el patrón Circuit Breaker, además para cada recurso de cada microservicio se implementar los módulos de dicho patrón.
+* ResilienceFourJ está directamente configurado para trabajar con `Prometheus` y `Grafana`. Prometheus Manejará toda la información de ResilienceFourJ y Grafana deployará dicha información en un entorno Gráfico de tipo Dashboard.
 
 
-* The Project consists of 3 REST microservices and 3 management, administration and security services for the microservices
+* El Proyecto consta de 3 microservicios de tipo REST y 3 servicios de gestión, administración y seguridad para los microservicios
 
-``` Microservices
-|  |  |--------> Rest Microservice InmuebleService ----------------> db_inmobiliaria_microservicios  		--> (Postgres) --> (shared) 
-|  |-----------> Rest Microservice PropietarioInmuebleService------> db_inmobiliaria_microservicios  		--> (Postgres) --> (shared) 
-|--------------> Rest Microservice InspeccionInmuebleService-------> db_inspecciones_inmuebles_microservicios   --> (Mysql)    --> (unique)  
+``` Microservicios
+|  |  |--------> Microservice Rest InmuebleService ----------------> db_inmobiliaria_microservicios  		--> (Postgres) --> (compartida) 
+|  |-----------> Microservice Rest PropietarioInmuebleService------> db_inmobiliaria_microservicios  		--> (Postgres) --> (compartida) 
+|--------------> Microservice Rest InspeccionInmuebleService-------> db_inspecciones_inmuebles_microservicios   --> (Mysql)    --> (única)  
 ```
 
 ```
-Services
-|  |  |  |-----> EurekaService -----------> Microservices Management Server
-|  |  |--------> ApiGatewayService -------> Proxy with load balancing for microservice request management 
-|  |-----------> ResilienceFourJService --> Service for Exception Control and Fault Tolerance. Circuit Breaker Pattern
-| |------------> Prometheus/Actuator Service -----> Handling of ResilienceFourJ data
-|--------------> Grafana Dashboard Service -------> Deployment of data transferred by Prometheus
+Servicios
+|  |  |  |-----> Servicio EurekaService -----------> Servidor de Gestión de Microservicios
+|  |  |--------> Servicio ApiGatewayService -------> Proxy con balanceo de carga para la gestión de peticiones de los Microservicios 
+|  |-----------> Servicio ResilienceFourJService --> Servicio para el Control de Excepciones y Tolerancia a Fallos. Patrón Circuit Breaker
+| |------------> Servicio Prometheus/Actuator -----> Manejo de los datos de ResilienceFourJ
+|--------------> Servicio Grafana Dashboard -------> Deploy de los datos transferidos por Prometheus
 ```
  
  <br>
 
-* [Postgres real estate database repository](https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres)
-* [MySQL property inspections database repository](https://github.com/andresWeitzel/db_inspecciones_inmuebles_microservicios_mysql)
-* [Project PlayList](https://www.youtube.com/playlist?list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe)
+* [Repositorio db inmobiliaria postgres](https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres)
+* [Repositorio db inspecciones inmuebles mysql](https://github.com/andresWeitzel/db_inspecciones_inmuebles_microservicios_mysql)
+* [PlayList Proyecto](https://www.youtube.com/playlist?list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe)
  
 <br>
 
@@ -160,20 +160,20 @@ Services
 
 
 
-### 1.1) Design Patterns [🔝](#index-)
+### 1.1) Patrones de Diseño [🔝](#índice-)
 
 <details>
- <summary>View</summary>
+ <summary>Ver</summary>
  
  <br>
 
-| **Design Pattern** | **Purpose** |               
+| **Patrón de Diseño** | **Finalidad** |               
 | ------------- | ------------- |
-| DAO | Use of interfaces and repositories for data persistence and storage. |
-| MVC | Separation and Representation of Data, Error handling, Scalability, etc  |
-| VO  | Value Object pattern for Object relationship through Templates of each Microservice |
-| DTO  | Pattern for the Use of POJO Objects for data transfer between Microservices and Resilience4J |
-| Circuit Breaker | Pattern for Exception Control and Handling along with Fault Tolerance |
+| DAO | Uso de interfaces y repositorios para la persistencia y almacenamiento de datos. |
+| MVC | Separación y Representación de los Datos, Manejo de errores, Escalabilidad, etc  |
+| VO  | Patrón Value Object para el relacionamiento de Objetos a través de Templates de cada Microservicio |
+| DTO  | Patrón para el Uso de Objetos POJO para tranferencia de datos entre los Microservices y Resilience4J |
+| Circuit Breaker | Patrón para el Control y Manejo de Excepciones junto con la Tolerancia a Fallos |
 
 <br>
 
@@ -181,33 +181,49 @@ Services
 
 
 
-### 1.2) Technologies [🔝](#index-)
+### 1.2) Tecnologías [🔝](#índice-)
 
 <details>
- <summary>View</summary>
+ <summary>Ver</summary>
  
  <br>
 
-| **Technologies** | **Version** | **Purpose** |           
+| **Tecnologías** | **Versión** | **Finalidad** |           
 | ------------- | ------------- | ------------- |
 | [Java](https://docs.oracle.com/en/) |  12.0.2 | JDK |
 | [Spring Tool Suite 4](https://spring.io/blog/2021/06/21/spring-tools-4-11-0-released) | 4.9.0  | IDE |
 | [Spring Boot](https://spring.io/) |  2.6.4  | Framework |
-| [Spring Boot Data JPA](https://spring.io/projects/spring-data-jpa)  | 2.6.3 | Object mapping and database persistence |
-| [Spring Validation](https://www.baeldung.com/spring-boot-bean-validation)  | 2.7 | Annotations for Validations |
-| [Eureka Server and Client](https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-eureka-server.html) | 3.1.1 | Microservices Administration |
-| [Api-Gateway](https://www.baeldung.com/spring-cloud-gateway) | 3.1.1 | Proxy Resource Management |
-| [Resilience4J](https://resilience4j.readme.io/docs) | 3.1.1 | Circuit Breaker Pattern Utilization |
+| [Spring Boot Data JPA](https://spring.io/projects/spring-data-jpa)  | 2.6.3 | Mapeo de objetos y persistencia en la db |
+| [Spring Validation](https://www.baeldung.com/spring-boot-bean-validation)  | 2.7 | Anotations para Validaciones |
+| [Eureka Server and Client](https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-eureka-server.html) | 3.1.1 | Administración de Microservicios |
+| [Api-Gateway](https://www.baeldung.com/spring-cloud-gateway) | 3.1.1 | Manejo de Recursos de nuestro Proxy |
+| [Resilience4J](https://resilience4j.readme.io/docs) | 3.1.1 | Utilización del Patrón Circuit Breaker |
+| [Spring-Actuator](https://resilience4j.readme.io/docs) | 3.1.1 | Monitorización y Administraciíon ApiRest |
+| [Micrometer-Prometheus](https://www.baeldung.com/micrometer) | 1.8.4 | Dashboard y Monitorizacion data |
+| [Prometheus App](https://prometheus.io/) | 2.35 |  Monitoreo |
+| [Grafana App](https://grafana.com/) | 8.4.6 | Deploy de Analítica Microservicios |
+| [Lombok](https://projectlombok.org/) | 1.18.22 | Automatización de Código | 
+| [Open-Api y UI Swagger](https://www.openapis.org/) | 1.6.4 | Documentación de la Api | 
+| [UI Swagger](https://swagger.io/tools/swagger-ui/) | 1.6.4 | Visualización y Gestión de la Api | 
+| [Maven](https://maven.apache.org/) |  4.0.0 | Gestor de Proyectos |
+| [Postman](https://www.postman.com/) | 9.1.1 | Visualización y Gestión de la Api | 
+| [XAMPP](https://www.apachefriends.org/https://www.apachefriends.org/) | 3.2.2  | Paquete de Servidores |
+| [DBeaver](https://www.apachefriends.org/) | 21.1 | Gestor de Base de Datos |
+| [Mysql](https://www.mysql.com/) | 10.1.38 | Sistema de Gestión de Bases de Datos |
+| [PostgreSQL](https://www.postgresql.org/) | 13.4 | Sistema de Gestión de Bases de Datos |
+| [CMD](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cmd) | 10 | Símbolo del Sistema para linea de comandos | 
+| [GNU bash / Terminal](https://www.gnu.org/software/bash/) | 4.4.23  | Bash / Terminal para el manejo e implementación de Git. |
+| [Git](https://git-scm.com/) | 2.29.1  | Control de Versiones |
 
 <br>
 
 </details>
 
 
-### 1.2.1) Downloads [🔝](#index-)
+### 1.2.1) Descargas [🔝](#índice-)
 
 <details>
- <summary>View</summary>
+ <summary>Ver</summary>
  
  <br>
 
@@ -231,34 +247,34 @@ Services
 </details>
 
 
-### 1.3) Maven Dependencies [🔝](#index-)
+### 1.3) Dependencias Maven [🔝](#índice-)
 
 <details>
- <summary>View</summary>
+ <summary>Ver</summary>
  
  <br>
 
-| **Maven Dependency**  | **Version** | **Purpose** |             
+| **Dependencia Maven**  | **Versión** | **Finalidad** |             
 | ------------- | ------------- | ------------- |
-| mysql-connector | 8.0.21 |  Connection to MySQL DB |
-| postgresql-connector | 42.3.1 | Connection to PostgreSQL DB  | 
-| lombok | 1.18.22 |  Dependency for code automation |
-| spring-boot-starter-test | 2.6.4 | Testing usage |
-| spring-boot-starter-data-jpa | 2.6.4 | JpaRepository API for method handling | 
-| spring-boot-starter-devtools | 2.6.6 | Tool for runtime recompilation |
-| spring-boot-starter-web | 2.6.4 | Automatic web configuration for Maven to Spring |
-| spring-boot-starter-actuator | 2.6.6 | Api Rest monitoring and management |
-| spring-boot-starter-aop | 2.6.6 | Api Rest modularity |
-| spring-cloud-starter-netflix-eureka-client | 3.1.1 | Connection to Eureka Service |
-| spring-cloud-starter-netflix-eureka-server | 3.1.1 | Dependencies for Eureka Service |
-| spring-cloud-starter-gateway | 3.1.1 | Proxy Resource Management |
-| spring-cloud-starter-bootstrap | 3.1.1 | Server Configuration Preparation |
-| spring-cloud-starter-config | 3.1.1 | Allows externalizing and centralizing microservice configuration in one place |
-| spring-cloud-starter-circuitbreaker-resilience4j | 2.1.1 | Dependency for Circ Break and Resiliency usage | 
+| mysql-connector | 8.0.21 |  Conexión al SGDB Mysql |
+| postgresql-connector | 42.3.1 | Conexión al SGDB PostgreSQL | 
+| lombok | 1.18.22 |  Dependencia para la automatización de Código |
+| spring-boot-starter-test | 2.6.4 | Uso de Testing |
+| spring-boot-starter-data-jpa | 2.6.4 | Api de JpaRepository para el manejo de métodos | 
+| spring-boot-starter-devtools | 2.6.6 | Herramienta para la recompilación en tiempo de ejecución |
+| spring-boot-starter-web | 2.6.4 | Se agrega toda la configuración web automáticamente de Maven a Spring |
+| spring-boot-starter-actuator | 2.6.6 | Monitorización y Administración de la Api Rest |
+| spring-boot-starter-aop | 2.6.6 | Modularidad de la Api Rest |
+| spring-cloud-starter-netflix-eureka-client | 3.1.1 | Conexión de Servicio con el Servidor Eureka |
+| spring-cloud-starter-netflix-eureka-server | 3.1.1 | Dependencias para el Servidor Eureka |
+| spring-cloud-starter-gateway | 3.1.1 | Manejo de Recursos de nuestro Proxy |
+| spring-cloud-starter-bootstrap | 3.1.1 | Preparación del Servidor de Configuración |
+| spring-cloud-starter-config | 3.1.1 | Nos permite exteriorizar y centralizar la configuración de los microservicios en un solo lugar |
+| spring-cloud-starter-circuitbreaker-resilience4j | 2.1.1 | Dependencia para el patrón Circ Break y el uso de Resiliencia | 
 
-| **Maven Dependency Manager**  | **Version** | **Purpose** |             
+| **Administrador de Dependencia Maven**  | **Versión** | **Finalidad** |             
 | ------------- | ------------- | ------------- |
-| spring-cloud-dependencies | 2021.0.0 | Cloud Dependencies Manager |
+| spring-cloud-dependencies | 2021.0.0 | Administrador de Dependencias cloud |
 
 
 <br>
@@ -269,32 +285,32 @@ Services
 
 <br>
 
-## Section 2) EndPoints and Resources
+## Sección 2) EndPoints y Recursos
 
-### 2.0) EndPoints [🔝](#index-)
+### 2.0) EndPoints [🔝](#índice-)
 
 <details>
- <summary>View</summary>
+ <summary>Ver</summary>
  
-### Default MicroServices EndPoints:
+### EndPoints MicroServicios Por Defecto:
 * http://localhost:8092/v1/inmuebles/
 * http://localhost:8093/v1/propietarios-inmuebles/
 * http://localhost:8095/v1/inspecciones-inmuebles/
 
-### MicroServices EndPoints with Api Gateway:
+### EndPoints MicroServicios con Api Gateway:
 * http://localhost:9191/v1/inmuebles/
 * http://localhost:9191/v1/propietarios-inmuebles/
 * http://localhost:9191/v1/inspecciones-inmuebles/
 
-### MicroServices EndPoints with Resilience4J
+### EndPoints MicroServicios con Resilience4J
 * http://localhost:9295/v1/inmueble-service
 * http://localhost:9295/v1/propietario-inmueble-service/
 * http://localhost:9295/v1/inspeccion-inmueble-service/
 
-### Analytical Endpoint with Prometheus
+### EndPoint Analítica con Prometheus
 * http://localhost:9295/actuator/prometheus
 
-### Deploy Endpoint with Grafana (username:admin password:admin)
+### EndPoint Deploy con Grafana (username:admin password:admin)
 * http://localhost:3000/d/X034JGT7Gz/springboot-apm-dashboard?orgId=1&from=now-1m&to=now
   
 
@@ -306,49 +322,49 @@ Services
 
 
 
-### 2.1) Resources by Endpoints. (Swagger UI) [🔝](#index-)
+### 2.1) Recursos por Endpoints. (Swagger UI) [🔝](#índice-)
 
 <details>
- <summary>View</summary>
+ <summary>Ver</summary>
 
-### Services in Spring Cloud Eureka Server
-![Index app](./assets/img/eurekaServer.png)
+### Servicios en Spring Cloud Eureka Server
+![Index app](../img/eurekaServer.png)
 
-### MicroServices by host and port independently
-![Index app](./assets/img/microservicesList.png)
+### MicroServices por host y puerto independientes
+![Index app](../img/microservicesList.png)
 
-### Initial Load of Resources via Grafana
-![Index app](./assets/img/carga_inicial.png)
+### Deploy de Carga Inicial de Recursos a través de Grafana
+![Index app](../img/carga_inicial.png)
 
-### GET Test Microservices port Resilience with Postman
-![Index app](./assets/img/getMicroservices.png)
+### Métodos GET Testeo Microservices puerto Resilience con Postman
+![Index app](../img/getMicroservices.png)
 
-### Http Methods GET Statistics in Grafana
-![Index app](./assets/img/getHttpStadistic.png)
+### Estadisticas de uso Http Métodos GET en Grafana
+![Index app](../img/getHttpStadistic.png)
 
-### POST Test Microservices port Resilience with Postman
-![Index app](./assets/img/postMicroservices.png)
+### Métodos POST Testeo Microservices puerto Resilience con Postman
+![Index app](../img/postMicroservices.png)
 
-### Http Methods POST Statistics in Grafana
-![Index app](./assets/img/postHttpStadistic.png)
+### Estadisticas de uso Http Métodos POST en Grafana
+![Index app](../img/postHttpStadistic.png)
 
-### Load after consuming Resources via Grafana
-![Index app](./assets/img/carga_uso.png)
+### Deploy de Carga luego del consumo de Recursos a través de Grafana
+![Index app](../img/carga_uso.png)
 	
-### CPU Usage of the System after consuming Resources via Grafana
-![Index app](./assets/img/systemCpuUsage.png)
+### Deploy de Carga de CPU Usada por el Sistema luego del consumo de Recursos a través de Grafana
+![Index app](../img/systemCpuUsage.png)
 
  
  <br>
 
 </details>
 
-### 2.2) Request and Response Examples [🔝](#index-)
+### 2.2) Ejemplos de Requests y Responses [🔝](#índice-)
 
 <details>
- <summary>View</summary>
+ <summary>Ver</summary>
 
-## Microservice InmuebleService
+## Microservicio InmuebleService
 
 ### 2.2.1) POST Operations
 
@@ -611,7 +627,7 @@ Services
 
 ---
 
-## Microservice PropietarioInmuebleService
+## Microservicio PropietarioInmuebleService
 
 ### 2.2.5) POST Operations
 
@@ -833,7 +849,7 @@ Services
 
 ---
 
-## Microservice InspeccionInmuebleService
+## Microservicio InspeccionInmuebleService
 
 ### 2.2.9) POST Operations
 
@@ -1049,7 +1065,7 @@ Services
 
 ---
 
-## Microservices with API Gateway
+## Microservicios con API Gateway
 
 ### 2.2.13) API Gateway Endpoints
 
@@ -1082,7 +1098,7 @@ Services
 
 ---
 
-## Microservices with Resilience4J
+## Microservicios con Resilience4J
 
 ### 2.2.14) Resilience4J Endpoints
 
@@ -1153,42 +1169,42 @@ Services
 
 <br>
 
-## Section 3) Functionality Testing and References
+## Sección 3) Prueba de Funcionalidad y Referencias
 
 
-### 3.0) Functionality Testing [🔝](#index-)
+### 3.0) Prueba de Funcionalidad [🔝](#índice-)
 
 <details>
- <summary>View</summary>
+ <summary>Ver</summary>
 
 
-### REST APIs Default Microservices
+### API's Rest Microservicios Por Defecto
 
-* [Inmueble Service Microservice](https://www.youtube.com/watch?v=dpEpQqyBTEw&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=1)
+* [Microservicio Inmueble Service](https://www.youtube.com/watch?v=dpEpQqyBTEw&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=1)
 
-* [Propietario Inmueble Service Microservice](https://www.youtube.com/watch?v=ahi5WDX19rQ&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=2)
+* [Microservicio Propietario Inmueble Service](https://www.youtube.com/watch?v=ahi5WDX19rQ&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=2)
 
-* [Inspeccion Inmueble Service Microservice](https://www.youtube.com/watch?v=6KeUPebnKu8&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=3&t=2s)
-
-</br>
-
-###  REST APIs Microservices with API Gateway
-
-* [Microservices](https://www.youtube.com/watch?v=kkjxv7HMlNI&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=4)
+* [Microservicio Inspeccion Inmueble Service](https://www.youtube.com/watch?v=6KeUPebnKu8&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=3&t=2s)
 
 </br>
 
-### REST APIs Microservices with Resilience4J
+###  API's Rest Microservicios con Api Gateway
 
-* [Inmueble-Service Resilience Microservice](https://www.youtube.com/watch?v=9OEwhURfrXw&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=6&t=214s)
-
-* [Propietario-Inmueble-Service and Inspección-Inmueble-Service Resilience Microservices](https://www.youtube.com/watch?v=mn-jAeEwt-8&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=6)
+* [Microservicios](https://www.youtube.com/watch?v=kkjxv7HMlNI&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=4)
 
 </br>
 
-### Microservices Data Analytics Deployment with Grafana and Prometheus 
+### API's Rest Microservicios con Resilience4J
 
-* [HTTP Requests Analysis](https://www.youtube.com/watch?v=9TxvWcXT-JM&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=7)	
+* [Microservicio Inmueble-Service Resilience](https://www.youtube.com/watch?v=9OEwhURfrXw&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=6&t=214s)
+
+* [Microservicios Propietario-Inmueble-Service e Inspección-Inmueble-Service Resilience](https://www.youtube.com/watch?v=mn-jAeEwt-8&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=6)
+
+</br>
+
+### Deploy Analítica de Datos Microservicios con Grafana y Prometheus 
+
+* [Análisis Peticiones HTTP](https://www.youtube.com/watch?v=9TxvWcXT-JM&list=PLCl11UFjHurC0zJPiNF-rCbAFd2BGUBOe&index=7)	
 	
  <br>
 
@@ -1198,17 +1214,17 @@ Services
 
 
 
-### 3.1) References [🔝](#index-)
+### 3.1) Referencias [🔝](#índice-)
 
 <details>
- <summary>View</summary>
+ <summary>Ver</summary>
 	
-### Recommended Unofficial Documentation
+### Documentación No Oficial Recomendada
 
-* [Microservices Structuring and Creation](https://www.youtube.com/watch?v=BnknNTN8icw&t=5s)
-* [Resilience4j Development](https://www.youtube.com/watch?v=Z_viIJSGXJw&list=PLq3uEqRnr_2GlhVSqltfLtpO8GF4VIICY&index=1)
-* [Grafana Dashboard Setup](https://www.youtube.com/watch?v=4WWW2ZLEg74)
-* [Grafana Dashboard Setup/Config](https://www.youtube.com/watch?v=zTZe447nDhI)
+* [Estructuración y Creación de Microservicios](https://www.youtube.com/watch?v=BnknNTN8icw&t=5s)
+* [Desarrollo de Resilience4j](https://www.youtube.com/watch?v=Z_viIJSGXJw&list=PLq3uEqRnr_2GlhVSqltfLtpO8GF4VIICY&index=1)
+* [Setup Dashboard Grafana](https://www.youtube.com/watch?v=4WWW2ZLEg74)
+* [Setup/Config Dashboard Grafana](https://www.youtube.com/watch?v=zTZe447nDhI)
 
  <br>
 
@@ -1221,20 +1237,20 @@ Services
 
 <br>
 
-## Section 4) Creation and Configuration of the InmuebleService Microservice Model from scratch
+## Sección 4) Creación y Configuración del Modelo de Microservicio InmuebleService desde cero
 
 
-### 4.0) InmuebleService Microservice Model [🔝](#index-)
+### 4.0) Modelo de Microservicio InmuebleService [🔝](#índice-)
 
 <details>
- <summary>View</summary>
+ <summary>Ver</summary>
 
-#### 4.0.0) Creation and Configuration
-#### (Only code relevant to microservices will be explained and included, all explanations and steps from scratch for a REST API are included in another project..https://github.com/andresWeitzel/Api_Rest_Spring_Productos)
+#### 4.0.0) Creación y Configuración
+#### (Solamente se explicará e incluirá código relevante para microservicios, toda explicación y pasos desde cero para una API REST se incluye en otro proyecto..https://github.com/andresWeitzel/Api_Rest_Spring_Productos)
 
 
-* We create and configure a Spring Started Proyect ( Name: InmuebleService | Group: com.inmueble.service | Package : com.inmueble.service )
-* From the project configuration, we add the spring web, spring data jpa, postgresql driver and Lombok dependencies
+* Creamos y configuramos un Spring Started Proyect ( Name: InmuebleService | Group: com.inmueble.service | Package : com.inmueble.service )
+* Desde la configuración del proyecto agregamos las dependencias spring web, spring data jpa, postgresql driver y Lombok
 
 ```xml
 <dependency>
@@ -1265,26 +1281,26 @@ Services
 
 </br>
 
-#### Lombok Configuration
-* After having the jars through the dependency in our project, we will install Lombok to be able to use it, it is not enough just to download, we need to configure and download it on our computer.
-* We search for the jar in Maven Dependencies `lombok-1.18....` Right-click and properties
-* Tab Java Source Attachment and we search for the Path where the jar of Lombok was downloaded.
-* We go to that folder, in my case `C:\Users\andre\.m2\repository\org\projectlombok\lombok\1.18.22` and we execute the Lombok jar `lombok-1.18.22.jar`
-* WE WILL PERFORM THE INSTALLATION IN THE CONFIGURATION FOLDER OF OUR IDE BY SELECTING SPECIFY LOCATION, IN MY CASE SPRING TOOL SUITE `C:\Program Files (x86)\sts-4.13.1.RELEASE`
-* We install, next next...
-* We close and reopen the IDE for the changes to take effect correctly
+#### Configuración e Instalación de `Lombok`
+* Seguidamente de tener el jars a través de la dependencia en nuestro proyecto, vamos a instalar lombok para poder utilizarlo, no basta con la descarga, hay que realizar la configuración y descarga del mismo en nuestro ordenador.
+* Buscamos el jar en Maven Dependencies `lombok-1.18....` Click derecho y properties
+* Pestaña Java Source Attachment y buscamos el Path donde se descargo el jar de lombok.
+* Nos dirigimos a dicha carpeta, en mi caso `C:\Users\andre\.m2\repository\org\projectlombok\lombok\1.18.22` y ejecutamos el jar de lombok `lombok-1.18.22.jar`
+* VAMOS A REALIZAR LA INSTALACIÓN EN LA CARPETA DE CONFIGURACIÓN DE NUESTRO IDE SELECCIONANDO SELECCIONANDO SPECIFY LOCATION, EN MI CASO SPRING TOOL SUITE `C:\Program Files (x86)\sts-4.13.1.RELEASE`
+* Instalamos, siguiente siguiente...
+* Cerramos y Abrimos el IDE para que los cambios se ejecuten correctamente
 
 
 <br>
 
 
 #### 4.0.1) Enums
-#### (Only code relevant to microservices will be explained and included, all explanations and steps from scratch for a REST API are included in another project..https://github.com/andresWeitzel/Api_Rest_Spring_Productos)
-* Inside the `com.inmueble.service` package hierarchy, we create the `enums` package
-* We will create an enumerated class for the `estado_inmueble_enum` field of the `Inmueble` entity we will create next
-* Inside the `enum` package, we create the `EstadoInmuebleEnum` class
-* For this class, we do not add the @Entity annotation of JPA since we are not going to create a table in the database, but instead use the possible values of the enumerations
-* We add the types of enumerations available for use from the database..
+#### (Solamente se explicará e incluirá código relevante para microservicios, toda explicación y pasos desde cero para una API REST se incluye en otro proyecto..https://github.com/andresWeitzel/Api_Rest_Spring_Productos)
+* Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `enums`
+* Vamos a crear una clase enumerado para el campo `estado_inmueble_enum` de la entidad `Inmueble` que crearemos a continuación
+* Dentro del paquete `enum` creamos la clase `EstadoInmuebleEnum`
+* Para esta clase no Agregamos la annotation @Entity de JPA ya que no vamos a crear una tabla en la base de datos, sino usar los posibles valores de los enumerados
+* Agregamos los tipos de enumerados disponibles para utilizar de la base de datos..
  ```java
  
 
@@ -1302,14 +1318,14 @@ public enum EstadoInmuebleEnum {
  <br>
 
 
-#### 4.0.2) Entities
+#### 4.0.2) Entidades
 
-* Inside the `com.inmueble.service` package hierarchy, we create the `entity` package
-* Inside the same `Inmueble` class
-* We add the corresponding annotations of the class for JPA 
-* We model the inmuebles table of the db `db_inmuebles_microservicios`
-* We also add the necessary annotations for the fields, subsequently `@Enumerated(EnumType.STRING)` for the enumerated. We do not add the rest of the annotations since we are going to implement Lombok
-* Then we add the annotations for Lombok `@Data` , `@AllArgsConstructor` and `@NoArgsConstructor` , the first one for generating getters and setters and the rest of the methods, the second one for the overloaded constructors of the Entity and the third one for the empty constructor 
+* Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `entity`
+* Dentro del mismo la clase `Inmueble`
+* Agregamos las annotations correspondientes de la clase para JPA 
+* Desarrollamos todos los campos privados modelando la tabla inmuebles de la db `db_inmuebles_microservicios`
+* Agregamos también las annotations necesarias para los campos, seguidamente `@Enumerated(EnumType.STRING)` para el enumerado. No agregamos el resto de las anotaciones ya que vamos a implementar lombok
+* Luego Agregamos las anotaciones para lombok `@Data` , `@AllArgsConstructor` y `@NoArgsConstructor` , la primera para la generacion de los getters y setters y el resto de metodos, la segunda para los constructores sobrecargados de la Entidad y la tercera para constructor vacio 
 
  
  ```java
@@ -1379,11 +1395,11 @@ public class Inmueble {
 
 #### 4.0.3) Interfaces
 
-* Inside the `com.inmueble.service` package hierarchy, we create the `repository` package
-* Inside the same `I_InmuebleRepository` interface
-* We add the @Repository annotation of the class for JPA and we use the `JpaRepository<InmuebleEntity, Serializable>` interface along with the Pagination `PagingAndSortingRepository<Inmueble, Long>` interface for all the functionality for creating the Jpa methods.
-* We create and define all the abstract methods making reference to the tentative fields of the entity. 
-* We do not create the CRUD methods in the interface, since we declare all the abstract methods without return values. The `findAll` method will be for Paginated..
+* Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `repository`
+* Dentro del mismo la Interfaz `I_InmuebleRepository`
+* Agregamos la annotation `@Repository` de la clase para JPA y usamos la interfaz  `JpaRepository<InmuebleEntity, Serializable>` junto con la Interfaz de Paginación `PagingAndSortingRepository<Inmueble, Long>` para toda la funcionalidad para la creación de los métodos Jpa.
+* Creamos y Definimos todos los métodos abstractos haciendo referencia a los campos de la entidad tentativos de uso. 
+* No creamos los métodos CRUD (add, save, update) en la interfaz, ya que declaramos todos los métodos abstractos sin devolución de valores. El método `findAll` será para Paginados..
  
  ```java
 package com.inmueble.service.repository;
@@ -1438,14 +1454,14 @@ public interface I_InmuebleRepository extends JpaRepository<Inmueble, Serializab
  <br>
 
 
-#### 4.0.4) Services
+#### 4.0.4) Servicios
 
-* Inside the `com.inmueble.service` package hierarchy, we create the `service` package
-* Inside the same `InmuebleService` class
-* We add the @Service annotation of the class making reference to Spring and @Autowired for implementing Dependency Injection of the created interface.
-* We use log4j for error logs in CRUD methods for persistence. 
-* We develop the body of each method of the interface
-* Each CRUD method has its persistence check and will return a boolean according to the result of the operation, they can be modified to add greater security.
+* Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `service`
+* Dentro del mismo la Clase Service `InmuebleService`
+* Agregamos la annotation `@Service` de la clase haciendo referencia para Spring y `@Autowired` para implementar Inyección de Dependencias de la interfaz creada.
+* Usamos log4j para los logs de error en los métodos CRUD para la persistencia. 
+* Desarrollamos el cuerpo de cada método de la interfaz
+* Cada Método CRUD tiene su comprobación de Persistencia y devolverán un booleano según el resultado de la operación, los mismos pueden ser modificados para adicionar mayor seguridad.
  
  ```java
 package com.inmueble.service.service;
@@ -1596,15 +1612,15 @@ public class InmuebleService {
  <br>
 
 
-#### 4.0.5) Value Objects
-#### (The value objects will allow us to relate the microservices through our REST service guaranteeing maximum expressiveness of our code)
+#### 4.0.5) Objectos Value Object
+#### (Los objetos de valor nos van a permiten relacionar los microservicios a través de nuestro servicio REST garantizando nua expresividad máxima de nuetsro código)
 
 </br> 
 
-* We create the `valueobjects` package inside the conventional route
-* We create the `PropietarioInmuebleVO` class 
-* IT IS NECESSARY TO KNOW THE ATTRIBUTES OF THE MICROSERVICE ENTITY `PropietarioInmuebleService` TO COPY THE SAME FROM THE ORIGINAL ENTITY CLASS WITHOUT ANNOTATIONS, EXCEPT FOR LOMBOK, SINCE IT WILL BE A POJO CLASS.
-* This step of value objects is added here for organizational code purposes, both microservices can be developed and then this step can be performed, issues of convenience.
+* Creamos el paquete `valueobjects` dentro de la ruta convencional
+* Creamos la clase `PropietarioInmuebleVO` 
+* ES NECESARIO TENER O CONOCER LOS ATRIBUTOS DE LA ENTIDAD DEL MICROSERVICIO `PropietarioInmuebleService` para copiar los mismos de la clase original entity sin las anotaciones, salvo las de lombok, ya que será una clase pojo.
+* Esta paso de los value object lo agrego acá por temas de organización de código, se puede desarrollar ambos microservicios y luego realizar este paso, temas de comodidad.
 
 
 ```java
@@ -1653,14 +1669,14 @@ public class PropietarioInmuebleVO {
  <br>
 
 
-#### 4.0.6) Template Value Objects
-#### (This Class will be the template that contains the Inmueble and PropietarioInmuebleVO objects)
+#### 4.0.6) Template Value Object
+#### (Esta Clase será el template que contenga los objetos Inmueble y PropietarioInmuebleVO)
 
-* Inside the `valueobjects` package, we create the template class `PropietarioInmuebleResponseTemplate`
-* We apply all the necessary Lombok annotations
-* ALIKE THE PREVIOUS STEP, IT IS NECESSARY TO HAVE PART OF THE OTHER MICROSERVICE DEVELOPED TO WORK WITH THE SAME
-* We use the already mentioned classes and apply Lombok
-* Code..
+* Dentro del paquete `valueobjects` creamos la clase template `PropietarioInmuebleResponseTemplate`
+* Aplicamos todas las anotaciones de lombok necesarias
+* AL IGUAL QUE EL PASO ANTERIOR, ES NECESARIO TENER PARTE DEL OTRO MICROSERVICIO DESARROLLADO PARA TRABAJAR EL MISMO
+* Usamos las clases ya mencionadas y aplicamios lombok
+* Código..
 
 ```java
 package com.inmueble.service.valueobjects;
@@ -1692,16 +1708,16 @@ public class PropietarioInmuebleResponseTemplate {
 #### 4.0.7) Controllers
 
  
-* Inside the `com.inmueble.service` package hierarchy, we create the `controller` package
-* Inside the same `InmuebleController` class
-* We add the @RestController annotation to the class making reference to the controller and the @RequestMapping annotation making reference to the main access route for Spring.
-* We implement `@Autowired` for Dependency Injection of the created service.
-* We use `@PostMapping` and `@GetMapping` for the use of the HTTP methods 
-* We also use the `@RequestBody` annotation to recover the body of the HTTP request and the `@PathVariable` annotation for handling the declared variables
-* We use log4j for error logs in CRUD methods for persistence. 
-* We develop the body of each method of the interface
-* Each CRUD method of HTTP type (POST, DELETE, PUT, GET) has its persistence check and the methods will return a boolean according to the result of the operation, less the get method that brings the Inmueble. The same can be modified to add greater security.
-* There will also be a method to obtain the template with the PropietarioInmueble and Inmueble objects
+* Dentro de la jerarquia de paquetes `com.inmueble.service` creamos el paquete `controller`
+* Dentro del mismo la Clase Controller `InmuebleController`
+* Agregamos la annotation `@RestController` de la clase haciendo referencia al controlador y la annotation `@RequestMapping` haciendo referencia a la ruta principal de acceso para Spring.
+* Implementamos `@Autowired` para Inyección de Dependencias del service creado.
+* Utilizamos `@PostMapping` y `@GetMapping` para el uso de los métodos del protocolo HTTP 
+* También hacemos uso de las annotations `@RequestBody` para recuperar el cuerpo de la solicitud HTTP y el `@PathVariable` para el manejo de las variables declaradas
+* Usamos log4j para los logs de error en los métodos CRUD para la persistencia. 
+* Desarrollamos el cuerpo de cada método de la interfaz
+* Cada Método CRUD de Tipo HTTP (POST, DELETE, PUT, GET) tiene su comprobación de Persistencia y los métodos devolverán un booleano según el resultado de la operación, menos el get que trae el Inmueble. Los mismos pueden ser modificados para adicionar mayor seguridad.
+* También existará el método para obtener el template con el objeto PropietarioInmueble y el objeto Inmueble
  
  ```java
  package com.inmueble.service.controller;
@@ -1730,7 +1746,7 @@ public class InmuebleController {
 	@Autowired
 	private InmuebleService inmuebleService;
 
-	// ======== HTTP METHODS ============
+	// ======== MÉTODOS HTTP ============
 	// --POST--
 	@PostMapping("/")
 	public boolean addInmueble(@RequestBody Inmueble inmueble) {
@@ -1853,22 +1869,22 @@ public class InmuebleController {
 
 
 
-### 4.1) Database configuration [🔝](#index-)
+### 4.1) Configuración de la db [🔝](#índice-)
 
 <details>
- <summary>View</summary>
+ <summary>Ver</summary>
 	
-#### (The Microservice will persist data in this db, I will not detail how to start the db, execute the services, etc. All these steps are in the repository of the same..https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres)
+#### (El Microservicio persistirá los datos en esta db, no detallaré como levantar la db, ejecutar los servicios, etc. Todos estos pasos se encuentran en el repositorio de la misma..https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres)
 
 </br>
 
-* As mentioned, all steps for working with this db are in the respective repository, the relevant information will be the name and password of the db..
+* Como se mencionó, todos los pasos para trabajar con esta db se encuentra en el respectivo repositorio, la información relevante será el nombre y la contraseña de la db..
 ```xml
 Database: db_inmobiliaria_microservicios
 
 Contraseña:postgres
 ```
-* To work with enumerations from postgres and from java, it is necessary to have a type conversion for correct synchronization and persistence, in addition to having added the corresponding annotations for enumerations from java, an cast is made from the db DDL, specifically `CREATE CAST (varchar AS estado_inmueble_enum) WITH INOUT AS IMPLICIT;
+* Para trabajar con enumerados desde postgres y desde java es necesario que haya una conversión de tipos para su correcta sincronización y persistencia, además de haber agregado las anotations correspondientes para los enumerados desde java, se implementa un casteo desde el DDL de la db, especificamente `CREATE CAST (varchar AS estado_inmueble_enum) WITH INOUT AS IMPLICIT;
 `
 
  <br>
@@ -1876,15 +1892,15 @@ Contraseña:postgres
 </details>
 
 
-### 4.2) application.properties configuration [🔝](#index-)
+### 4.2) Configuración del application.properties [🔝](#índice-)
 
 <details>
- <summary>View</summary>
+ <summary>Ver</summary>
 	
 
-* Check Api Rest Repository for detailed information about the properties file
-* The only difference with the mentioned API REST is that I use MySQL instead of PostgreSQL, then the dialect for hibernate, port, etc. are changed.
-* We make the necessary configurations to work with the indicated database and the configurations that the database and spring require
+* Revisar Repositorio de Api Rest para información detallada acerca del archivo de propiedades
+* La única diferencia con la API REST mencionada es que utilizo como sgdb mysql y no postgres, entonces se cambia el dialect para hibernate, puerto, etc.
+* Realizamos las configuraciones pertinentes para trabajar con la base de datos indicada y las configuraciones que la misma y spring requiera
  ```xml
 
 
@@ -1918,60 +1934,60 @@ spring.data.rest.max-page-size = 10
 
 
 
-### 4.3) PostgreSQL management from cmd [🔝](#index-)
+### 4.3) Manejo de Postgres desde cmd [🔝](#índice-)
 
 <details>
- <summary>View</summary>
+ <summary>Ver</summary>
 	
-#### (This is a quick and effective way to check if we have tables, records, columns, etc. inserted in our database, previously and during the testing stage of the microservice, I recommend implementing this method)
+#### (Esta es una forma rápida y eficaz de comprobar que tenemos tablas, registros, columnas, etc insertadas en nuestra base de datos, previamente y durante la etapa de testing del microservicio recomiendo implementar este método)
 
 </br>
 
-#### Implementation 
-* We open a cmd as admin
-* Execute the following commands from the cmd
+#### Implementación 
+* Abrimos una cmd como admin
+* Ejecutar los siguientes comandos desde el cmd
 
-#### Start PostgreSQL Service
+#### Iniciar el Servicio de PostgreSQL
 *  `psql -U postgres` 
-*  Password for superuser `postgres`
-*  Or knowing the Postgres data directory..
+*  Contraseña para el superusuario `postgres`
+*  O bien sabiendo el directorio de datos de Postgres..
 *  `pg_ctl -D "C:/Program Files/PostgreSQL/13/data" start` 
 
-#### Show Data Directory
+#### Mostrar Directorio de Datos
 * `show data_directory;`
-* The directory I will use is `C:/Program Files/PostgreSQL/13/data`
-* We will implement this path to check the status of the postgres service
+* El Directorio que usaré será `C:/Program Files/PostgreSQL/13/data`
+* Vamos a implementar esta ruta para comprobar el estado del servicio de postgres
 
-#### Stop PostgreSQL Service
+#### Parar el Servicio de PostgreSQL
 *  `exit`
-*  Or knowing the Postgres data directory..
+*  O bien sabiendo el directorio de datos de Postgres..
 *  `pg_ctl -D "C:/Program Files/PostgreSQL/13/data" stop`
-*  Be careful with `Ctrl+c`, if used it stops the process abruptly and may leave as a zombie process (not finishing correctly). I do not recommend it
+*  Ojo con `Ctrl+c`, si se usa se para el proceso de forma repentina y puede quedar como un proceso zombi (sin terminar correctamente). No lo Recomiendo
 
-#### Restart PostgreSQL Service
+#### Restablecer el Servicio de PostgreSQL
 *  `pg_ctl -D "C:/Program Files/PostgreSQL/13/data" restart`
 
 
-#### List Databases in the System
-* We list the dbs with the command `\l`
+#### Listar las Bases de Datos del Sistema
+* Listamos las dbs con el comando `\l`
 
 
-#### Change Database 
-* With the command `\c 'nombreDBSinComillas'`
+#### Cambiar de Bases de Datos 
+* Con el comando `\c 'nombreDBSinComillas'`
 
 
-#### List Tables
-* With the command `\dt`
-* ATTENTION, you must be in the db you want to visualize these tables, change db and execute this command again
+#### Listado de Tablas
+* Con el comando `\dt`
+* ATENTI, deberás estar en la db que querés visualizar estas tablas, cambiar de db y ejecutar nuevamente este comando
 
-#### Description of the Table
-* With the command `\d 'nombreTablaSinComillas'`
+#### Descripción de la Tabla
+* Con el comando `\d 'nombreTablaSinComillas'`
 
-#### Check the status of the Postgres Service
-* When we log in with the postgres user, the service should have started automatically, we will open another CMD and check this status
+#### Comprobar el estado del Servicio de Postgres
+* Cuando ingresamos con el usuario postgres se debió haber levantado automaticamente el servicio, vamos a abrir otra CMD y comprobar dicho estado
 *  `pg_ctl -D "C:/Program Files/PostgreSQL/13/data" status`
-*  We should get in the console that the service is active, something like this or similar
-* Result..
+*  Debería obtener en la consola que el servicio esta activo, como lo siguiente o algo parecido
+* Resultado..
 ```shell
 
 pg_ctl: el servidor está en ejecución (PID: 6408)
@@ -1979,8 +1995,8 @@ C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQ
 
 ```
 
-#### Postgres SQL Commands
-* All commands that can be implemented with Postgres from any editor are completely valid from the cmd, if we want to list all the inmuebles `select * from inmuebles`, if we want to delete a table `drop table inmuebles`, etc
+#### Comandos SQL con Postgres
+* Todos los comandos que se puedan implementar con Postgres desde algún editor son completamente validos desde el cmd, si queremos listar todos los inmuebles `select * from inmuebles`, si queremos borrar una tabla `drop table inmuebles`, etc
 
 
  <br>
@@ -1990,16 +2006,16 @@ C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQ
 
 
 
-### 4.4) Functionality testing [🔝](#index-)
+### 4.4) Prueba de Funcionalidad [🔝](#índice-)
 
 <details>
- <summary>View</summary>
+ <summary>Ver</summary>
 	
-#### (We will test the methods developed with Postman, it is important that the steps mentioned above have been executed correctly and that the db is running with its records and tables correctly)
+#### (Vamos a testear los métodos desarrollados con Postman, es importante que se hayan ejecutado los pasos anteriores de forma correcta y se tenga corriendo la db con sus registros y tablas correctamente)
 
  </br>
 
-* We test the POST method of inserting records by the following uri `http://localhost:8092/inmuebles/` and adding in the Body in Json format the Insertion Record..
+* Testeamos el método POST de inserción de registros mediante la siguiente uri `http://localhost:8092/inmuebles/` y agregando en el Body en formato Json el Registro de Inserción..
  ```json
  {
     "idPropietarioInmueble" : 1,
@@ -2013,14 +2029,14 @@ C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQ
 
 }
  ```
- * We get a Status 200 OK along with the true returned by the developed method.
- * The function executes correctly.
+ * Obtenemos un Status 200 OK  además del true devuelto por el método desarrollado.
+ * La función se ejecuta correctamente.
  
   </br>
   
-  * We test the GET method along with the created pagination to visualize the products of the db with the following uri `http://localhost:8092/inmuebles/listado?page=0&size=0`
- * We can get more information in the Project that is attached on API Rest about the use of paginators 
- * We get a Status 200 OK along with the total list of inmuebles(previously we have performed tests, so the id's and values are not logical)
+  * Testeamos el Método GET junto con la paginación creada para visualizar los productos de la db con la siguiente uri `http://localhost:8092/inmuebles/listado?page=0&size=0`
+ * Se puede obtener mayor información en el Proyecto que se anexa sobre API Rest acerca del uso de los paginados 
+ * Obtenemos un Status 200 OK junto con el listado total de inmuebles(previamente se han realizados pruebas, por eso que los id's y valores no son lógicos)
   ```json
 [
     {
@@ -2073,13 +2089,13 @@ C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQ
  
   </br>
   
-  * We have tested in advance all the GET methods of type ( findByDescripcion, findByTipo, etc) through their corresponding URIS, if we want to search for Inmuebles according to their description, the URI would be `http://localhost:8092/inmuebles/descripcion/"descripcion completa del inmueble sin comillas"`.
- * For each search method, the specific URI will change
+  * Se ha testeado de antemano todos los métodos de búsqueda de tipo GET( findByDescripcion, findByTipo, etc) mediante sus URIS correspondientes, si se desea buscar los Inmuebles según su descripcion la URI sería `http://localhost:8092/inmuebles/descripcion/"descripcion completa del inmueble sin comillas"`.
+ * Por cada método de búsqueda se cambiara la URI especifica para tal búsqueda 
 
   
   </br>
   
-  * Now we test the PUT method, we will modify the Inmueble with id 13 through the following uri `http://localhost:8092/inmuebles/`, passing in the body the complete record along with its modification (estadoInmuebleEnum) ..
+  * Ahora Testeamos el método PUT, vamos a modificar el Inmueble con el id 13 a través de la siguiente uri `http://localhost:8092/inmuebles/`, pasandole en el body el registro completo junto a su modificación (estadoInmuebleEnum) ..
   ```json
  {
     "id" : 13,
@@ -2095,16 +2111,16 @@ C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQ
 }
   
   ```
-  * We get a Status 200 OK and a true, if we visualize the list with the GET we will see the modification made
+  * Obtenemos un Status 200 OK y un true, si visualizamos la lista con el GET podremos ver allí la modificación realizada
   
   </br>
   
-  * We test the DELETE method, we will delete the last modified record (id 13), through the following uri `http://localhost:8092/inmuebles/13`
-  * We get a Status 200 OK along with the true .
+  * Testeamos el Método DELETE, eliminaremos el ultimo registro modificado(id 13), a través de la siguiente uri `http://localhost:8092/inmuebles/13`
+  * Obtenemos un Status 200 OK junto con el true .
   
   </br>
   
-  * We bring the Inmuebles list with the GET to check tacitly what we have done `http://localhost:8092/inmuebles/listado?page=0&size=0`..
+  * Traemos la Lista de Inmuebles con el GET para comprobar tacitamente lo realizado `http://localhost:8092/inmuebles/listado?page=0&size=0`..
   
   ```json
 [
@@ -2144,7 +2160,7 @@ C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQ
 ]
   ```
 
-* Our REST API meets the developed requirements
+* Nuestra API REST cumple con lo desarrollado
 
  <br>
 
@@ -2159,23 +2175,23 @@ C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQ
 
 <br>
 
-## Section 5) Git usage and management
+## Sección 5) Uso y manejo de Git
 
 
-### 5.0) Download [🔝](#index-)
+### 5.0) Descarga [🔝](#índice-)
 
 <details>
- <summary>View</summary>
+ <summary>Ver</summary>
 	
-* We go to https://git-scm.com/downloads and download the versioner
-* As with any application, next... next...
-* IMPORTANT:DO NOT HAVE DBEAVER OPEN DURING INSTALLATION, OTHERWISE IT WILL NOT RECOGNIZE THE PATH
+* Nos dirigimos a https://git-scm.com/downloads y descargamos el versionador
+* Como toda aplicacion siguiente.... siguiente....
+* IMPORTANTE:NO TENER DBEAVER ABIERTO DURANTE LA INSTALACION, SINO NO RECONOCE EL PATH
 
-### Open a Git Console (Git Bash) from Windows
-* --> We write Git Bash from the Windows search bar
-* --> From the console, we write the cd command followed by the project path
-* --> We must have the project path and paste it into the Git Bash
-* --> Once inside the Project, we can use Git
+### Abrir una Consola de Git (Git Bash) desde Windows
+* --> Escribimos Git Bash desde el Buscador de Windows
+* --> Desde la consola escribimos el comando cd seguidamente de la ruta del proyecto
+* --> Tenemos que tener la ruta del Proyecto y pegarla en el Git Bash
+* --> Una vez dentro del Proyecto podremos hacer uso de Git
 
 
  <br>
@@ -2183,27 +2199,27 @@ C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQ
 </details>
 
 
-### 5.1) Upload project to remote repository [🔝](#index-)
+### 5.1) Subir proyecto al repositorio remoto [🔝](#índice-)
 
 <details>
- <summary>View</summary>
+ <summary>Ver</summary>
 
 
-#### 1)We create a new repository on GitHub.
+#### 1)Creamos un nuevo repositorio en GitHub.
 
-#### 2)We initialize our local .git repository from the terminal.
+#### 2)Inicializamos nuestro repositorio local .git desde la terminal.
 * git init
 
-#### 3)We add what we have developed to our local repo from the terminal.
+#### 3)Agregamos lo desarrollado a nuestro repo local desde la terminal.
 * git add *
 
-#### 4)We add what we have in our local repo to the working area from the terminal.
-* git commit -m "add a comment between quotes"
+#### 4)Agregamos lo que tenemos en nuestro repo local al área de Trabajo desde la terminal.
+* git commit -m "agrega un comentario entre comillas"
 
-#### 5)We tell git where our project will be stored(check your github repository which is the link to your project(this is in code)).
+#### 5)Le indicamos a git donde se va a almacenar nuestro proyecto(fijate en tu repositorio de github cual es el enlace de tu proyecto(esta en code)).
 * git remote add origin https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot
 
-#### 6)We upload our project.
+#### 6)Subimos nuestro proyecto.
 * git push -u origin master
 
 	
@@ -2213,29 +2229,29 @@ C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQ
 
 
 
-### 5.2) Project repository update [🔝](#index-)
+### 5.2) Actualización del repositorio del proyecto [🔝](#índice-)
 
 <details>
- <summary>View</summary>
+ <summary>Ver</summary>
 
 
-#### 1)We visualize the changes made locally
+#### 1)Visualizamos las modificaciones realizadas en local
 * git status
 
-#### 2)We add what has been modified to the working area
+#### 2)Agregamos lo modificado al area de trabajo
 * git add *
 
-#### 3)We confirm the changes made
-* git commit -m "your commit between quotes"
+#### 3)Confirmamos las modificaciones realizadas
+* git commit -m "tu commit entre comillas"
 
-#### 4)We synchronize and bring all changes from the remote repository to the branch we are currently working on.
-##### (ONLY IF CHANGES WERE MADE FROM ANOTHER SIDE, ej: on github u/o/y a work team)
+#### 4)Sincronizamos y traemos todos los cambios del repositorio remoto a la rama en la que estemos trabajando actualmente.
+##### (SOLO SI SE REALIZARON CAMBIOS DESDE OTRA LADO, ej: en github u/o/y un equipo de trabajo)
 * git pull https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot
 
-#### 5)We send all local changes to the repo on github
+#### 5)Enviamos todos los cambios locales al repo en github
 * git push https://github.com/andresWeitzel/Microservicios_Spring_Cloud_Netflix_Spring_Boot
 
-#### 6) In extreme cases, we push the repository branch (Not recommended)
+#### 6) En casos extremos pisamos la rama del repositorio (No recomendado)
 * git push -f --set-upstream origin master
 
 	
