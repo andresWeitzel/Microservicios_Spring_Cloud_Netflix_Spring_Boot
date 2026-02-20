@@ -58,9 +58,14 @@ Implementación de Microservicios para inmobiliaria con Spring Boot, Spring Clou
 ## Índice 📜
 
 <details>
- <summary> Ver </summary>
+ <summary> Ver detalles </summary>
  
- <br>
+<div align="right">
+
+`Última actualización: 19/02/26` 
+
+</div>
+
  
  
 ### Sección 1) Descripción, Tecnologías y Dependencias 
@@ -118,7 +123,7 @@ Implementación de Microservicios para inmobiliaria con Spring Boot, Spring Clou
 ### 1.0) Descripción [🔝](#índice-) 
 
 <details>
- <summary>Ver</summary>
+ <summary>Ver detalles</summary>
  
  <br>
 
@@ -163,7 +168,7 @@ Servicios
 ### 1.1) Patrones de Diseño [🔝](#índice-)
 
 <details>
- <summary>Ver</summary>
+ <summary>Ver detalles</summary>
  
  <br>
 
@@ -184,7 +189,7 @@ Servicios
 ### 1.2) Tecnologías [🔝](#índice-)
 
 <details>
- <summary>Ver</summary>
+ <summary>Ver detalles</summary>
  
  <br>
 
@@ -223,7 +228,7 @@ Servicios
 ### 1.2.1) Descargas [🔝](#índice-)
 
 <details>
- <summary>Ver</summary>
+ <summary>Ver detalles</summary>
  
  <br>
 
@@ -250,7 +255,7 @@ Servicios
 ### 1.3) Dependencias Maven [🔝](#índice-)
 
 <details>
- <summary>Ver</summary>
+ <summary>Ver detalles</summary>
  
  <br>
 
@@ -290,7 +295,7 @@ Servicios
 ### 2.0) EndPoints [🔝](#índice-)
 
 <details>
- <summary>Ver</summary>
+ <summary>Ver detalles</summary>
  
 ### EndPoints MicroServicios Por Defecto:
 * http://localhost:8092/v1/inmuebles/
@@ -325,7 +330,7 @@ Servicios
 ### 2.1) Recursos por Endpoints. (Swagger UI) [🔝](#índice-)
 
 <details>
- <summary>Ver</summary>
+ <summary>Ver detalles</summary>
 
 ### Servicios en Spring Cloud Eureka Server
 ![Index app](../img/eurekaServer.png)
@@ -362,7 +367,7 @@ Servicios
 ### 2.2) Ejemplos de Requests y Responses [🔝](#índice-)
 
 <details>
- <summary>Ver</summary>
+ <summary>Ver detalles</summary>
 
 ## Microservicio InmuebleService
 
@@ -1175,7 +1180,7 @@ Servicios
 ### 3.0) Prueba de Funcionalidad [🔝](#índice-)
 
 <details>
- <summary>Ver</summary>
+ <summary>Ver detalles</summary>
 
 
 ### API's Rest Microservicios Por Defecto
@@ -1217,7 +1222,7 @@ Servicios
 ### 3.1) Referencias [🔝](#índice-)
 
 <details>
- <summary>Ver</summary>
+ <summary>Ver detalles</summary>
 	
 ### Documentación No Oficial Recomendada
 
@@ -1243,7 +1248,7 @@ Servicios
 ### 4.0) Modelo de Microservicio InmuebleService [🔝](#índice-)
 
 <details>
- <summary>Ver</summary>
+ <summary>Ver detalles</summary>
 
 #### 4.0.0) Creación y Configuración
 #### (Solamente se explicará e incluirá código relevante para microservicios, toda explicación y pasos desde cero para una API REST se incluye en otro proyecto..https://github.com/andresWeitzel/Api_Rest_Spring_Productos)
@@ -1872,7 +1877,7 @@ public class InmuebleController {
 ### 4.1) Configuración de la db [🔝](#índice-)
 
 <details>
- <summary>Ver</summary>
+ <summary>Ver detalles</summary>
 	
 #### (El Microservicio persistirá los datos en esta db, no detallaré como levantar la db, ejecutar los servicios, etc. Todos estos pasos se encuentran en el repositorio de la misma..https://github.com/andresWeitzel/db_inmobiliaria_microservicios_postgres)
 
@@ -1895,7 +1900,7 @@ Contraseña:postgres
 ### 4.2) Configuración del application.properties [🔝](#índice-)
 
 <details>
- <summary>Ver</summary>
+ <summary>Ver detalles</summary>
 	
 
 * Revisar Repositorio de Api Rest para información detallada acerca del archivo de propiedades
@@ -1937,7 +1942,7 @@ spring.data.rest.max-page-size = 10
 ### 4.3) Manejo de Postgres desde cmd [🔝](#índice-)
 
 <details>
- <summary>Ver</summary>
+ <summary>Ver detalles</summary>
 	
 #### (Esta es una forma rápida y eficaz de comprobar que tenemos tablas, registros, columnas, etc insertadas en nuestra base de datos, previamente y durante la etapa de testing del microservicio recomiendo implementar este método)
 
@@ -2009,7 +2014,7 @@ C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQ
 ### 4.4) Prueba de Funcionalidad [🔝](#índice-)
 
 <details>
- <summary>Ver</summary>
+ <summary>Ver detalles</summary>
 	
 #### (Vamos a testear los métodos desarrollados con Postman, es importante que se hayan ejecutado los pasos anteriores de forma correcta y se tenga corriendo la db con sus registros y tablas correctamente)
 
@@ -2181,7 +2186,7 @@ C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQ
 ### 5.0) Descarga [🔝](#índice-)
 
 <details>
- <summary>Ver</summary>
+ <summary>Ver detalles</summary>
 	
 * Nos dirigimos a https://git-scm.com/downloads y descargamos el versionador
 * Como toda aplicacion siguiente.... siguiente....
@@ -2202,7 +2207,7 @@ C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQ
 ### 5.1) Subir proyecto al repositorio remoto [🔝](#índice-)
 
 <details>
- <summary>Ver</summary>
+ <summary>Ver detalles</summary>
 
 
 #### 1)Creamos un nuevo repositorio en GitHub.
@@ -2232,7 +2237,7 @@ C:/Program Files/PostgreSQL/13/bin/postgres.exe "-D" "C:\Program Files\PostgreSQ
 ### 5.2) Actualización del repositorio del proyecto [🔝](#índice-)
 
 <details>
- <summary>Ver</summary>
+ <summary>Ver detalles</summary>
 
 
 #### 1)Visualizamos las modificaciones realizadas en local
