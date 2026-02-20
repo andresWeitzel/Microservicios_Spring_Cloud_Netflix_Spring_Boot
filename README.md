@@ -26,10 +26,10 @@
 
 <div align="right"> 
   <a href="./assets/translation/README.es.md">
-    <img width="65" height="40" src="./assets/icons/translation/arg-flag.jpg" />
+    <img src="./assets/icons/translation/arg-flag.jpg" width="65" height="40" />
   </a> 
   <a href="./README.md">
-    <img width="65" height="40" src="./assets/icons/translation/eeuu-flag.jpg" />
+    <img src="./assets/icons/translation/eeuu-flag.jpg" width="65" height="40" />
   </a> 
 </div>
 
